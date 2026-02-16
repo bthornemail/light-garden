@@ -130,8 +130,16 @@ const app = (() => {
     gCenter: document.getElementById('g-center'),
     syncStatus: document.getElementById('sync-status'),
     mqttStatus: document.getElementById('mqtt-status'),
-    peerCount: document.getElementById('peer-count')
+    peerCount: document.getElementById('peer-count'),
+    mediaFile: document.getElementById('media-file'),
+    mediaStatus: document.getElementById('media-status'),
+    mediaFilename: document.getElementById('media-filename'),
+    mediaChunks: document.getElementById('media-chunks'),
+    mediaProgress: document.getElementById('media-progress')
   };
+  
+  let mediaCodec = null;
+  let selectedFile = null;
   
   function init() {
     elements.svgObject.addEventListener('load', handleSvgLoad);
@@ -163,6 +171,14 @@ const app = (() => {
     
     document.getElementById('connect-btn').addEventListener('click', connectNetwork);
     document.getElementById('sync-btn').addEventListener('click', requestSync);
+    
+    document.getElementById('media-file').addEventListener('change', handleMediaFileSelect);
+    document.getElementById('media-encode').addEventListener('click', encodeMediaFile);
+    document.getElementById('media-transmit').addEventListener('click', transmitMedia);
+    document.getElementById('media-receive').addEventListener('click', startMediaReceive);
+    document.getElementById('media-stop').addEventListener('click', stopMedia);
+    document.getElementById('media-save').addEventListener('click', saveMediaNDJSON);
+    document.getElementById('media-clear').addEventListener('click', clearMedia);
     
     document.getElementById('dome-pole1')?.addEventListener('click', () => highlightDomePole(1));
     document.getElementById('dome-pole2')?.addEventListener('click', () => highlightDomePole(2));
@@ -698,6 +714,8 @@ const app = (() => {
     elements.log.parentElement.scrollTop = elements.log.parentElement.scrollHeight;
   }
   
+  window.addLog = addLog;
+  
   function clearLog() {
     elements.log.innerHTML = '';
     ndjsonLog = [];
@@ -742,6 +760,136 @@ const app = (() => {
         URL.revokeObjectURL(url);
         addLog(`Exported ${type}`, 'system');
       });
+  }
+  
+  function handleMediaFileSelect(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    selectedFile = file;
+    elements.mediaFilename.textContent = file.name;
+    elements.mediaStatus.textContent = 'File selected';
+    addLog(`Selected: ${file.name} (${file.size} bytes)`, 'media');
+  }
+  
+  async function encodeMediaFile() {
+    if (!selectedFile) {
+      addLog('No file selected', 'warn');
+      return;
+    }
+    
+    elements.mediaStatus.textContent = 'Encoding...';
+    addLog(`Encoding ${selectedFile.name}...`, 'media');
+    
+    if (!mediaCodec && epistemicSquare) {
+      mediaCodec = new EpistemicCodec(epistemicSquare);
+    }
+    
+    if (!mediaCodec) {
+      addLog('EpistemicSquare not initialized', 'error');
+      return;
+    }
+    
+    try {
+      const chunkCount = await mediaCodec.encodeFile(selectedFile);
+      elements.mediaChunks.textContent = chunkCount;
+      elements.mediaProgress.textContent = '0%';
+      elements.mediaStatus.textContent = 'Ready to transmit';
+      addLog(`Encoded into ${chunkCount} chunks`, 'media');
+    } catch (err) {
+      elements.mediaStatus.textContent = 'Encode failed';
+      addLog(`Encode error: ${err.message}`, 'error');
+    }
+  }
+  
+  function transmitMedia() {
+    if (!mediaCodec || mediaCodec.chunks.length === 0) {
+      addLog('No encoded data', 'warn');
+      return;
+    }
+    
+    elements.mediaStatus.textContent = 'Transmitting...';
+    addLog('Starting transmission...', 'media');
+    
+    mediaCodec.onProgress = (progress) => {
+      elements.mediaProgress.textContent = `${progress}%`;
+    };
+    
+    mediaCodec.onComplete = () => {
+      elements.mediaStatus.textContent = 'Transmission complete';
+      addLog('Transmission complete', 'media');
+    };
+    
+    mediaCodec.transmit(80);
+  }
+  
+  function startMediaReceive() {
+    if (!mediaCodec && epistemicSquare) {
+      mediaCodec = new EpistemicCodec(epistemicSquare);
+    }
+    
+    if (!mediaCodec) {
+      addLog('EpistemicSquare not initialized', 'error');
+      return;
+    }
+    
+    elements.mediaStatus.textContent = 'Receiving...';
+    addLog('Waiting for transmission...', 'media');
+    
+    mediaCodec.startReceiving();
+    
+    window.addEventListener('epistemicReceive', (e) => {
+      const { received, total } = e.detail;
+      elements.mediaChunks.textContent = received;
+      elements.mediaProgress.textContent = total > 0 ? `${Math.round((received/total)*100)}%` : '0%';
+    }, { once: true });
+    
+    window.addEventListener('epistemicFileReceived', handleMediaFileReceived, { once: true });
+  }
+  
+  function handleMediaFileReceived(e) {
+    const { blob, url, type, size } = e.detail;
+    
+    elements.mediaStatus.textContent = `Received ${type}`;
+    addLog(`File received: ${type}, ${size} bytes`, 'media');
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `received_${Date.now()}.${type === 'image' ? 'jpg' : type === 'text' ? 'txt' : 'bin'}`;
+    a.click();
+    
+    URL.revokeObjectURL(url);
+  }
+  
+  function stopMedia() {
+    if (mediaCodec) {
+      mediaCodec.playing = false;
+      mediaCodec.receiving = false;
+      elements.mediaStatus.textContent = 'Stopped';
+      addLog('Media stopped', 'media');
+    }
+  }
+  
+  function saveMediaNDJSON() {
+    if (!mediaCodec || mediaCodec.chunks.length === 0) {
+      addLog('No encoded data to save', 'warn');
+      return;
+    }
+    
+    mediaCodec.saveAsNDJSON();
+    addLog('Saved NDJSON', 'media');
+  }
+  
+  function clearMedia() {
+    if (mediaCodec) {
+      mediaCodec.clear();
+    }
+    selectedFile = null;
+    elements.mediaFilename.textContent = '—';
+    elements.mediaChunks.textContent = '0';
+    elements.mediaProgress.textContent = '0%';
+    elements.mediaStatus.textContent = 'Ready';
+    addLog('Media cleared', 'media');
   }
   
   document.addEventListener('DOMContentLoaded', init);

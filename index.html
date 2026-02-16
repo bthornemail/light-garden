@@ -194,6 +194,41 @@
         </section>
         
         <section class="panel-section">
+          <h2>Media Encoding</h2>
+          <div class="media-controls">
+            <input type="file" id="media-file" accept="*/*">
+            <div class="button-row">
+              <button id="media-encode">Encode</button>
+              <button id="media-transmit">Transmit</button>
+              <button id="media-receive" class="receive-btn">Receive</button>
+              <button id="media-stop">Stop</button>
+            </div>
+            <div class="button-row">
+              <button id="media-save">Save NDJSON</button>
+              <button id="media-clear">Clear</button>
+            </div>
+          </div>
+          <div class="epistemic-status">
+            <div class="epi-row">
+              <span class="label">Status:</span>
+              <span id="media-status" class="value">Ready</span>
+            </div>
+            <div class="epi-row">
+              <span class="label">File:</span>
+              <span id="media-filename" class="value">—</span>
+            </div>
+            <div class="epi-row">
+              <span class="label">Chunks:</span>
+              <span id="media-chunks" class="value">0</span>
+            </div>
+            <div class="epi-row">
+              <span class="label">Progress:</span>
+              <span id="media-progress" class="value">0%</span>
+            </div>
+          </div>
+        </section>
+        
+        <section class="panel-section">
           <h2>Live Log</h2>
           <div class="log-container">
             <div id="log"></div>
@@ -220,6 +255,8 @@
     </main>
   </div>
   
+  <script src="epistemic-square.js"></script>
+  <script src="epistemic-codec.js"></script>
   <script src="network.js"></script>
   <script src="app.js"></script>
 </body>
