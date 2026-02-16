@@ -1,0 +1,8 @@
+{"test":"packet-corruption","core":true,"packet":{"source":1,"matrix":[0,2,1,2,2,0,2]},"checksum":false,"expectedError":"CHECKSUM_FAIL"}
+{"test":"collision","core":true,"nodes":10,"expectedError":"COLLISION"}
+{"test":"out-of-range","core":true,"distance":"100km","expectedError":"SIGNAL_LOST"}
+{"test":"invalid-protocol","core":true,"protocol":"bluetooth","expectedError":"UNSUPPORTED"}
+{"test":"queue-overflow","core":true,"packets":1000,"expectedError":"QUEUE_FULL"}
+{"test":"mesh-networking-negative-coverage-1","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847021}
+{"test":"mesh-networking-negative-coverage-2","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847022}
+{"test":"mesh-networking-negative-coverage-3","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847023}

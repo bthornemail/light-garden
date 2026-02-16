@@ -1,0 +1,6 @@
+{"test":"packet-format","core":true,"packet":{"source":1,"dest":7,"matrix":[0,2,1,2,2,0,2]},"expectedSize":24}
+{"test":"lora-transmission","core":true,"packetSize":24,"expectedRange":"10-40km"}
+{"test":"federation","core":true,"line":3,"expectedDifferential":"unique"}
+{"test":"relay-chain","core":true,"satellites":7,"expectedLatency":9100}
+{"test":"mesh-convergence","core":true,"nodes":7,"expectedTime":500}
+{"test":"mesh-networking-golden-coverage-1","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847021}

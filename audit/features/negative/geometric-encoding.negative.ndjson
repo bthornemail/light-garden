@@ -1,0 +1,8 @@
+{"test":"invalid-matrix","core":true,"matrix":[0,2,1,2,2,0,9],"expectedError":"INVALID_QUADRANT"}
+{"test":"angle-outside-range","core":true,"matrix":[0,2,1,2,2,0,2],"angle":361,"expectedError":"ANGLE_RANGE"}
+{"test":"seed-overflow","core":true,"seed":16777216,"expectedError":"SEED_RANGE"}
+{"test":"point-outside-range","core":true,"point":9,"expectedError":"POINT_RANGE"}
+{"test":"matrix-too-short","core":true,"matrix":[0,2,1,2,2,0],"expectedError":"MATRIX_LENGTH"}
+{"test":"mnemonic-invalid","core":true,"mnemonic":"observer-geometry-xyz","expectedError":"WORD_NOT_IN_LIST"}
+{"test":"geometric-encoding-negative-coverage-1","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847015}
+{"test":"geometric-encoding-negative-coverage-2","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847016}

@@ -93,7 +93,7 @@ async function runTrace(node, trace) {
   if (node === 'wordnet-service') {
     if (trace.action === 'lookup') {
       const word = encodeURIComponent(trace.word || '');
-      const res = await requestJson(`http://localhost:4096/api/wordnet/lookup/${word}`);
+      const res = await requestJson(`http://localhost:4096/api/wordnet/lookup?word=${word}`);
       if (trace.expected_error === 'NOT_FOUND') passed = !res.ok || (Array.isArray(res.data) && res.data.length === 0);
       else if (trace.expected_error === 'INVALID_INPUT') passed = !res.ok;
       else if (trace.expected_timeout) passed = !res.ok;
@@ -101,13 +101,13 @@ async function runTrace(node, trace) {
       detail = res.error || `status=${res.status}`;
     } else if (trace.action === 'hypernyms') {
       const w = encodeURIComponent(trace.word || '');
-      const res = await requestJson(`http://localhost:4096/api/wordnet/hypernyms/${w}`);
+      const res = await requestJson(`http://localhost:4096/api/wordnet/hypernyms?word=${w}`);
       passed = res.ok;
       detail = res.error || `status=${res.status}`;
     } else if (trace.action === 'similarity') {
       const w1 = encodeURIComponent(trace.word1 || '');
       const w2 = encodeURIComponent(trace.word2 || '');
-      const res = await requestJson(`http://localhost:4096/api/wordnet/similarity/${w1}/${w2}`);
+      const res = await requestJson(`http://localhost:4096/api/wordnet/similarity?word1=${w1}&word2=${w2}`);
       const sim = res.data && typeof res.data.similarity === 'number' ? res.data.similarity : null;
       passed = res.ok && (trace.expected_range ? approx(sim, trace.expected_range[0], trace.expected_range[1]) : true);
       detail = res.error || `status=${res.status}`;

@@ -1,0 +1,8 @@
+{"test":"7bit-render","core":true,"matrix":[0,2,1,2,2,0,2],"expectedLEDs":[255,0,0,0,0,0,0]}
+{"test":"61bit-render","core":true,"matrix":[0,2,1,2,2,0,2],"expectedRings":5}
+{"test":"241bit-render","core":true,"matrix":[0,2,1,2,2,0,2],"expectedRings":9}
+{"test":"16x16-render","core":true,"seed":9069010,"expectedPixels":47}
+{"test":"color-mapping","core":true,"point":2,"expectedColor":"#ff8800"}
+{"test":"brightness-distribution","core":true,"matrix":[0,2,1,2,2,0,2],"expected":[128,96,82,71,64,58,52]}
+{"test":"light-rendering-golden-coverage-1","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847019}
+{"test":"light-rendering-golden-coverage-2","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847020}

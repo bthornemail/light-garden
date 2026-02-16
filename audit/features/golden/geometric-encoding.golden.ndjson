@@ -1,0 +1,12 @@
+{"test":"seed-to-matrix","core":true,"seed":9069010,"expected":[0,2,1,2,2,0,2]}
+{"test":"matrix-to-seed","core":true,"matrix":[0,2,1,2,2,0,2],"expected":9069010}
+{"test":"angle-to-seed","core":true,"matrix":[0,2,1,2,2,0,2],"angle":164.3,"expected":9069010}
+{"test":"seed-to-mnemonic","core":true,"seed":9069010,"expected":"observer-geometry-plane"}
+{"test":"mnemonic-to-seed","core":true,"mnemonic":"observer-geometry-plane","expected":9069010}
+{"test":"matrix-rotation","core":true,"matrix":[0,2,1,2,2,0,2],"rotation":51.4,"expected":[2,0,2,1,2,2,0]}
+{"test":"fano-point","core":true,"matrix":[0,2,1,2,2,0,2],"expected":2}
+{"test":"quadrant-counts","core":true,"matrix":[0,2,1,2,2,0,2],"expected":{"KK":2,"KU":1,"UK":3,"UU":1}}
+{"test":"line-identification","core":true,"matrix":[0,2,1,2,2,0,2],"line":3,"expected":[0,2,1]}
+{"test":"geometric-encoding-golden-coverage-1","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847015}
+{"test":"geometric-encoding-golden-coverage-2","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847016}
+{"test":"geometric-encoding-golden-coverage-3","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847017}

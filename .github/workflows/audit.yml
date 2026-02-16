@@ -1,0 +1,274 @@
+name: Audit
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'wordnet/**'
+      - 'c-server/**'
+      - 'firmware/**'
+      - 'docs/**'
+      - 'audit/**'
+      - '.github/workflows/audit.yml'
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: audit/package-lock.json
+
+      - name: Install system dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y build-essential libwebsockets-dev jq
+
+      - name: Install audit dependencies
+        working-directory: ./audit
+        run: npm ci
+
+      - name: Generate golden traces
+        working-directory: ./audit
+        run: node scripts/generate-golden.js
+
+      - name: Generate negative traces
+        working-directory: ./audit
+        run: node scripts/inject-negative.js
+
+      - name: Compile feature traces and adapters
+        working-directory: ./audit
+        run: |
+          node scripts/compile-features.js
+          node scripts/generate-adapter-tools.js
+
+      - name: Build C server
+        run: |
+          set -euo pipefail
+          make -C c-server clean
+          make -C c-server
+
+      - name: Start services for live testing
+        run: |
+          set -euo pipefail
+
+          cd wordnet
+          node server.js > ../wordnet-ci.log 2>&1 &
+          echo $! > ../wordnet.pid
+          cd ..
+
+          cd c-server
+          ./fano_server > ../c-server-ci.log 2>&1 &
+          echo $! > ../c-server.pid
+          cd ..
+
+          for _ in $(seq 1 60); do
+            if curl -fsS "http://localhost:4096/api/wordnet/lookup?word=wisdom" >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+          for _ in $(seq 1 60); do
+            if curl -fsS "http://localhost:8080/" >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+          curl -fsS "http://localhost:4096/api/wordnet/lookup?word=wisdom" >/dev/null
+          curl -fsS "http://localhost:8080/" >/dev/null
+
+      - name: Run full audit
+        id: run_audit
+        working-directory: ./audit
+        continue-on-error: true
+        run: node scripts/run-audit.js
+
+      - name: Run feature audit
+        id: run_feature_audit
+        working-directory: ./audit
+        continue-on-error: true
+        run: node scripts/run-feature-audit.js
+
+      - name: Stop services
+        if: always()
+        run: |
+          set +e
+          if [ -f wordnet.pid ]; then kill "$(cat wordnet.pid)" 2>/dev/null || true; fi
+          if [ -f c-server.pid ]; then kill "$(cat c-server.pid)" 2>/dev/null || true; fi
+
+      - name: Upload service logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: service-logs-${{ github.sha }}
+          path: |
+            wordnet-ci.log
+            c-server-ci.log
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-results-${{ github.sha }}
+          path: |
+            audit/artifacts/
+            audit/features/
+            audit/results/
+            audit/traces/
+          retention-days: 90
+
+      - name: Generate audit summary
+        if: always()
+        working-directory: ./audit
+        run: |
+          set -euo pipefail
+          echo "## Audit Results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f artifacts/reports/audit-summary.json ]; then
+            echo "| Metric | Value |" >> "$GITHUB_STEP_SUMMARY"
+            echo "|--------|-------|" >> "$GITHUB_STEP_SUMMARY"
+            jq -r '.summary | to_entries | map("| \(.key) | \(.value) |") | join("\n")' artifacts/reports/audit-summary.json >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "### Critical Failures" >> "$GITHUB_STEP_SUMMARY"
+            crit="$(jq -r '[.failures[]? | select(.severity == "critical")] | length' artifacts/reports/audit-summary.json)"
+            if [ "$crit" = "0" ]; then
+              echo "- None" >> "$GITHUB_STEP_SUMMARY"
+            else
+              jq -r '.failures[] | select(.severity == "critical") | "- **\(.node)**: \(.error)"' artifacts/reports/audit-summary.json >> "$GITHUB_STEP_SUMMARY"
+            fi
+          else
+            echo "No audit summary generated." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "## Feature Audit" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f artifacts/reports/feature-audit-summary.json ]; then
+            echo "| Metric | Value |" >> "$GITHUB_STEP_SUMMARY"
+            echo "|--------|-------|" >> "$GITHUB_STEP_SUMMARY"
+            jq -r '
+              .summary as $s |
+              [
+                "| core.total | \($s.core.total) |",
+                "| core.passed | \($s.core.passed) |",
+                "| core.failed | \($s.core.failed) |",
+                "| coverage.total | \($s.coverage.total) |",
+                "| coverage.passed | \($s.coverage.passed) |",
+                "| coverage.failed | \($s.coverage.failed) |",
+                "| total | \($s.total) |",
+                "| passed | \($s.passed) |",
+                "| failed | \($s.failed) |",
+                "| critical | \($s.critical) |"
+              ] | join("\n")
+            ' artifacts/reports/feature-audit-summary.json >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "### Feature Critical Failures (Core Tests)" >> "$GITHUB_STEP_SUMMARY"
+            fcrit="$(jq -r '(.criticalFailures // []) | length' artifacts/reports/feature-audit-summary.json)"
+            if [ "$fcrit" = "0" ]; then
+              echo "- None" >> "$GITHUB_STEP_SUMMARY"
+            else
+              jq -r '.criticalFailures[] | "- **\(.capability)**: core pass rate \((.corePassRate * 100) | tostring)% (threshold \((.threshold * 100) | tostring)%)"' artifacts/reports/feature-audit-summary.json >> "$GITHUB_STEP_SUMMARY"
+            fi
+          else
+            echo "No feature audit summary generated." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Notify on critical failures
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const componentPath = 'audit/artifacts/reports/audit-summary.json';
+            const featurePath = 'audit/artifacts/reports/feature-audit-summary.json';
+
+            const componentCritical = fs.existsSync(componentPath)
+              ? ((JSON.parse(fs.readFileSync(componentPath, 'utf8')).failures || []).filter(f => f.severity === 'critical'))
+              : [];
+            const featureCritical = fs.existsSync(featurePath)
+              ? (JSON.parse(fs.readFileSync(featurePath, 'utf8')).criticalFailures || [])
+              : [];
+
+            if (componentCritical.length === 0 && featureCritical.length === 0) {
+              core.info('No critical failures.');
+              return;
+            }
+
+            const bodyLines = [
+              `Audit run detected ${componentCritical.length + featureCritical.length} critical issue(s).`,
+              '',
+              ...(componentCritical.length > 0
+                ? ['### Component Critical', ...componentCritical.map(f => `- **${f.node}**: ${f.error}`), '']
+                : []),
+              ...(featureCritical.length > 0
+                ? ['### Feature Critical (Core Threshold)', ...featureCritical.map(f => `- **${f.capability}**: core pass rate ${(f.corePassRate * 100).toFixed(1)}% (threshold ${(f.threshold * 100).toFixed(1)}%)`), '']
+                : []),
+              '',
+              `[Workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`
+            ];
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Audit critical failures: ${context.sha.slice(0, 7)}`,
+              body: bodyLines.join('\n')
+            });
+
+  report:
+    needs: audit
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download audit artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: audit-results-${{ github.sha }}
+          path: audit-results
+
+      - name: Generate coverage report
+        run: |
+          set -euo pipefail
+          echo "## 📊 Audit Coverage Report" > coverage.md
+          echo "" >> coverage.md
+          echo "Generated: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> coverage.md
+          echo "" >> coverage.md
+          if [ -f audit-results/artifacts/reports/coverage-matrix.json ]; then
+            jq -r '. | to_entries | map("- \(.key): \(.value)") | join("\n")' audit-results/artifacts/reports/coverage-matrix.json >> coverage.md
+          else
+            echo "No coverage matrix available." >> coverage.md
+          fi
+          echo "" >> coverage.md
+          echo "### Recommendations" >> coverage.md
+          if [ -f audit-results/artifacts/reports/recommendations.md ]; then
+            cat audit-results/artifacts/reports/recommendations.md >> coverage.md
+          else
+            echo "No recommendations file available." >> coverage.md
+          fi
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-${{ github.sha }}
+          path: coverage.md

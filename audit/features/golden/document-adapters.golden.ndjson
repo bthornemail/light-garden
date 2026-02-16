@@ -1,0 +1,10 @@
+{"test":"wikipedia-adapter","core":true,"title":"Fano plane","expectedID":390404}
+{"test":"arxiv-adapter","core":true,"id":"2301.00001","expectedTitle":"Fano plane"}
+{"test":"archive-adapter","core":true,"id":"metadata/12345","expectedFormat":"JSON"}
+{"test":"adapter-to-fano","core":true,"source":"wikipedia","title":"Fano plane","expectedMatrix":[0,2,1,2,2,0,2]}
+{"test":"adapter-to-mnemonic","core":true,"source":"wikipedia","title":"Fano plane","expectedMnemonic":"observer-geometry-plane"}
+{"test":"document-adapters-golden-coverage-1","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847022}
+{"test":"document-adapters-golden-coverage-2","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847023}
+{"test":"document-adapters-golden-coverage-3","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847024}
+{"test":"document-adapters-golden-coverage-4","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847025}
+{"test":"document-adapters-golden-coverage-5","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847026}

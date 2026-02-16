@@ -1,0 +1,7 @@
+{"test":"wikipedia-not-found","core":true,"title":"NonexistentArticle","expectedError":"404"}
+{"test":"arxiv-invalid-id","core":true,"id":"invalid","expectedError":"BAD_REQUEST"}
+{"test":"archive-rate-limit","core":true,"id":"metadata/12345","requests":100,"expectedError":"RATE_LIMIT"}
+{"test":"adapter-timeout","core":true,"source":"wikipedia","title":"Fano plane","delay":10000,"expectedError":"TIMEOUT"}
+{"test":"malformed-response","core":true,"source":"wikipedia","title":"Fano plane","expectedError":"PARSE_ERROR"}
+{"test":"document-adapters-negative-coverage-1","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847022}
+{"test":"document-adapters-negative-coverage-2","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847023}

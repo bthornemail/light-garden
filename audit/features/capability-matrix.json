@@ -1,0 +1,107 @@
+{
+  "generated": "2026-02-16T09:07:27.022Z",
+  "version": "1.0.0",
+  "capabilities": [
+    {
+      "id": "geometric-encoding",
+      "name": "Geometric Encoding",
+      "severity": "critical",
+      "tests": {
+        "golden": 12,
+        "negative": 8,
+        "core": 15,
+        "coverage": 5,
+        "total": 20
+      },
+      "nodes": [
+        "fano-core",
+        "wordnet-service",
+        "c-server"
+      ],
+      "dependencies": [
+        "semantic-mapping"
+      ]
+    },
+    {
+      "id": "semantic-mapping",
+      "name": "Semantic Mapping",
+      "severity": "critical",
+      "tests": {
+        "golden": 15,
+        "negative": 10,
+        "core": 12,
+        "coverage": 13,
+        "total": 25
+      },
+      "nodes": [
+        "wordnet-service",
+        "document-adapters"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "light-rendering",
+      "name": "Light Rendering",
+      "severity": "high",
+      "tests": {
+        "golden": 8,
+        "negative": 6,
+        "core": 11,
+        "coverage": 3,
+        "total": 14
+      },
+      "nodes": [
+        "c-server",
+        "firmware",
+        "web-client"
+      ],
+      "dependencies": [
+        "geometric-encoding"
+      ]
+    },
+    {
+      "id": "mesh-networking",
+      "name": "Mesh Networking",
+      "severity": "high",
+      "tests": {
+        "golden": 6,
+        "negative": 8,
+        "core": 10,
+        "coverage": 4,
+        "total": 14
+      },
+      "nodes": [
+        "firmware",
+        "c-server"
+      ],
+      "dependencies": [
+        "geometric-encoding"
+      ]
+    },
+    {
+      "id": "document-adapters",
+      "name": "Document Adapters",
+      "severity": "medium",
+      "tests": {
+        "golden": 10,
+        "negative": 7,
+        "core": 10,
+        "coverage": 7,
+        "total": 17
+      },
+      "nodes": [
+        "wordnet-service",
+        "document-adapters"
+      ],
+      "dependencies": [
+        "semantic-mapping"
+      ]
+    }
+  ],
+  "totals": {
+    "capabilities": 5,
+    "core": 58,
+    "coverage": 32,
+    "total": 90
+  }
+}

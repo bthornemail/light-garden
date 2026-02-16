@@ -1,0 +1,15 @@
+{"test":"wordnet-lookup","core":true,"word":"wisdom","expected":5}
+{"test":"wordnet-synset","core":true,"offset":1234567,"expected":["wisdom","sapience"]}
+{"test":"wordnet-hypernyms","core":true,"word":"wisdom","expected":["content","cognition","knowledge"]}
+{"test":"wordnet-similarity","core":true,"word1":"wisdom","word2":"knowledge","expected":0.82}
+{"test":"knowledge-triple","core":true,"subject":"wisdom","object":"knowledge","expected":"is_a_form_of"}
+{"test":"fano-mapping","core":true,"word":"wisdom","expectedPoint":2}
+{"test":"synset-to-matrix","core":true,"word":"wisdom","expectedMatrix":[1,2,3,0,1,2,3]}
+{"test":"semantic-mapping-golden-coverage-1","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847018}
+{"test":"semantic-mapping-golden-coverage-2","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847019}
+{"test":"semantic-mapping-golden-coverage-3","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847020}
+{"test":"semantic-mapping-golden-coverage-4","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847021}
+{"test":"semantic-mapping-golden-coverage-5","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847022}
+{"test":"semantic-mapping-golden-coverage-6","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847023}
+{"test":"semantic-mapping-golden-coverage-7","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847024}
+{"test":"semantic-mapping-golden-coverage-8","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847025}

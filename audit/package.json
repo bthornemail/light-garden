@@ -9,6 +9,9 @@
     "generate:negative": "node scripts/inject-negative.js",
     "validate": "node scripts/run-audit.js",
     "collect": "node scripts/collect-artifacts.js",
-    "validate:node": "node scripts/validate-node.js"
+    "validate:node": "node scripts/validate-node.js",
+    "features:compile": "node scripts/compile-features.js",
+    "features:audit": "node scripts/run-feature-audit.js",
+    "features:tools": "node scripts/generate-adapter-tools.js"
   }
 }

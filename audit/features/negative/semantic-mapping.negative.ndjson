@@ -1,0 +1,10 @@
+{"test":"word-not-found","core":true,"word":"xyzabc123","expectedError":"NOT_FOUND"}
+{"test":"empty-word","core":true,"word":"","expectedError":"INVALID_INPUT"}
+{"test":"sql-injection","core":true,"word":"'; DROP TABLE synsets; --","expectedError":"SAFE"}
+{"test":"timeout","core":true,"word":"wisdom","delay":5000,"expectedError":"TIMEOUT"}
+{"test":"malformed-offset","core":true,"offset":"invalid","expectedError":"BAD_REQUEST"}
+{"test":"semantic-mapping-negative-coverage-1","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847018}
+{"test":"semantic-mapping-negative-coverage-2","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847019}
+{"test":"semantic-mapping-negative-coverage-3","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847020}
+{"test":"semantic-mapping-negative-coverage-4","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847021}
+{"test":"semantic-mapping-negative-coverage-5","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847022}

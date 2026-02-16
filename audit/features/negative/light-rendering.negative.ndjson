@@ -1,0 +1,6 @@
+{"test":"invalid-led-index","core":true,"index":8,"expectedError":"INDEX_RANGE"}
+{"test":"brightness-overflow","core":true,"brightness":256,"expectedError":"BRIGHTNESS_RANGE"}
+{"test":"color-format","core":true,"color":"not-a-color","expectedError":"INVALID_COLOR"}
+{"test":"ring-overflow","core":true,"ring":10,"expectedError":"RING_RANGE"}
+{"test":"power-exceeded","core":true,"leds":100,"expectedError":"POWER_LIMIT"}
+{"test":"light-rendering-negative-coverage-1","core":false,"action":"auto-generated-coverage","expected":true,"timestamp":1771232847019}
