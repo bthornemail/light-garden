@@ -229,6 +229,47 @@
         </section>
         
         <section class="panel-section">
+          <h2>Role Management</h2>
+          <div class="auth-status">
+            <div class="epi-row">
+              <span class="label">Your ID:</span>
+              <span id="auth-peerid" class="value">—</span>
+            </div>
+            <div class="epi-row">
+              <span class="label">Your Role:</span>
+              <span id="auth-role" class="value role-observer">OBSERVER</span>
+            </div>
+            <div class="epi-row">
+              <span class="label">Status:</span>
+              <span id="auth-status" class="value offline">Initializing...</span>
+            </div>
+          </div>
+          <div class="button-row">
+            <button id="auth-authenticate">Authenticate</button>
+            <button id="auth-refresh">Refresh Peers</button>
+          </div>
+          <div class="peer-list">
+            <h3>Connected Peers</h3>
+            <div id="peer-list-container">
+              <p class="hint">No peers connected</p>
+            </div>
+          </div>
+          <div class="admin-controls hidden" id="admin-controls">
+            <h3>Admin Controls</h3>
+            <select id="admin-target">
+              <option value="">Select peer</option>
+            </select>
+            <select id="admin-new-role">
+              <option value="ADMIN">ADMIN</option>
+              <option value="SPEAKER">SPEAKER</option>
+              <option value="TRUSTEE">TRUSTEE</option>
+              <option value="OBSERVER">OBSERVER</option>
+            </select>
+            <button id="admin-change-role">Change Role</button>
+          </div>
+        </section>
+        
+        <section class="panel-section">
           <h2>Live Log</h2>
           <div class="log-container">
             <div id="log"></div>
@@ -257,6 +298,7 @@
   
   <script src="epistemic-square.js"></script>
   <script src="epistemic-codec.js"></script>
+  <script src="auth-client.js"></script>
   <script src="network.js"></script>
   <script src="app.js"></script>
 </body>

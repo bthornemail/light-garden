@@ -180,6 +180,10 @@ const app = (() => {
     document.getElementById('media-save').addEventListener('click', saveMediaNDJSON);
     document.getElementById('media-clear').addEventListener('click', clearMedia);
     
+    document.getElementById('auth-authenticate').addEventListener('click', authAuthenticate);
+    document.getElementById('auth-refresh').addEventListener('click', authRefreshPeers);
+    document.getElementById('admin-change-role').addEventListener('click', adminChangeRole);
+    
     document.getElementById('dome-pole1')?.addEventListener('click', () => highlightDomePole(1));
     document.getElementById('dome-pole2')?.addEventListener('click', () => highlightDomePole(2));
     document.getElementById('dome-pole3')?.addEventListener('click', () => highlightDomePole(3));
@@ -191,6 +195,8 @@ const app = (() => {
     document.getElementById('dome-rotate-toggle')?.addEventListener('click', toggleDomeRotation);
     
     initEpistemicSquare();
+    
+    initAuthClient();
     
     setupViewTabs();
     
@@ -890,6 +896,129 @@ const app = (() => {
     elements.mediaProgress.textContent = '0%';
     elements.mediaStatus.textContent = 'Ready';
     addLog('Media cleared', 'media');
+  }
+  
+  let authClient = null;
+  
+  function initAuthClient() {
+    if (typeof AuthClient !== 'undefined') {
+      authClient = new AuthClient();
+      
+      setTimeout(() => {
+        if (authClient) {
+          document.getElementById('auth-peerid').textContent = authClient.peerId.slice(0, 16) + '...';
+          document.getElementById('auth-status').textContent = authClient.authenticated ? 'Authenticated' : 'Pending';
+          document.getElementById('auth-status').className = authClient.authenticated ? 'value online' : 'value offline';
+          document.getElementById('auth-role').textContent = authClient.role;
+          document.getElementById('auth-role').className = 'value role-' + authClient.role.toLowerCase();
+          
+          authClient.onAuthChange = (authenticated, role) => {
+            document.getElementById('auth-status').textContent = authenticated ? 'Authenticated' : 'Not authenticated';
+            document.getElementById('auth-status').className = authenticated ? 'value online' : 'value offline';
+            document.getElementById('auth-role').textContent = role;
+            document.getElementById('auth-role').className = 'value role-' + role.toLowerCase();
+            
+            if (role === 'ADMIN') {
+              document.getElementById('admin-controls').classList.remove('hidden');
+            } else {
+              document.getElementById('admin-controls').classList.add('hidden');
+            }
+          };
+          
+          authClient.onPeerListUpdate = (peers) => {
+            updatePeerList(peers);
+          };
+          
+          authRefreshPeers();
+          
+          addLog('Auth client initialized', 'auth');
+        }
+      }, 1500);
+    } else {
+      document.getElementById('auth-status').textContent = 'Not available';
+      document.getElementById('auth-status').className = 'value offline';
+    }
+  }
+  
+  function updatePeerList(peers) {
+    const container = document.getElementById('peer-list-container');
+    const adminSelect = document.getElementById('admin-target');
+    
+    if (!peers || peers.length === 0) {
+      container.innerHTML = '<p class="hint">No peers connected</p>';
+      adminSelect.innerHTML = '<option value="">Select peer</option>';
+      return;
+    }
+    
+    let html = '';
+    adminSelect.innerHTML = '<option value="">Select peer</option>';
+    
+    peers.forEach(peer => {
+      if (peer.id !== authClient?.peerId) {
+        html += `
+          <div class="peer-item">
+            <span class="peer-id">${peer.id.slice(0, 12)}...</span>
+            <span class="peer-role ${peer.role.toLowerCase()}">${peer.role}</span>
+          </div>
+        `;
+        adminSelect.innerHTML += `<option value="${peer.id}">${peer.id.slice(0, 12)}... (${peer.role})</option>`;
+      }
+    });
+    
+    container.innerHTML = html || '<p class="hint">No other peers</p>';
+  }
+  
+  async function authAuthenticate() {
+    if (!authClient) {
+      addLog('Auth client not initialized', 'error');
+      return;
+    }
+    
+    const authenticated = await authClient.authenticate();
+    if (authenticated) {
+      addLog('Authentication successful', 'auth');
+    } else {
+      addLog('Authentication failed', 'error');
+    }
+  }
+  
+  async function authRefreshPeers() {
+    if (!authClient) {
+      addLog('Auth client not initialized', 'error');
+      return;
+    }
+    
+    const peers = await authClient.getPeers();
+    updatePeerList(peers);
+    addLog(`Peer list refreshed (${peers.length} peers)`, 'auth');
+  }
+  
+  async function adminChangeRole() {
+    if (!authClient) {
+      addLog('Auth client not initialized', 'error');
+      return;
+    }
+    
+    if (authClient.role !== 'ADMIN') {
+      addLog('Only admins can change roles', 'warn');
+      return;
+    }
+    
+    const target = document.getElementById('admin-target').value;
+    const newRole = document.getElementById('admin-new-role').value;
+    
+    if (!target || !newRole) {
+      addLog('Select peer and role', 'warn');
+      return;
+    }
+    
+    const result = await authClient.changePeerRole(target, newRole);
+    if (result.success) {
+      addLog(`Changed role for ${target.slice(0, 8)}... to ${newRole}`, 'auth');
+      authRefreshPeers();
+    } else {
+      addLog(`Failed: ${result.error}`, 'error');
+    }
   }
   
   document.addEventListener('DOMContentLoaded', init);

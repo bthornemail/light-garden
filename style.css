@@ -484,3 +484,117 @@ button:active {
 ::-webkit-scrollbar-thumb:hover {
   background: #444;
 }
+
+.auth-status {
+  background: #0a0a0a;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.role-admin { color: #ff4444; }
+.role-speaker { color: #ffaa00; }
+.role-trustee { color: #44ff44; }
+.role-observer { color: #8888ff; }
+
+#auth-role.role-admin { font-weight: bold; }
+#auth-role.role-speaker { font-weight: bold; }
+#auth-role.role-trustee { font-weight: bold; }
+#auth-role.role-observer { font-weight: bold; }
+
+.value.online { color: #44ff44; }
+.value.offline { color: #ff4444; }
+.value.connecting { color: #ffaa00; }
+
+.peer-list {
+  margin-top: 15px;
+  max-height;
+  overflow-y: 150px: auto;
+  background: #0a0a0a;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.peer-list h3 {
+  font-size: 0.7rem;
+  color: #888;
+  margin: 0 0 8px 0;
+  border-bottom: 1px solid #222;
+  padding-bottom: 5px;
+}
+
+.peer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #222;
+  font-size: 0.7rem;
+}
+
+.peer-item:last-child {
+  border-bottom: none;
+}
+
+.peer-item .peer-id {
+  color: #888;
+  font-family: monospace;
+}
+
+.peer-item .peer-role {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.6rem;
+}
+
+.peer-role.admin { background: #441111; color: #ff8888; }
+.peer-role.speaker { background: #443311; color: #ffcc88; }
+.peer-role.trustee { background: #114411; color: #88ff88; }
+.peer-role.observer { background: #111144; color: #8888ff; }
+
+.admin-controls {
+  margin-top: 15px;
+  padding: 10px;
+  background: #1a0a0a;
+  border-radius: 4px;
+  border: 1px solid #ff4444;
+}
+
+.admin-controls h3 {
+  color: #ff8888;
+  font-size: 0.7rem;
+  margin: 0 0 8px 0;
+}
+
+.admin-controls select {
+  width: 100%;
+  margin-bottom: 5px;
+  background: #0a0a0a;
+  border: 1px solid #333;
+  color: #aaa;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+}
+
+.admin-controls button {
+  width: 100%;
+  background: #441111;
+  border: 1px solid #ff4444;
+  color: #ff8888;
+  padding: 6px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.admin-controls button:hover {
+  background: #662222;
+}
+
+.hint {
+  color: #555;
+  font-size: 0.65rem;
+  text-align: center;
+  padding: 10px;
+}
