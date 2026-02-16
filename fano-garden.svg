@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg" id="fano-svg">
+  <defs>
+    <style>
+      .led { cursor: pointer; transition: all 0.15s ease; }
+      .led:hover { filter: brightness(1.6); transform: scale(1.2); }
+      .ring-label { font-family: monospace; font-size: 10px; fill: #666; }
+      .fano-line { stroke: #444; stroke-width: 1; opacity: 0.3; pointer-events: none; }
+      .tetra-diag { stroke: #222; stroke-width: 0.5; stroke-dasharray: 3,3; opacity: 0.2; pointer-events: none; }
+    </style>
+  </defs>
+
+  <rect width="800" height="800" fill="#0a0a0a"/>
+
+  <!-- GARDEN: 241-bit (center) -->
+  <g id="garden" transform="translate(400,400)">
+    
+    <!-- Ring 1: Center (1 LED) - Observer -->
+    <circle id="g-r1-0" class="led" cx="0" cy="0" r="10" 
+            fill="#ffffff" data-path="m/240'/0'/0'/8'" 
+            data-ring="1" data-led="0" data-fano="8" data-diag="0"/>
+    <text x="0" y="25" class="ring-label" text-anchor="middle">241: Center</text>
+    
+    <!-- Ring 2: 8 LEDs (Fano + Pointer) -->
+    <g id="ring2">
+      <circle id="g-r2-0" class="led" cx="0" cy="-50" r="8" fill="#ff0000" 
+              data-path="m/240'/1'/0'/1'" data-ring="2" data-led="0" data-fano="1" data-diag="0"/>
+      <circle id="g-r2-1" class="led" cx="35.4" cy="-35.4" r="8" fill="#ff8800" 
+              data-path="m/240'/1'/1'/2'" data-ring="2" data-led="1" data-fano="2" data-diag="1"/>
+      <circle id="g-r2-2" class="led" cx="50" cy="0" r="8" fill="#ffff00" 
+              data-path="m/240'/1'/2'/3'" data-ring="2" data-led="2" data-fano="3" data-diag="2"/>
+      <circle id="g-r2-3" class="led" cx="35.4" cy="35.4" r="8" fill="#00ff00" 
+              data-path="m/240'/1'/3'/4'" data-ring="2" data-led="3" data-fano="4" data-diag="3"/>
+      <circle id="g-r2-4" class="led" cx="0" cy="50" r="8" fill="#0000ff" 
+              data-path="m/240'/1'/4'/5'" data-ring="2" data-led="4" data-fano="5" data-diag="4"/>
+      <circle id="g-r2-5" class="led" cx="-35.4" cy="35.4" r="8" fill="#4b0082" 
+              data-path="m/240'/1'/5'/6'" data-ring="2" data-led="5" data-fano="6" data-diag="5"/>
+      <circle id="g-r2-6" class="led" cx="-50" cy="0" r="8" fill="#8f00ff" 
+              data-path="m/240'/1'/6'/7'" data-ring="2" data-led="6" data-fano="7" data-diag="6"/>
+      <circle id="g-r2-7" class="led" cx="-35.4" cy="-35.4" r="8" fill="#ffffff" 
+              data-path="m/240'/1'/7'/8'" data-ring="2" data-led="7" data-fano="8" data-diag="7"/>
+    </g>
+    
+    <!-- Ring 3: 12 LEDs (harmonics) -->
+    <g id="ring3">
+      <circle id="g-r3-0" class="led" cx="0" cy="-90" r="6" fill="#ff6666" data-path="m/240'/2'/0'/1'" data-ring="3" data-led="0" data-diag="0"/>
+      <circle id="g-r3-1" class="led" cx="45" cy="-77.9" r="6" fill="#ff9966" data-path="m/240'/2'/1'/2'" data-ring="3" data-led="1" data-diag="1"/>
+      <circle id="g-r3-2" class="led" cx="77.9" cy="-45" r="6" fill="#ffcc66" data-path="m/240'/2'/2'/3'" data-ring="3" data-led="2" data-diag="2"/>
+      <circle id="g-r3-3" class="led" cx="90" cy="0" r="6" fill="#ffff66" data-path="m/240'/2'/3'/4'" data-ring="3" data-led="3" data-diag="3"/>
+      <circle id="g-r3-4" class="led" cx="77.9" cy="45" r="6" fill="#66ff66" data-path="m/240'/2'/4'/5'" data-ring="3" data-led="4" data-diag="4"/>
+      <circle id="g-r3-5" class="led" cx="45" cy="77.9" r="6" fill="#6699ff" data-path="m/240'/2'/5'/6'" data-ring="3" data-led="5" data-diag="5"/>
+      <circle id="g-r3-6" class="led" cx="0" cy="90" r="6" fill="#6666ff" data-path="m/240'/2'/6'/7'" data-ring="3" data-led="6" data-diag="6"/>
+      <circle id="g-r3-7" class="led" cx="-45" cy="77.9" r="6" fill="#9966ff" data-path="m/240'/2'/7'/8'" data-ring="3" data-led="7" data-diag="7"/>
+      <circle id="g-r3-8" class="led" cx="-77.9" cy="45" r="6" fill="#cc66ff" data-path="m/240'/2'/8'/9'" data-ring="3" data-led="8" data-diag="8"/>
+      <circle id="g-r3-9" class="led" cx="-90" cy="0" r="6" fill="#ff66ff" data-path="m/240'/2'/9'/1'" data-ring="3" data-led="9" data-diag="9"/>
+      <circle id="g-r3-10" class="led" cx="-77.9" cy="-45" r="6" fill="#ff66cc" data-path="m/240'/2'/10'/2'" data-ring="3" data-led="10" data-diag="10"/>
+      <circle id="g-r3-11" class="led" cx="-45" cy="-77.9" r="6" fill="#ff6699" data-path="m/240'/2'/11'/3'" data-ring="3" data-led="11" data-diag="11"/>
+    </g>
+    
+    <!-- Ring 4: 16 LEDs (4×4 base) -->
+    <g id="ring4">
+      <!-- 4 at each cardinal -->
+      <circle id="g-r4-0" class="led" cx="0" cy="-130" r="5" fill="#ff4444" data-path="m/240'/3'/0'/1'" data-ring="4" data-led="0" data-diag="0"/>
+      <circle id="g-r4-1" class="led" cx="130" cy="0" r="5" fill="#4444ff" data-path="m/240'/3'/1'/2'" data-ring="4" data-led="1" data-diag="4"/>
+      <circle id="g-r4-2" class="led" cx="0" cy="130" r="5" fill="#44ff44" data-path="m/240'/3'/2'/3'" data-ring="4" data-led="2" data-diag="8"/>
+      <circle id="g-r4-3" class="led" cx="-130" cy="0" r="5" fill="#ffff44" data-path="m/240'/3'/3'/4'" data-ring="4" data-led="3" data-diag="12"/>
+      <!-- 12 more at diagonals -->
+      <circle id="g-r4-4" class="led" cx="92" cy="-92" r="5" fill="#ff8844" data-path="m/240'/3'/4'/5'" data-ring="4" data-led="4" data-diag="2"/>
+      <circle id="g-r4-5" class="led" cx="92" cy="92" r="5" fill="#44ff88" data-path="m/240'/3'/5'/6'" data-ring="4" data-led="5" data-diag="6"/>
+      <circle id="g-r4-6" class="led" cx="-92" cy="92" r="5" fill="#8844ff" data-path="m/240'/3'/6'/7'" data-ring="4" data-led="6" data-diag="10"/>
+      <circle id="g-r4-7" class="led" cx="-92" cy="-92" r="5" fill="#ffff88" data-path="m/240'/3'/7'/8'" data-ring="4" data-led="7" data-diag="14"/>
+      <!-- Offset positions -->
+      <circle id="g-r4-8" class="led" cx="65" cy="-130" r="5" fill="#ff6666" data-path="m/240'/3'/8'/9'" data-ring="4" data-led="8" data-diag="1"/>
+      <circle id="g-r4-9" class="led" cx="130" cy="-65" r="5" fill="#6666ff" data-path="m/240'/3'/9'/1'" data-ring="4" data-led="9" data-diag="3"/>
+      <circle id="g-r4-10" class="led" cx="130" cy="65" r="5" fill="#66ff66" data-path="m/240'/3'/10'/2'" data-ring="4" data-led="10" data-diag="5"/>
+      <circle id="g-r4-11" class="led" cx="65" cy="130" r="5" fill="#66ffff" data-path="m/240'/3'/11'/3'" data-ring="4" data-led="11" data-diag="7"/>
+      <circle id="g-r4-12" class="led" cx="-65" cy="130" r="5" fill="#ff66ff" data-path="m/240'/3'/12'/4'" data-ring="4" data-led="12" data-diag="9"/>
+      <circle id="g-r4-13" class="led" cx="-130" cy="65" r="5" fill="#ff6666" data-path="m/240'/3'/13'/5'" data-ring="4" data-led="13" data-diag="11"/>
+      <circle id="g-r4-14" class="led" cx="-130" cy="-65" r="5" fill="#66ff66" data-path="m/240'/3'/14'/6'" data-ring="4" data-led="14" data-diag="13"/>
+      <circle id="g-r4-15" class="led" cx="-65" cy="-130" r="5" fill="#6666ff" data-path="m/240'/3'/15'/7'" data-ring="4" data-led="15" data-diag="15"/>
+    </g>
+    
+    <!-- Ring 5: 24 LEDs -->
+    <g id="ring5">
+      <circle class="led" cx="0" cy="-170" r="4" fill="#ff3333" data-path="m/240'/4'/0'/1'" data-ring="5" data-led="0" data-diag="0"/>
+      <circle class="led" cx="42.5" cy="-165" r="4" fill="#ff8833" data-path="m/240'/4'/1'/2'" data-ring="5" data-led="1" data-diag="1"/>
+      <circle class="led" cx="85" cy="-147" r="4" fill="#ffcc33" data-path="m/240'/4'/2'/3'" data-ring="5" data-led="2" data-diag="2"/>
+      <circle class="led" cx="120" cy="-120" r="4" fill="#ffff33" data-path="m/240'/4'/3'/4'" data-ring="5" data-led="3" data-diag="3"/>
+      <circle class="led" cx="147" cy="-85" r="4" fill="#88ff33" data-path="m/240'/4'/4'/5'" data-ring="5" data-led="4" data-diag="4"/>
+      <circle class="led" cx="165" cy="-42.5" r="4" fill="#33ff33" data-path="m/240'/4'/5'/6'" data-ring="5" data-led="5" data-diag="5"/>
+      <circle class="led" cx="170" cy="0" r="4" fill="#33ff88" data-path="m/240'/4'/6'/7'" data-ring="5" data-led="6" data-diag="6"/>
+      <circle class="led" cx="165" cy="42.5" r="4" fill="#33ffcc" data-path="m/240'/4'/7'/8'" data-ring="5" data-led="7" data-diag="7"/>
+      <circle class="led" cx="147" cy="85" r="4" fill="#33ffff" data-path="m/240'/4'/8'/9'" data-ring="5" data-led="8" data-diag="8"/>
+      <circle class="led" cx="120" cy="120" r="4" fill="#33ccff" data-path="m/240'/4'/9'/1'" data-ring="5" data-led="9" data-diag="9"/>
+      <circle class="led" cx="85" cy="147" r="4" fill="#3388ff" data-path="m/240'/4'/10'/2'" data-ring="5" data-led="10" data-diag="10"/>
+      <circle class="led" cx="42.5" cy="165" r="4" fill="#3333ff" data-path="m/240'/4'/11'/3'" data-ring="5" data-led="11" data-diag="11"/>
+      <circle class="led" cx="0" cy="170" r="4" fill="#8833ff" data-path="m/240'/4'/12'/4'" data-ring="5" data-led="12" data-diag="12"/>
+      <circle class="led" cx="-42.5" cy="165" r="4" fill="#cc33ff" data-path="m/240'/4'/13'/5'" data-ring="5" data-led="13" data-diag="13"/>
+      <circle class="led" cx="-85" cy="147" r="4" fill="#ff33ff" data-path="m/240'/4'/14'/6'" data-ring="5" data-led="14" data-diag="14"/>
+      <circle class="led" cx="-120" cy="120" r="4" fill="#ff33cc" data-path="m/240'/4'/15'/7'" data-ring="5" data-led="15" data-diag="15"/>
+      <circle class="led" cx="-147" cy="85" r="4" fill="#ff3388" data-path="m/240'/4'/16'/8'" data-ring="5" data-led="16" data-diag="16"/>
+      <circle class="led" cx="-165" cy="42.5" r="4" fill="#ff3333" data-path="m/240'/4'/17'/9'" data-ring="5" data-led="17" data-diag="17"/>
+      <circle class="led" cx="-170" cy="0" r="4" fill="#ff8833" data-path="m/240'/4'/18'/1'" data-ring="5" data-led="18" data-diag="18"/>
+      <circle class="led" cx="-165" cy="-42.5" r="4" fill="#ffcc33" data-path="m/240'/4'/19'/2'" data-ring="5" data-led="19" data-diag="19"/>
+      <circle class="led" cx="-147" cy="-85" r="4" fill="#ffff33" data-path="m/240'/4'/20'/3'" data-ring="5" data-led="20" data-diag="20"/>
+      <circle class="led" cx="-120" cy="-120" r="4" fill="#88ff33" data-path="m/240'/4'/21'/4'" data-ring="5" data-led="21" data-diag="21"/>
+      <circle class="led" cx="-85" cy="-147" r="4" fill="#33ff33" data-path="m/240'/4'/22'/5'" data-ring="5" data-led="22" data-diag="22"/>
+      <circle class="led" cx="-42.5" cy="-165" r="4" fill="#33ff88" data-path="m/240'/4'/23'/6'" data-ring="5" data-led="23" data-diag="23"/>
+    </g>
+    
+    <!-- Ring labels -->
+    <text x="0" y="-220" class="ring-label" text-anchor="middle" fill="#8f00ff">241-bit Garden</text>
+  </g>
+
+  <!-- PERSONAL: 61-bit (top right) -->
+  <g id="personal" transform="translate(650,150)">
+    <!-- Ring 1: Center -->
+    <circle id="p-r1-0" class="led" cx="0" cy="0" r="8" fill="#ffffff" 
+            data-path="m/60'/0'/0'/8'" data-ring="1" data-led="0" data-fano="8"/>
+    
+    <!-- Ring 2: 8 LEDs -->
+    <g id="pring2">
+      <circle id="p-r2-0" class="led" cx="0" cy="-35" r="6" fill="#ff0000" data-path="m/60'/1'/0'/1'" data-ring="2" data-led="0" data-fano="1"/>
+      <circle id="p-r2-1" class="led" cx="24.7" cy="-24.7" r="6" fill="#ff8800" data-path="m/60'/1'/1'/2'" data-ring="2" data-led="1" data-fano="2"/>
+      <circle id="p-r2-2" class="led" cx="35" cy="0" r="6" fill="#ffff00" data-path="m/60'/1'/2'/3'" data-ring="2" data-led="2" data-fano="3"/>
+      <circle id="p-r2-3" class="led" cx="24.7" cy="24.7" r="6" fill="#00ff00" data-path="m/60'/1'/3'/4'" data-ring="2" data-led="3" data-fano="4"/>
+      <circle id="p-r2-4" class="led" cx="0" cy="35" r="6" fill="#0000ff" data-path="m/60'/1'/4'/5'" data-ring="2" data-led="4" data-fano="5"/>
+      <circle id="p-r2-5" class="led" cx="-24.7" cy="24.7" r="6" fill="#4b0082" data-path="m/60'/1'/5'/6'" data-ring="2" data-led="5" data-fano="6"/>
+      <circle id="p-r2-6" class="led" cx="-35" cy="0" r="6" fill="#8f00ff" data-path="m/60'/1'/6'/7'" data-ring="2" data-led="6" data-fano="7"/>
+      <circle id="p-r2-7" class="led" cx="-24.7" cy="-24.7" r="6" fill="#ffffff" data-path="m/60'/1'/7'/8'" data-ring="2" data-led="7" data-fano="8"/>
+    </g>
+    
+    <!-- Ring 3: 12 LEDs -->
+    <g id="pring3">
+      <circle class="led" cx="0" cy="-60" r="4" fill="#ff6666" data-path="m/60'/2'/0'/1'" data-ring="3" data-led="0"/>
+      <circle class="led" cx="30" cy="-52" r="4" fill="#ff9966" data-path="m/60'/2'/1'/2'" data-ring="3" data-led="1"/>
+      <circle class="led" cx="52" cy="-30" r="4" fill="#ffcc66" data-path="m/60'/2'/2'/3'" data-ring="3" data-led="2"/>
+      <circle class="led" cx="60" cy="0" r="4" fill="#ffff66" data-path="m/60'/2'/3'/4'" data-ring="3" data-led="3"/>
+      <circle class="led" cx="52" cy="30" r="4" fill="#66ff66" data-path="m/60'/2'/4'/5'" data-ring="3" data-led="4"/>
+      <circle class="led" cx="30" cy="52" r="4" fill="#6699ff" data-path="m/60'/2'/5'/6'" data-ring="3" data-led="5"/>
+      <circle class="led" cx="0" cy="60" r="4" fill="#6666ff" data-path="m/60'/2'/6'/7'" data-ring="3" data-led="6"/>
+      <circle class="led" cx="-30" cy="52" r="4" fill="#9966ff" data-path="m/60'/2'/7'/8'" data-ring="3" data-led="7"/>
+      <circle class="led" cx="-52" cy="30" r="4" fill="#cc66ff" data-path="m/60'/2'/8'/9'" data-ring="3" data-led="8"/>
+      <circle class="led" cx="-60" cy="0" r="4" fill="#ff66ff" data-path="m/60'/2'/9'/1'" data-ring="3" data-led="9"/>
+      <circle class="led" cx="-52" cy="-30" r="4" fill="#ff66cc" data-path="m/60'/2'/10'/2'" data-ring="3" data-led="10"/>
+      <circle class="led" cx="-30" cy="-52" r="4" fill="#ff6699" data-path="m/60'/2'/11'/3'" data-ring="3" data-led="11"/>
+    </g>
+    
+    <!-- Ring 4: 18 LEDs -->
+    <g id="pring4">
+      <circle class="led" cx="0" cy="-85" r="3" fill="#ff4444" data-path="m/60'/3'/0'/1'" data-ring="4" data-led="0"/>
+      <circle class="led" cx="42.5" cy="-73.5" r="3" fill="#ff7744" data-path="m/60'/3'/1'/2'" data-ring="4" data-led="1"/>
+      <circle class="led" cx="73.5" cy="-42.5" r="3" fill="#ffaa44" data-path="m/60'/3'/2'/3'" data-ring="4" data-led="2"/>
+      <circle class="led" cx="85" cy="0" r="3" fill="#ffdd44" data-path="m/60'/3'/3'/4'" data-ring="4" data-led="3"/>
+      <circle class="led" cx="73.5" cy="42.5" r="3" fill="#ddff44" data-path="m/60'/3'/4'/5'" data-ring="4" data-led="4"/>
+      <circle class="led" cx="42.5" cy="73.5" r="3" fill="#77ff44" data-path="m/60'/3'/5'/6'" data-ring="4" data-led="5"/>
+      <circle class="led" cx="0" cy="85" r="3" fill="#44ff44" data-path="m/60'/3'/6'/7'" data-ring="4" data-led="6"/>
+      <circle class="led" cx="-42.5" cy="73.5" r="3" fill="#44ff77" data-path="m/60'/3'/7'/8'" data-ring="4" data-led="7"/>
+      <circle class="led" cx="-73.5" cy="42.5" r="3" fill="#44ffdd" data-path="m/60'/3'/8'/9'" data-ring="4" data-led="8"/>
+      <circle class="led" cx="-85" cy="0" r="3" fill="#44aaff" data-path="m/60'/3'/9'/1'" data-ring="4" data-led="9"/>
+      <circle class="led" cx="-73.5" cy="-42.5" r="3" fill="#4477ff" data-path="m/60'/3'/10'/2'" data-ring="4" data-led="10"/>
+      <circle class="led" cx="-42.5" cy="-73.5" r="3" fill="#7744ff" data-path="m/60'/3'/11'/3'" data-ring="4" data-led="11"/>
+      <circle class="led" cx="0" cy="-85" r="3" fill="#aa44ff" data-path="m/60'/3'/12'/4'" data-ring="4" data-led="12"/>
+      <circle class="led" cx="42.5" cy="-73.5" r="3" fill="#dd44ff" data-path="m/60'/3'/13'/5'" data-ring="4" data-led="13"/>
+      <circle class="led" cx="73.5" cy="-42.5" r="3" fill="#ff44dd" data-path="m/60'/3'/14'/6'" data-ring="4" data-led="14"/>
+      <circle class="led" cx="85" cy="0" r="3" fill="#ff44aa" data-path="m/60'/3'/15'/7'" data-ring="4" data-led="15"/>
+      <circle class="led" cx="73.5" cy="42.5" r="3" fill="#ff4477" data-path="m/60'/3'/16'/8'" data-ring="4" data-led="16"/>
+      <circle class="led" cx="42.5" cy="73.5" r="3" fill="#ff4444" data-path="m/60'/3'/17'/9'" data-ring="4" data-led="17"/>
+    </g>
+    
+    <text x="0" y="-100" class="ring-label" text-anchor="middle">61-bit Personal</text>
+  </g>
+
+  <!-- TALISMAN: 7-bit (top left) -->
+  <g id="talisman" transform="translate(150,150)">
+    <!-- 7 LEDs in circle -->
+    <g id="t-ring">
+      <rect id="t-0" class="led" x="-6" y="-46" width="12" height="12" fill="#ff0000" 
+            data-path="m/7'/0'" data-led="0" data-fano="1"/>
+      <rect id="t-1" class="led" x="32" y="-32" width="12" height="12" fill="#ff8800" 
+            data-path="m/7'/1'" data-led="1" data-fano="2"/>
+      <rect id="t-2" class="led" x="46" y="0" width="12" height="12" fill="#ffff00" 
+            data-path="m/7'/2'" data-led="2" data-fano="3"/>
+      <rect id="t-3" class="led" x="32" y="32" width="12" height="12" fill="#00ff00" 
+            data-path="m/7'/3'" data-led="3" data-fano="4"/>
+      <rect id="t-4" class="led" x="-6" y="46" width="12" height="12" fill="#0000ff" 
+            data-path="m/7'/4'" data-led="4" data-fano="5"/>
+      <rect id="t-5" class="led" x="-44" y="32" width="12" height="12" fill="#4b0082" 
+            data-path="m/7'/5'" data-led="5" data-fano="6"/>
+      <rect id="t-6" class="led" x="-44" y="-32" width="12" height="12" fill="#8f00ff" 
+            data-path="m/7'/6'" data-led="6" data-fano="7"/>
+    </g>
+    
+    <!-- Center pointer -->
+    <circle id="t-center" class="led" cx="0" cy="0" r="12" fill="#ffffff" 
+            data-path="m/7'/pointer'" data-fano="8"/>
+    
+    <!-- Pointer direction arrow -->
+    <polygon id="pointer-arrow" points="0,-18 5,-8 -5,-8" fill="#ffffff"
+             transform="rotate(0)"/>
+    
+    <text x="0" y="-60" class="ring-label" text-anchor="middle">7-bit Talisman</text>
+  </g>
+
+  <!-- WINDOW: 16x16 grid (bottom) -->
+  <g id="window" transform="translate(400,700)">
+    <g id="w-grid">
+      <!-- 4x4 representative grid -->
+      <rect x="-60" y="-30" width="120" height="60" fill="none" stroke="#333" stroke-width="1"/>
+      <circle class="led" cx="-45" cy="-15" r="3" fill="#fff" data-path="m/256'/0'/0'"/>
+      <circle class="led" cx="-15" cy="-15" r="3" fill="#fff" data-path="m/256'/0'/1'"/>
+      <circle class="led" cx="15" cy="-15" r="3" fill="#fff" data-path="m/256'/0'/2'"/>
+      <circle class="led" cx="45" cy="-15" r="3" fill="#fff" data-path="m/256'/0'/3'"/>
+      <circle class="led" cx="-45" cy="15" r="3" fill="#fff" data-path="m/256'/1'/0'"/>
+      <circle class="led" cx="-15" cy="15" r="3" fill="#fff" data-path="m/256'/1'/1'"/>
+      <circle class="led" cx="15" cy="15" r="3" fill="#fff" data-path="m/256'/1'/2'"/>
+      <circle class="led" cx="45" cy="15" r="3" fill="#fff" data-path="m/256'/1'/3'"/>
+    </g>
+    <text x="0" y="45" class="ring-label" text-anchor="middle">256-bit Window</text>
+  </g>
+
+  <!-- Fano Lines Overlay -->
+  <g id="fano-lines" class="fano-line">
+    <line x1="350" y1="350" x2="450" y2="350" stroke="#ff0000"/>
+    <line x1="400" y1="300" x2="400" y2="500" stroke="#44aaff"/>
+  </g>
+
+  <!-- Tetrahedral Diagonals -->
+  <g id="tetra-diagonals" class="tetra-diag">
+    <line x1="400" y1="350" x2="400" y2="50"/>
+    <line x1="435" y1="385" x2="265" y2="715"/>
+    <line x1="365" y1="385" x2="535" y2="715"/>
+  </g>
+
+  <!-- Interactive Script -->
+  <script type="text/javascript">
+    <![CDATA[
+      document.addEventListener('DOMContentLoaded', function() {
+        const svg = document.getElementById('fano-svg');
+        
+        // Wait for SVG to be ready
+        setTimeout(function() {
+          const leds = document.querySelectorAll('.led');
+          
+          leds.forEach(led => {
+            led.addEventListener('click', function(e) {
+              const path = this.getAttribute('data-path');
+              const ring = this.getAttribute('data-ring');
+              const fano = this.getAttribute('data-fano');
+              const diag = this.getAttribute('data-diag');
+              
+              // Dispatch event to parent
+              const event = new CustomEvent('gardenElementClick', {
+                detail: {
+                  type: 'led',
+                  path: path,
+                  ring: ring,
+                  fano: fano,
+                  diag: diag,
+                  id: this.id,
+                  timestamp: Date.now()
+                }
+              });
+              window.parent.dispatchEvent(event);
+              
+              // Visual feedback
+              const originalFill = this.getAttribute('fill');
+              this.setAttribute('fill', '#fff');
+              setTimeout(() => {
+                this.setAttribute('fill', originalFill);
+              }, 150);
+            });
+          });
+          
+          // Pointer rotation for talisman
+          let pointerAngle = 0;
+          const pointerArrow = document.getElementById('pointer-arrow');
+          if (pointerArrow) {
+            setInterval(() => {
+              pointerAngle = (pointerAngle + 51.4) % 360;
+              pointerArrow.setAttribute('transform', `rotate(${pointerAngle})`);
+            }, 3000);
+          }
+        }, 100);
+      });
+    ]]>
+  </script>
+</svg>

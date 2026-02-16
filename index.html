@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fano Light Garden</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>Fano Light Garden</h1>
+      <p class="subtitle">Geometric Light Language</p>
+    </header>
+    
+    <main>
+      <div class="svg-container">
+        <object id="fano-svg" type="image/svg+xml" data="fano-garden.svg" width="800" height="800"></object>
+      </div>
+      
+      <aside class="control-panel">
+        <section class="panel-section">
+          <h2>Selected LED</h2>
+          <div id="led-info" class="led-info">
+            <p>Click an LED to select</p>
+          </div>
+        </section>
+        
+        <section class="panel-section">
+          <h2>Update LED</h2>
+          <div class="sliders">
+            <label>Hue <span id="hue-val">0</span>°</label>
+            <input type="range" id="hue" min="0" max="360" value="0">
+            
+            <label>Saturation <span id="sat-val">255</span></label>
+            <input type="range" id="sat" min="0" max="255" value="255">
+            
+            <label>Value <span id="val-val">255</span></label>
+            <input type="range" id="val" min="0" max="255" value="255">
+          </div>
+          <div class="button-row">
+            <button id="update-btn">Update</button>
+            <button id="sign-btn">Sign & Send</button>
+          </div>
+        </section>
+        
+        <section class="panel-section">
+          <h2>Patterns</h2>
+          <div class="pattern-buttons">
+            <button id="sweep-diag0">Sweep Diag 0</button>
+            <button id="sweep-diag1">Sweep Diag 1</button>
+            <button id="pulse-center">Pulse Center</button>
+            <button id="rainbow-ring">Rainbow Ring</button>
+          </div>
+        </section>
+        
+        <section class="panel-section">
+          <h2>Fano Lines</h2>
+          <div class="pattern-buttons">
+            <button id="fano-line1">Line 1: 1-2-4</button>
+            <button id="fano-line2">Line 2: 1-3-7</button>
+            <button id="fano-line3">Line 3: 1-5-6</button>
+            <button id="fano-line4">Line 4: 2-3-5</button>
+            <button id="fano-line5">Line 5: 2-6-7</button>
+            <button id="fano-line6">Line 6: 3-4-6</button>
+            <button id="fano-line7">Line 7: 4-5-7</button>
+          </div>
+        </section>
+        
+        <section class="panel-section">
+          <h2>Fano Ratios</h2>
+          <div class="fano-ratios">
+            <div class="ratio-row"><span class="pt">1</span><span class="name">Metatron</span><span class="ratio">0</span><span class="hue">0°</span></div>
+            <div class="ratio-row"><span class="pt">2</span><span class="name">Solomon</span><span class="ratio">1/12</span><span class="hue">30°</span></div>
+            <div class="ratio-row"><span class="pt">3</span><span class="name">Solon</span><span class="ratio">1/6</span><span class="hue">60°</span></div>
+            <div class="ratio-row"><span class="pt">4</span><span class="name">ʿAsabiyyah</span><span class="ratio">1/3</span><span class="hue">120°</span></div>
+            <div class="ratio-row"><span class="pt">5</span><span class="name">Enoch</span><span class="ratio">2/3</span><span class="hue">240°</span></div>
+            <div class="ratio-row"><span class="pt">6</span><span class="name">Speaker</span><span class="ratio">3/4</span><span class="hue">270°</span></div>
+            <div class="ratio-row"><span class="pt">7</span><span class="name">Genesis</span><span class="ratio">5/6</span><span class="hue">300°</span></div>
+            <div class="ratio-row"><span class="pt">8</span><span class="name">Observer</span><span class="ratio">S=0</span><span class="hue">—</span></div>
+          </div>
+        </section>
+        
+        <section class="panel-section">
+          <h2>Sync Status</h2>
+          <div class="sync-display">
+            <div class="sync-item">
+              <span class="label">Talisman:</span>
+              <span id="t-center" class="value">⚪</span>
+            </div>
+            <div class="sync-item">
+              <span class="label">Personal:</span>
+              <span id="p-center" class="value">⚪</span>
+            </div>
+            <div class="sync-item">
+              <span class="label">Garden:</span>
+              <span id="g-center" class="value">⚪</span>
+            </div>
+            <div class="sync-item">
+              <span class="label">Status:</span>
+              <span id="sync-status" class="value">⚠️ Not synced</span>
+            </div>
+          </div>
+        </section>
+        
+        <section class="panel-section federation-panel">
+          <h2>Federation</h2>
+          <div class="viewports">
+            <div class="viewport-container">
+              <span class="viewport-label">16×16 View</span>
+              <canvas id="viewport-16" width="128" height="128"></canvas>
+            </div>
+            <div class="viewport-container">
+              <span class="viewport-label">8×8 Focus</span>
+              <canvas id="viewport-8" width="64" height="64"></canvas>
+            </div>
+            <div class="viewport-container">
+              <span class="viewport-label">4×4 Controls</span>
+              <canvas id="viewport-4" width="64" height="64"></canvas>
+            </div>
+          </div>
+          <div class="federation-controls">
+            <div class="net-status">
+              <span class="label">Network:</span>
+              <span id="mqtt-status" class="value offline">Offline</span>
+            </div>
+            <div class="net-status">
+              <span class="label">Peers:</span>
+              <span id="peer-count" class="value">0</span>
+            </div>
+          </div>
+          <div class="button-row">
+            <button id="connect-btn">Connect</button>
+            <button id="sync-btn">Request Sync</button>
+          </div>
+          <p class="hint">Arrow keys move 8×8 focus. Click 4×4 for controls.</p>
+        </section>
+        
+        <section class="panel-section">
+          <h2>Live Log</h2>
+          <div class="log-container">
+            <div id="log"></div>
+          </div>
+          <div class="log-controls">
+            <button id="clear-log">Clear</button>
+            <button id="download-log">Download</button>
+          </div>
+        </section>
+        
+        <section class="panel-section">
+          <h2>Export</h2>
+          <div class="export-buttons">
+            <button id="export-lights">Export lights.json</button>
+            <button id="export-jsonl">Export lights.jsonl</button>
+            <button id="export-ndjson">Export NDJSON</button>
+          </div>
+        </section>
+        
+        <section class="panel-section about">
+          <p>The Fano plane is the smallest finite projective plane (7 points, 7 lines). Combined with three circular light arrays (7-bit, 61-bit, 241-bit), it forms a geometric model of consciousness.</p>
+        </section>
+      </aside>
+    </main>
+  </div>
+  
+  <script src="network.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

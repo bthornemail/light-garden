@@ -1,0 +1,152 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-02-15T00:00:00Z",
+  
+  "garden": {
+    "purpose": 240,
+    "total_leds": 241,
+    "rings": [
+      {
+        "index": 0,
+        "name": "center",
+        "led_count": 1,
+        "radius": 0,
+        "leds": [
+          {"id": "g-r0-0", "index": 0, "path": "m/240'/0'/0'/8'", "fano_point": 8, "color": "white", "x": 0, "y": 0}
+        ]
+      },
+      {
+        "index": 1,
+        "name": "fano_pointer",
+        "led_count": 8,
+        "radius": 50,
+        "leds": [
+          {"id": "g-r1-0", "index": 0, "path": "m/240'/1'/0'/1'", "fano_point": 1, "color": "red", "angle": 0, "tetra_diag": 0},
+          {"id": "g-r1-1", "index": 1, "path": "m/240'/1'/1'/2'", "fano_point": 2, "color": "orange", "angle": 45, "tetra_diag": 1},
+          {"id": "g-r1-2", "index": 2, "path": "m/240'/1'/2'/3'", "fano_point": 3, "color": "yellow", "angle": 90, "tetra_diag": 2},
+          {"id": "g-r1-3", "index": 3, "path": "m/240'/1'/3'/4'", "fano_point": 4, "color": "green", "angle": 135, "tetra_diag": 3},
+          {"id": "g-r1-4", "index": 4, "path": "m/240'/1'/4'/5'", "fano_point": 5, "color": "blue", "angle": 180, "tetra_diag": 4},
+          {"id": "g-r1-5", "index": 5, "path": "m/240'/1'/5'/6'", "fano_point": 6, "color": "indigo", "angle": 225, "tetra_diag": 5},
+          {"id": "g-r1-6", "index": 6, "path": "m/240'/1'/6'/7'", "fano_point": 7, "color": "violet", "angle": 270, "tetra_diag": 6},
+          {"id": "g-r1-7", "index": 7, "path": "m/240'/1'/7'/8'", "fano_point": 8, "color": "white", "angle": 315, "tetra_diag": 7, "is_pointer": true}
+        ]
+      },
+      {
+        "index": 2,
+        "name": "harmonics",
+        "led_count": 12,
+        "radius": 90,
+        "leds": [
+          {"id": "g-r2-0", "index": 0, "path": "m/240'/2'/0'/1'", "angle": 0},
+          {"id": "g-r2-1", "index": 1, "path": "m/240'/2'/1'/2'", "angle": 30},
+          {"id": "g-r2-2", "index": 2, "path": "m/240'/2'/2'/3'", "angle": 60},
+          {"id": "g-r2-3", "index": 3, "path": "m/240'/2'/3'/4'", "angle": 90},
+          {"id": "g-r2-4", "index": 4, "path": "m/240'/2'/4'/5'", "angle": 120},
+          {"id": "g-r2-5", "index": 5, "path": "m/240'/2'/5'/6'", "angle": 150},
+          {"id": "g-r2-6", "index": 6, "path": "m/240'/2'/6'/7'", "angle": 180},
+          {"id": "g-r2-7", "index": 7, "path": "m/240'/2'/7'/8'", "angle": 210},
+          {"id": "g-r2-8", "index": 8, "path": "m/240'/2'/8'/9'", "angle": 240},
+          {"id": "g-r2-9", "index": 9, "path": "m/240'/2'/9'/1'", "angle": 270},
+          {"id": "g-r2-10", "index": 10, "path": "m/240'/2'/10'/2'", "angle": 300},
+          {"id": "g-r2-11", "index": 11, "path": "m/240'/2'/11'/3'", "angle": 330}
+        ]
+      },
+      {
+        "index": 3,
+        "name": "base_canvas",
+        "led_count": 16,
+        "radius": 130,
+        "leds": []
+      },
+      {
+        "index": 4,
+        "name": "rotation",
+        "led_count": 24,
+        "radius": 170,
+        "leds": []
+      },
+      {
+        "index": 5,
+        "name": "expansion",
+        "led_count": 32,
+        "radius": 210,
+        "leds": []
+      },
+      {
+        "index": 6,
+        "name": "harmonic_5_8",
+        "led_count": 40,
+        "radius": 250,
+        "leds": []
+      },
+      {
+        "index": 7,
+        "name": "hexagonal",
+        "led_count": 48,
+        "radius": 290,
+        "leds": []
+      },
+      {
+        "index": 8,
+        "name": "dodecahedral",
+        "led_count": 60,
+        "radius": 330,
+        "leds": []
+      }
+    ],
+    "tetrahedral_diagonals": [
+      {"index": 0, "leds": ["g-r1-0", "g-r2-0", "g-r3-0", "g-r4-0", "g-r5-0", "g-r6-0", "g-r7-0", "g-r8-0"]},
+      {"index": 1, "leds": ["g-r1-1", "g-r2-1", "g-r3-1", "g-r4-1", "g-r5-1", "g-r6-1", "g-r7-1", "g-r8-1"]},
+      {"index": 2, "leds": ["g-r1-2", "g-r2-2", "g-r3-2", "g-r4-2", "g-r5-2", "g-r6-2", "g-r7-2", "g-r8-2"]},
+      {"index": 3, "leds": ["g-r1-3", "g-r2-3", "g-r3-3", "g-r4-3", "g-r5-3", "g-r6-3", "g-r7-3", "g-r8-3"]},
+      {"index": 4, "leds": ["g-r1-4", "g-r2-4", "g-r3-4", "g-r4-4", "g-r5-4", "g-r6-4", "g-r7-4", "g-r8-4"]},
+      {"index": 5, "leds": ["g-r1-5", "g-r2-5", "g-r3-5", "g-r4-5", "g-r5-5", "g-r6-5", "g-r7-5", "g-r8-5"]},
+      {"index": 6, "leds": ["g-r1-6", "g-r2-6", "g-r3-6", "g-r4-6", "g-r5-6", "g-r6-6", "g-r7-6", "g-r8-6"]},
+      {"index": 7, "leds": ["g-r1-7", "g-r2-7", "g-r3-7", "g-r4-7", "g-r5-7", "g-r6-7", "g-r7-7", "g-r8-7"]}
+    ]
+  },
+  
+  "personal": {
+    "purpose": 60,
+    "total_leds": 61,
+    "rings": [
+      {"index": 0, "name": "center", "led_count": 1, "radius": 0},
+      {"index": 1, "name": "fano_points", "led_count": 8, "radius": 35},
+      {"index": 2, "name": "harmonics", "led_count": 12, "radius": 60},
+      {"index": 3, "name": "projections", "led_count": 18, "radius": 85},
+      {"index": 4, "name": "genesis", "led_count": 22, "radius": 110}
+    ]
+  },
+  
+  "talisman": {
+    "purpose": 7,
+    "total_leds": 7,
+    "leds": [
+      {"id": "t-0", "path": "m/7'/0'", "fano_point": 1, "color": "red", "angle": 0},
+      {"id": "t-1", "path": "m/7'/1'", "fano_point": 2, "color": "orange", "angle": 51.4},
+      {"id": "t-2", "path": "m/7'/2'", "fano_point": 3, "color": "yellow", "angle": 102.8},
+      {"id": "t-3", "path": "m/7'/3'", "fano_point": 4, "color": "green", "angle": 154.3},
+      {"id": "t-4", "path": "m/7'/4'", "fano_point": 5, "color": "blue", "angle": 205.7},
+      {"id": "t-5", "path": "m/7'/5'", "fano_point": 6, "color": "indigo", "angle": 257.1},
+      {"id": "t-6", "path": "m/7'/6'", "fano_point": 7, "color": "violet", "angle": 308.6}
+    ],
+    "pointer": {"path": "m/7'/pointer", "positions": 7}
+  },
+  
+  "window": {
+    "purpose": 256,
+    "rows": 16,
+    "cols": 16,
+    "total_pixels": 256
+  },
+  
+  "fano_lines": [
+    {"line": 1, "points": [1, 2, 4], "leds": ["g-r1-0", "g-r1-1", "g-r1-3"]},
+    {"line": 2, "points": [1, 3, 7], "leds": ["g-r1-0", "g-r1-2", "g-r1-6"]},
+    {"line": 3, "points": [1, 5, 6], "leds": ["g-r1-0", "g-r1-4", "g-r1-5"]},
+    {"line": 4, "points": [2, 3, 5], "leds": ["g-r1-1", "g-r1-2", "g-r1-4"]},
+    {"line": 5, "points": [2, 6, 7], "leds": ["g-r1-1", "g-r1-5", "g-r1-6"]},
+    {"line": 6, "points": [3, 4, 6], "leds": ["g-r1-2", "g-r1-3", "g-r1-5"]},
+    {"line": 7, "points": [4, 5, 7], "leds": ["g-r1-3", "g-r1-4", "g-r1-6"]}
+  ]
+}
