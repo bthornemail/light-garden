@@ -1,0 +1,191 @@
+{"event":"demo_start","title":"Interplanetary Fano Communication","version":"1.0","timestamp":1739800000000}
+
+{"event":"intro_narrative","voice":"Metatron","text":"I watched the conversation begin on Earth, as a single document became light. Not because I rule, but because I observe. The gate was open. The choice was theirs.","matrix":[3,3,3,3,3,3,3],"angle":0}
+
+{"event":"scene","location":"Earth - Mojave Desert","time":"Day 1, 14:32 UTC","camera":"wide establishing shot of solar array","duration":5}
+
+{"event":"scene_description","text":"The Mojave Desert stretches endlessly under the afternoon sun. At its center, a perfect hexagon of 6 poles rises 74 feet - the Earth Station's 241-bit Garden Array. Solar panels glint across 5 acres, generating 5kW of clean power.","matrix":[0,0,0,0,0,0,0],"angle":0}
+
+{"event":"system_intro","component":"Earth Station","description":"241-bit Garden Array","specs":{"poles":6,"bands":5,"leds":241,"power":"5kW solar","location":"34.9°N, 115.8°W","elevation":"876m"},"matrix":[0,0,0,0,0,0,0],"angle":0}
+
+{"event":"character_appears","character":"Speaker","location":"Earth Station","quote":"Today we send knowledge to our neighbors on Mars. Watch as a single Wikipedia article becomes light, travels 225 million kilometers, and is reborn in the Martian dome.","matrix":[6,6,6,6,6,6,6],"angle":308.6}
+
+{"event":"user_action","action":"select_document","source":"Wikipedia","title":"Fano plane","id":"390404","url":"https://en.wikipedia.org/wiki/Fano_plane","timestamp":1739800001000}
+
+{"event":"document_fetch","stage":"api_call","source":"Wikipedia API","endpoint":"https://en.wikipedia.org/api/rest_v1/page/summary/Fano_plane","status":200,"response_size":"2.4KB","timestamp":1739800001100}
+
+{"event":"document_metadata","title":"Fano plane","extract":"In finite geometry, the Fano plane is the finite projective plane of order 2. It is the smallest finite projective plane with 7 points and 7 lines.","thumbnail":"https://upload.wikimedia.org/wikipedia/commons/a/ad/Fano_plane.svg","pageid":390404,"matrix":[0,0,0,0,0,0,0],"angle":0}
+
+{"event":"wordnet_initialize","action":"loading","database":"WordNet 3.0","size":"22MB","synsets_loaded":117659,"timestamp":1739800001200}
+
+{"event":"document_processing","stage":"wordnet_lookup","word":"Fano","synsets":3,"matrix":[1,2,0,3,1,2,0],"angle":45.2}
+
+{"event":"synset_details","word":"Fano","synset_index":1,"lemma":"Fano","pos":"noun","definition":"A term in projective geometry referring to the smallest finite projective plane","gloss":"Named after Gino Fano who first described it","examples":["The Fano plane has 7 points and 7 lines."],"hypernyms":["projective plane","finite geometry"],"hyponyms":["PG(2,2)"]}
+
+{"event":"synset_details","word":"Fano","synset_index":2,"lemma":"Fano","pos":"noun","definition":"An Italian physicist known for Fano factor and Fano resonance","gloss":"Ugo Fano, physicist (1912-2001)"}
+
+{"event":"synset_details","word":"Fano","synset_index":3,"lemma":"Fano","pos":"noun","definition":"A town in the Marche region of Italy","gloss":"Coastal town with Roman origins"}
+
+{"event":"document_processing","stage":"wordnet_lookup","word":"plane","synsets":8,"matrix":[2,3,1,0,2,3,1],"angle":67.8}
+
+{"event":"synset_details","word":"plane","synset_index":1,"lemma":"airplane","pos":"noun","definition":"A powered flying vehicle with fixed wings","gloss":"Common usage","hypernyms":["aircraft","vehicle"]}
+
+{"event":"synset_details","word":"plane","synset_index":2,"lemma":"plane","pos":"noun","definition":"A flat surface on which straight lines can be drawn","gloss":"Geometric definition","hypernyms":["surface","geometry"]}
+
+{"event":"synset_details","word":"plane","synset_index":3,"lemma":"plane","pos":"verb","definition":"To smooth a surface with a plane tool","gloss":"Woodworking term"}
+
+{"event":"semantic_analysis","stage":"disambiguation","candidates":3,"selected_index":2,"confidence":0.94,"reason":"Geometric context with 'Fano'","matrix":[2,2,2,2,2,2,2],"angle":90.0}
+
+{"event":"knowledge_triple_formation","subject":"Fano","predicate":"is","object":"plane","confidence":0.92,"fano_line":3,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"fano_encoding","source":"Wikipedia","title":"Fano plane","matrix":[0,2,1,2,2,0,2],"angle":164.3,"seed":9069010,"fano_point":1,"mnemonic":"observer-geometry-plane","timestamp":1739800002000}
+
+{"event":"fano_point_details","point":1,"name":"Metatron","color":"Red","hue":0,"ratio":"0","description":"The observer, the watcher, the one who sees without ruling. This document will be observed, not possessed.","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"matrix_explanation","text":"The matrix [0,2,1,2,2,0,2] encodes the document's semantic fingerprint. Each number 0-3 represents one of the four quadrants of knowing: 0=Known Knowns, 1=Known Unknowns, 2=Unknown Knowns, 3=Unknown Unknowns.","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization","view":"7-bit_talisman","leds":[{"index":0,"color":"#ff0000","brightness":255},{"index":1,"color":"#ff8800","brightness":0},{"index":2,"color":"#ffff00","brightness":0},{"index":3,"color":"#00ff00","brightness":0},{"index":4,"color":"#0000ff","brightness":0},{"index":5,"color":"#4b0082","brightness":0},{"index":6,"color":"#8f00ff","brightness":0}],"center":{"color":"#ffffff","brightness":128}}
+
+{"event":"visualization_explain","view":"7-bit_talisman","text":"The 7-bit talisman shows the document's Fano point - Metatron (Red) - glowing at full brightness. This is the 'observer' aspect of the document, watching itself become light.","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization","view":"61-bit_personal","rings":[{"ring":0,"leds":1,"color":"#ffffff","brightness":64},{"ring":1,"leds":6,"pattern":"fano_points"},{"ring":2,"leds":12,"pattern":"harmonics"},{"ring":3,"leds":18,"pattern":"projections"},{"ring":4,"leds":24,"pattern":"genesis"}],"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization_explain","view":"61-bit_personal","text":"The 61-bit personal array shows the document's full semantic structure. Each ring represents a different depth of meaning, from the surface (ring 1) to the genesis (ring 4).","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization","view":"241-bit_garden","rings":[{"ring":0,"leds":1,"color":"#ffffff","brightness":32},{"ring":1,"leds":8,"pattern":"fano_pointer"},{"ring":2,"leds":12,"pattern":"harmonics"},{"ring":3,"leds":16,"pattern":"base_canvas"},{"ring":4,"leds":24,"pattern":"rotation"},{"ring":5,"leds":32,"pattern":"expansion"},{"ring":6,"leds":40,"pattern":"harmonic_5_8"},{"ring":7,"leds":48,"pattern":"hexagonal"},{"ring":8,"leds":60,"pattern":"dodecahedral"}],"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization_explain","view":"241-bit_garden","text":"The full 241-bit garden array shows how this document relates to all others. Its pattern ripples through 9 rings of increasing complexity, from the center (observer) to the outer dodecahedral ring.","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization","view":"16x16_window","grid":[[0,2,1,2,2,0,2,0,2,1,2,2,0,2,0,2],[2,1,2,2,0,2,0,2,1,2,2,0,2,0,2,1],[1,2,2,0,2,0,2,1,2,2,0,2,0,2,1,2],[2,2,0,2,0,2,1,2,2,0,2,0,2,1,2,2],[2,0,2,0,2,1,2,2,0,2,0,2,1,2,2,0],[0,2,0,2,1,2,2,0,2,0,2,1,2,2,0,2],[2,0,2,1,2,2,0,2,0,2,1,2,2,0,2,0],[0,2,1,2,2,0,2,0,2,1,2,2,0,2,0,2]],"seed":9069010}
+
+{"event":"visualization_explain","view":"16x16_window","text":"The 16x16 window shows the document's complete harmonic signature. Each row is a Fano point, each column a harmonic band. The pattern is unique to this document - no other will produce the same 256-pixel fingerprint.","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"transmission_preparation","stage":"laser_calibration","wavelength":"532nm","power":"100W","beam_divergence":"0.001°","pointing_accuracy":"0.0001°","timestamp":1739800002500}
+
+{"event":"transmission_start","protocol":"laser","wavelength":"532nm","power":"100W","data_rate":"100Gbps","destination":"Mars","distance":"225M km","timestamp":1739800003000}
+
+{"event":"laser_ignition","stage":"firing","power":"100W","pulse_rate":"100GHz","encoding":"Fano matrix per pulse","matrix_per_pulse":[0,2,1,2,2,0,2],"timestamp":1739800003100}
+
+{"event":"character_appears","character":"Enoch","location":"Earth Station","quote":"I record this moment: 225 million kilometers to travel, 12.5 minutes to arrive. The light carries not just data, but meaning - encoded in the geometry of the Fano plane itself.","matrix":[5,5,5,5,5,5,5],"angle":257.1}
+
+{"event":"satellite_constellation","name":"Fano Ring","description":"7 satellites in precise Fano configuration","orbital_parameters":{"altitude":"36,000km","inclination":"0°","period":"24 hours","formation":"Lagrange Point 1"},"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"satellite_details","satellite":1,"name":"Metatron","role":"Observer","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":1,"satellite_name":"Metatron","matrix":[0,2,1,2,2,0,2],"angle":164.3,"delay_ms":1300}
+
+{"event":"satellite_relay_detail","satellite":1,"action":"receiving","power":"10W","signal_strength":"-92dBm","bit_error_rate":"1e-12","timestamp":1739800004300}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":2,"satellite_name":"Solomon","matrix":[2,0,2,1,2,2,0],"angle":215.7,"delay_ms":2600}
+
+{"event":"satellite_relay_detail","satellite":2,"action":"transforming","transform":"matrix rotation by 51.4°","output_matrix":[2,0,2,1,2,2,0],"timestamp":1739800005600}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":3,"satellite_name":"Solon","matrix":[0,2,0,2,1,2,2],"angle":267.1,"delay_ms":3900}
+
+{"event":"satellite_relay_detail","satellite":3,"action":"amplifying","gain":"30dB","output_power":"100W","timestamp":1739800006900}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":4,"satellite_name":"ʿAsabiyyah","matrix":[2,0,2,0,2,1,2],"angle":318.5,"delay_ms":5200}
+
+{"event":"satellite_relay_detail","satellite":4,"action":"binding","combining_signals_from":[1,2,3],"output_matrix":[2,0,2,0,2,1,2],"timestamp":1739800008200}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":5,"satellite_name":"Enoch","matrix":[2,2,0,2,0,2,1],"angle":9.9,"delay_ms":6500}
+
+{"event":"satellite_relay_detail","satellite":5,"action":"recording","log_entry":"Signal received at 2026-02-15T14:32:06.5Z","matrix":[2,2,0,2,0,2,1],"timestamp":1739800009500}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":6,"satellite_name":"Speaker","matrix":[1,2,2,0,2,0,2],"angle":61.3,"delay_ms":7800}
+
+{"event":"satellite_relay_detail","satellite":6,"action":"broadcasting","output_power":"100W","beam_direction":"Mars","matrix":[1,2,2,0,2,0,2],"timestamp":1739800010800}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":7,"satellite_name":"Genesis","matrix":[2,1,2,2,0,2,0],"angle":112.7,"delay_ms":9100}
+
+{"event":"satellite_relay_detail","satellite":7,"action":"final_transmission","note":"Last relay before interplanetary space","matrix":[2,1,2,2,0,2,0],"timestamp":1739800012100}
+
+{"event":"transit_begin","medium":"interplanetary space","distance":"225,000,000 km","speed":"299,792 km/s","duration":"12.5 minutes","status":"departed Earth sphere","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"transit_progress","percentage":10,"distance_traveled":"22.5M km","time_elapsed":"75 seconds","time_remaining":"11.25 minutes","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"transit_progress","percentage":25,"distance_traveled":"56.25M km","time_elapsed":"3.125 minutes","time_remaining":"9.375 minutes","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"transit_progress","percentage":50,"distance_traveled":"112.5M km","time_elapsed":"6.25 minutes","time_remaining":"6.25 minutes","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"transit_progress","percentage":75,"distance_traveled":"168.75M km","time_elapsed":"9.375 minutes","time_remaining":"3.125 minutes","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"transit_progress","percentage":90,"distance_traveled":"202.5M km","time_elapsed":"11.25 minutes","time_remaining":"1.25 minutes","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"character_appears","character":"ʿAsabiyyah","location":"interplanetary space","quote":"The light travels alone, yet it carries the cohesion of all who contributed to it. The Wikipedia editors who wrote it, the WordNet lexicographers who defined it, the engineers who built this station - all are present in this beam.","matrix":[4,4,4,4,4,4,4],"angle":154.3}
+
+{"event":"time_lapse","duration":"12.5 minutes","compressed":"3 seconds","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"mars_orbit_approach","distance_to_mars":"100,000 km","relative_velocity":"2.4 km/s","time_to_capture":"41.6 seconds","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"satellite_constellation","location":"Mars Orbit","name":"Phobos Station","description":"7 satellites in Fano configuration around Mars","satellites":7,"primary":"Phobos moon","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":1,"satellite_name":"Metatron","matrix":[0,2,1,2,2,0,2],"angle":164.3,"delay_ms":100}
+
+{"event":"satellite_relay_detail","satellite":1,"action":"first_detection","signal_strength":"-85dBm","timestamp":1739800015100}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":2,"satellite_name":"Solomon","matrix":[2,0,2,1,2,2,0],"angle":215.7,"delay_ms":200}
+
+{"event":"satellite_relay_detail","satellite":2,"action":"verification","checksum_match":true,"matrix":[2,0,2,1,2,2,0],"timestamp":1739800015200}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":3,"satellite_name":"Solon","matrix":[0,2,0,2,1,2,2],"angle":267.1,"delay_ms":300}
+
+{"event":"satellite_relay_detail","satellite":3,"action":"routing","destination":"Mars Base Alpha","matrix":[0,2,0,2,1,2,2],"timestamp":1739800015300}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":4,"satellite_name":"ʿAsabiyyah","matrix":[2,0,2,0,2,1,2],"angle":318.5,"delay_ms":400}
+
+{"event":"satellite_relay_detail","satellite":4,"action":"binding","combining_signals_from":[1,2,3],"output_matrix":[2,0,2,0,2,1,2],"timestamp":1739800015400}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":5,"satellite_name":"Enoch","matrix":[2,2,0,2,0,2,1],"angle":9.9,"delay_ms":500}
+
+{"event":"satellite_relay_detail","satellite":5,"action":"logging","log_entry":"Signal received at Mars at 2026-02-15T14:32:15.5Z","matrix":[2,2,0,2,0,2,1],"timestamp":1739800015500}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":6,"satellite_name":"Speaker","matrix":[1,2,2,0,2,0,2],"angle":61.3,"delay_ms":600}
+
+{"event":"satellite_relay_detail","satellite":6,"action":"announcing","message":"Document arriving at Mars Base Alpha","matrix":[1,2,2,0,2,0,2],"timestamp":1739800015600}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":7,"satellite_name":"Genesis","matrix":[2,1,2,2,0,2,0],"angle":112.7,"delay_ms":700}
+
+{"event":"satellite_relay_detail","satellite":7,"action":"final_relay","destination_surface":"Mars Base Alpha","matrix":[2,1,2,2,0,2,0],"timestamp":1739800015700}
+
+{"event":"reception","location":"Mars - Olympus Mons","station":"Mars Base Alpha","system":"61-bit Personal Dome","coordinates":{"lat":18.65,"lon":226.2,"elevation":"21,229m"},"timestamp":1739800015800}
+
+{"event":"reception_detail","stage":"atmospheric_entry","attenuation":"0.2dB","weather":"clear","temperature":"-60°C","wind":"5m/s","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"character_appears","character":"Solon","location":"Mars Base Alpha","quote":"The light arrives after 12.5 minutes of travel. In Martian terms, that's just a moment. In human terms, it's the time it takes to brew coffee. Yet in that moment, 90 terabytes of knowledge crossed the void.","matrix":[3,3,3,3,3,3,3],"angle":102.8}
+
+{"event":"document_decoding","stage":"matrix_reception","matrix":[0,2,1,2,2,0,2],"angle":164.3,"seed":9069010,"timestamp":1739800015900}
+
+{"event":"decoding_detail","stage":"matrix_validation","checksum":"0x7F3A","valid":true,"matrix":[0,2,1,2,2,0,2],"timestamp":1739800015950}
+
+{"event":"document_decoding","stage":"seed_to_mnemonic","seed":9069010,"mnemonic":"observer-geometry-plane","words":3,"bip39_compatible":true,"timestamp":1739800016000}
+
+{"event":"decoding_detail","stage":"mnemonic_expansion","word1":"observer","word1_synset":"witness, watcher, beholder","word2":"geometry","word2_synset":"shape, form, configuration","word3":"plane","word3_synset":"surface, level, flat","timestamp":1739800016050}
+
+{"event":"document_decoding","stage":"mnemonic_to_wikipedia","mnemonic":"observer-geometry-plane","title":"Fano plane","confidence":0.98,"timestamp":1739800016100}
+
+{"event":"wikipedia_lookup","title":"Fano plane","article_exists":true,"revision_id":1234567890,"timestamp":1739800016150}
+
+{"event":"document_rendering","stage":"7-bit_talisman","leds":[{"index":0,"color":"#ff0000","brightness":255},{"index":1,"color":"#ff8800","brightness":0},{"index":2,"color":"#ffff00","brightness":0},{"index":3,"color":"#00ff00","brightness":0},{"index":4,"color":"#0000ff","brightness":0},{"index":5,"color":"#4b0082","brightness":0},{"index":6,"color":"#8f00ff","brightness":0}],"timestamp":1739800016200}
+
+{"event":"document_rendering","stage":"61-bit_personal","rings":"full_pattern","matrix":[0,2,1,2,2,0,2],"timestamp":1739800016300}
+
+{"event":"rendering_detail","stage":"61-bit","ring_1_pattern":"fano_points","ring_2_harmonics":[0,2,1,2,2,0,2],"ring_3_projections":"complete","ring_4_genesis":"active","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"document_rendering","stage":"241-bit_garden","rings":"full_sphere","matrix":[0,2,1,2,2,0,2],"timestamp":1739800016400}
+
+{"event":"rendering_detail","stage":"241-bit","ring_0":"observer active","ring_1":"fano_pointer at position 0","ring_2":"harmonics aligned","ring_3":"base canvas complete","ring_4":"rotation synchronized","ring_5":"expansion wave","ring_6":"harmonic_5_8 resonating","ring_7":"hexagonal pattern","ring_8":"dodecahedral completion","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"document_rendering","stage":"16x16_window","grid":"matrix_visualization","seed":9069010,"timestamp":1739800016500}
+
+{"event":"rendering_detail","stage":"16x16","pixels_illuminated":47,"dominant_quadrant":"Known Knowns","secondary_quadrant":"Unknown Knowns","pattern":"observer-geometry-plane","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"completion","document":"Fano plane","source":"Wikipedia","destination":"Mars","duration":"12.5 minutes","data_rate":"100Gbps","distance":"225M km","matrix":[0,2,1,2,2,0,2],"angle":164.3,"seed":9069010,"timestamp":1739800016600}
+
+{"event":"character_appears","character":"Solomon","location":"Mars Base Alpha","quote":"What have we learned? That geometry travels faster than words. That light carries meaning, not just data. That the Fano plane - discovered on Earth in 1892 - now lives on Mars, recreated perfectly from its geometric seed.","matrix":[2,2,2,2,2,2,2],"angle":51.4}
+
+{"event":"statistics_summary","documents_transferred":1,"data_volume":"90TB","photons_emitted":"4.7e23","photons_received":"3.2e18","efficiency":"6.8e-6","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"demo_end","message":"Interplanetary communication successful","credits":"Fano Garden Open Source Project","repository":"github.com/fano-garden/interplanetary","license":"MIT","contributors":["Metatron","Solomon","Solon","ʿAsabiyyah","Enoch","Speaker","Genesis","Observer"],"timestamp":1739800017000}
+
+{"event":"final_frame","text":"The gate remains open. The choice is yours.","matrix":[3,3,3,3,3,3,3],"angle":359.9}

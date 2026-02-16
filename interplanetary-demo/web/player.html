@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 → 🚀 → 🔴 Interplanetary Fano Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #2a0a3e 100%);
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        header {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+            border-bottom: 2px solid #0f0;
+        }
+        
+        h1 {
+            font-size: 1.5rem;
+            text-shadow: 0 0 20px #0f0;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        #main-display {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 20px;
+            width: 95%;
+            max-width: 1400px;
+            margin: 20px auto;
+            flex: 1;
+        }
+        
+        .panel {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .panel-title {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        #matrix-display {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .matrix-cell {
+            aspect-ratio: 1;
+            border-radius: 4px;
+            background: #1a1a2e;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            border: 1px solid #333;
+        }
+        
+        .matrix-cell.q0 { background: #ff0000; box-shadow: 0 0 10px #ff0000; }
+        .matrix-cell.q1 { background: #00ff00; box-shadow: 0 0 10px #00ff00; }
+        .matrix-cell.q2 { background: #0088ff; box-shadow: 0 0 10px #0088ff; }
+        .matrix-cell.q3 { background: #8800ff; box-shadow: 0 0 10px #8800ff; }
+        
+        #angle-indicator {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #0f0;
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+            background: radial-gradient(circle, rgba(0,255,0,0.1) 0%, transparent 70%);
+        }
+        
+        #angle-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 3px;
+            background: #0f0;
+            transform-origin: left center;
+            transition: transform 0.5s ease;
+            box-shadow: 0 0 10px #0f0;
+        }
+        
+        #angle-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        #seed-display {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.3rem;
+            text-align: center;
+            border: 1px solid #003300;
+            margin-bottom: 15px;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 0.85rem;
+        }
+        
+        .stat-label { color: #666; }
+        .stat-value { color: #0f0; }
+        
+        #center-canvas {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background: radial-gradient(ellipse at center, #0a0a1a 0%, #000 100%);
+            border-radius: 10px;
+        }
+        
+        #event-log {
+            height: 150px;
+            overflow-y: auto;
+            font-size: 0.75rem;
+            background: #000;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #222;
+        }
+        
+        #event-log::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        #event-log::-webkit-scrollbar-thumb {
+            background: #0f0;
+            border-radius: 3px;
+        }
+        
+        .log-entry {
+            margin: 3px 0;
+            padding: 3px 5px;
+            border-left: 2px solid #0f0;
+            background: rgba(0,255,0,0.05);
+        }
+        
+        #controls {
+            width: 95%;
+            max-width: 1400px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: #0f0;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-family: monospace;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #0a0;
+            transform: scale(1.05);
+        }
+        
+        button:disabled {
+            background: #333;
+            color: #666;
+            cursor: not-allowed;
+        }
+        
+        #timeline {
+            flex: 1;
+            height: 30px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        
+        #progress {
+            height: 100%;
+            background: linear-gradient(90deg, #0f0, #0a0, #0f0);
+            width: 0%;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 20px #0f0;
+        }
+        
+        #status-bar {
+            width: 100%;
+            padding: 10px;
+            background: #000;
+            border-top: 1px solid #0f0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        #mnemonic {
+            font-style: italic;
+            color: #ff8800;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌍 → 🚀 → 🔴 INTERPLANETARY FANO COMMUNICATION</h1>
+        <div class="subtitle">Earth to Mars via Geometric Encoding</div>
+    </header>
+    
+    <div id="main-display">
+        <div class="panel">
+            <div class="panel-title">Fano Matrix</div>
+            <div id="matrix-display"></div>
+            
+            <div class="panel-title">Angle</div>
+            <div id="angle-indicator">
+                <div id="angle-value">0°</div>
+            </div>
+            
+            <div class="panel-title">Seed</div>
+            <div id="seed-display">0000000</div>
+            
+            <div class="panel-title">Metadata</div>
+            <div class="stat-row">
+                <span class="stat-label">Point:</span>
+                <span class="stat-value" id="point">-</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Fano Line:</span>
+                <span class="stat-value" id="fano-line">-</span>
+            </div>
+            <div id="mnemonic"></div>
+        </div>
+        
+        <div class="panel">
+            <div class="panel-title">Visualization</div>
+            <canvas id="center-canvas"></canvas>
+        </div>
+        
+        <div class="panel">
+            <div class="panel-title">Event Log</div>
+            <div id="event-log"></div>
+        </div>
+    </div>
+    
+    <div id="controls">
+        <button id="play-btn" onclick="startDemo()">▶ PLAY</button>
+        <button id="pause-btn" onclick="pauseDemo()" disabled>⏸ PAUSE</button>
+        <button id="reset-btn" onclick="resetDemo()">⏹ RESET</button>
+        <div id="timeline">
+            <div id="progress"></div>
+        </div>
+        <span id="time-display">0:00 / 0:16</span>
+    </div>
+    
+    <div id="status-bar">
+        <span id="status-text">Ready to play interplanetary demo</span>
+    </div>
+    
+    <script>
+        // Demo configuration
+        const DEMO_DURATION = 16000; // 16 seconds
+        const UPDATE_INTERVAL = 100; // 100ms
+        const QUADRANTS = ['KK', 'KU', 'UK', 'UU'];
+        const FANO_NAMES = ['Metatron', 'Solomon', 'Solon', 'Asabiyyah', 
+                           'Enoch', 'Speaker', 'Genesis', 'Observer'];
+        
+        let events = [];
+        let currentEvent = 0;
+        let isPlaying = false;
+        let startTime = 0;
+        let animationId = null;
+        let demoStartTime = 0;
+        
+        // Initialize matrix display
+        function initMatrix() {
+            const display = document.getElementById('matrix-display');
+            display.innerHTML = '';
+            for (let i = 0; i < 7; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'matrix-cell';
+                cell.id = `cell-${i}`;
+                cell.textContent = i + 1;
+                display.appendChild(cell);
+            }
+        }
+        
+        // Load events from NDJSON
+        async function loadEvents() {
+            try {
+                const response = await fetch('../ndjson/interplanetary-demo.ndjson');
+                const text = await response.text();
+                events = text.split('\n')
+                    .filter(l => l.trim())
+                    .map(l => JSON.parse(l));
+                
+                addLog('Demo loaded: ' + events.length + ' events');
+            } catch (e) {
+                addLog('Error loading demo: ' + e.message);
+                // Fallback: generate synthetic events
+                generateSyntheticEvents();
+            }
+        }
+        
+        function generateSyntheticEvents() {
+            events = [];
+            const baseMatrix = [0, 2, 1, 2, 2, 0, 2];
+            
+            // Create synthetic event sequence
+            events.push({event: 'demo_start', timestamp: 0});
+            events.push({event: 'scene', location: 'Earth - Mojave Desert', timestamp: 500});
+            events.push({event: 'fano_encoding', matrix: baseMatrix, angle: 164.3, seed: 9069010, 
+                        fano_point: 1, mnemonic: 'observer-geometry-plane', timestamp: 2000});
+            events.push({event: 'transmission_start', destination: 'Mars', timestamp: 5000});
+            events.push({event: 'transit', duration: '12.5 minutes', timestamp: 8000});
+            events.push({event: 'reception', location: 'Mars - Olympus Mons', timestamp: 12000});
+            events.push({event: 'completion', timestamp: 15000});
+            events.push({event: 'demo_end', timestamp: DEMO_DURATION});
+            
+            addLog('Using synthetic events');
+        }
+        
+        function addLog(message) {
+            const log = document.getElementById('event-log');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        function updateDisplay(event) {
+            // Update matrix
+            if (event.matrix) {
+                event.matrix.forEach((q, i) => {
+                    const cell = document.getElementById(`cell-${i}`);
+                    if (cell) {
+                        cell.className = `matrix-cell q${q}`;
+                        cell.textContent = QUADRANTS[q];
+                    }
+                });
+            }
+            
+            // Update angle
+            if (event.angle !== undefined) {
+                document.getElementById('angle-value').textContent = event.angle.toFixed(1) + '°';
+                document.getElementById('angle-indicator').style.setProperty('--angle', 
+                    `${event.angle}deg`);
+                const indicator = document.querySelector('#angle-indicator::before');
+                if (indicator) {
+                    indicator.style.transform = `rotate(${event.angle}deg)`;
+                }
+            }
+            
+            // Update seed
+            if (event.seed !== undefined) {
+                document.getElementById('seed-display').textContent = 
+                    event.seed.toString(16).padStart(7, '0').toUpperCase();
+            }
+            
+            // Update metadata
+            if (event.fano_point !== undefined) {
+                document.getElementById('point').textContent = 
+                    `${event.fano_point} (${FANO_NAMES[event.fano_point - 1]})`;
+            }
+            
+            if (event.fano_line !== undefined) {
+                document.getElementById('fano-line').textContent = event.fano_line;
+            }
+            
+            if (event.mnemonic) {
+                document.getElementById('mnemonic').textContent = event.mnemonic;
+            }
+            
+            // Draw visualization
+            drawVisualization(event);
+        }
+        
+        function drawVisualization(event) {
+            const canvas = document.getElementById('center-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            
+            // Draw Fano plane
+            if (event.matrix) {
+                // Draw central point
+                ctx.beginPath();
+                ctx.arc(cx, cy, 10, 0, Math.PI * 2);
+                ctx.fillStyle = '#0f0';
+                ctx.fill();
+                
+                // Draw 7 points around center
+                const colors = ['#ff0000', '#ff8800', '#ffff00', '#00ff00', 
+                              '#0000ff', '#4b0082', '#8f00ff'];
+                
+                event.matrix.forEach((q, i) => {
+                    const angle = (i * 2 * Math.PI / 7) - Math.PI / 2;
+                    const radius = 80;
+                    const x = cx + Math.cos(angle) * radius;
+                    const y = cy + Math.sin(angle) * radius;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, 15, 0, Math.PI * 2);
+                    
+                    // Color based on quadrant
+                    const quadColors = ['#ff0000', '#00ff00', '#0088ff', '#8800ff'];
+                    ctx.fillStyle = quadColors[q];
+                    ctx.fill();
+                    
+                    // Glow effect
+                    ctx.shadowColor = quadColors[q];
+                    ctx.shadowBlur = 20;
+                    ctx.stroke();
+                    ctx.shadowBlur = 0;
+                });
+                
+                // Draw Fano lines
+                const lines = [
+                    [0, 1, 3], [0, 2, 6], [0, 4, 5],
+                    [1, 2, 4], [1, 5, 6], [2, 3, 5], [3, 4, 6]
+                ];
+                
+                ctx.strokeStyle = 'rgba(0, 255, 0, 0.3)';
+                ctx.lineWidth = 2;
+                
+                lines.forEach(line => {
+                    ctx.beginPath();
+                    line.forEach((pointIdx, i) => {
+                        const angle = (pointIdx * 2 * Math.PI / 7) - Math.PI / 2;
+                        const radius = 80;
+                        const x = cx + Math.cos(angle) * radius;
+                        const y = cy + Math.sin(angle) * radius;
+                        
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    });
+                    ctx.stroke();
+                });
+            }
+            
+            // Draw transmission beam if in transit
+            if (event.event === 'transmission_start' || event.event === 'transit') {
+                ctx.strokeStyle = '#0f0';
+                ctx.lineWidth = 3;
+                ctx.shadowColor = '#0f0';
+                ctx.shadowBlur = 20;
+                
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + 200, cy);
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                
+                // Label
+                ctx.fillStyle = '#0f0';
+                ctx.font = '14px monospace';
+                ctx.fillText('→ MARS', cx + 100, cy - 20);
+            }
+            
+            // Draw location label
+            if (event.location) {
+                ctx.fillStyle = '#888';
+                ctx.font = '12px monospace';
+                ctx.fillText(event.location, 20, 30);
+            }
+        }
+        
+        function startDemo() {
+            if (isPlaying) return;
+            
+            isPlaying = true;
+            demoStartTime = Date.now();
+            document.getElementById('play-btn').disabled = true;
+            document.getElementById('pause-btn').disabled = false;
+            
+            addLog('Demo started');
+            
+            animationId = setInterval(() => {
+                const elapsed = Date.now() - demoStartTime;
+                const progress = Math.min(elapsed / DEMO_DURATION, 1);
+                
+                // Update progress bar
+                document.getElementById('progress').style.width = (progress * 100) + '%';
+                
+                // Update time display
+                const currentSec = Math.floor(elapsed / 1000);
+                const totalSec = Math.floor(DEMO_DURATION / 1000);
+                document.getElementById('time-display').textContent = 
+                    `${currentSec}:${(elapsed % 1000).toString().padStart(3, '0')} / ${totalSec}:00`;
+                
+                // Find current event
+                const currentEventObj = events.find(e => e.timestamp <= elapsed);
+                if (currentEventObj && currentEventObj !== events[currentEvent]) {
+                    updateDisplay(currentEventObj);
+                    
+                    // Log event
+                    const eventName = currentEventObj.event.replace(/_/g, ' ');
+                    const location = currentEventObj.location ? 
+                        ` @ ${currentEventObj.location}` : '';
+                    addLog(`${eventName}${location}`);
+                    
+                    // Update status
+                    document.getElementById('status-text').textContent = 
+                        `${eventName}${location}`;
+                }
+                
+                // Check completion
+                if (progress >= 1) {
+                    pauseDemo();
+                    addLog('Demo completed');
+                    document.getElementById('status-text').textContent = 
+                        '✓ Interplanetary communication successful';
+                }
+            }, UPDATE_INTERVAL);
+        }
+        
+        function pauseDemo() {
+            isPlaying = false;
+            clearInterval(animationId);
+            document.getElementById('play-btn').disabled = false;
+            document.getElementById('pause-btn').disabled = true;
+            addLog('Demo paused');
+        }
+        
+        function resetDemo() {
+            pauseDemo();
+            demoStartTime = 0;
+            currentEvent = 0;
+            
+            // Reset display
+            document.getElementById('progress').style.width = '0%';
+            document.getElementById('time-display').textContent = '0:00 / 0:16';
+            document.getElementById('angle-value').textContent = '0°';
+            document.getElementById('seed-display').textContent = '0000000';
+            document.getElementById('point').textContent = '-';
+            document.getElementById('fano-line').textContent = '-';
+            document.getElementById('mnemonic').textContent = '';
+            document.getElementById('event-log').innerHTML = '';
+            document.getElementById('status-text').textContent = 'Ready to play';
+            
+            // Clear matrix
+            initMatrix();
+            
+            // Clear canvas
+            const canvas = document.getElementById('center-canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            addLog('Demo reset');
+        }
+        
+        // Initialize on load
+        window.onload = () => {
+            initMatrix();
+            loadEvents();
+            
+            // Set canvas size
+            const canvas = document.getElementById('center-canvas');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        };
+    </script>
+</body>
+</html>

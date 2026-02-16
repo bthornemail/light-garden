@@ -499,6 +499,30 @@ static void handle_client_message(ServerState* state, Client* client) {
                 send_not_found(client->fd);
             }
         }
+        else if (strcmp(path, "/interplanetary") == 0 || strcmp(path, "/demo") == 0) {
+            FILE* df = fopen("public/interplanetary-demo/player.html", "r");
+            if (df) {
+                fseek(df, 0, SEEK_END);
+                long dsize = ftell(df);
+                fseek(df, 0, SEEK_SET);
+                char* html = malloc(dsize + 1);
+                fread(html, 1, dsize, df);
+                html[dsize] = '\0';
+                fclose(df);
+                char header[256];
+                int header_len = snprintf(header, sizeof(header),
+                    "HTTP/1.1 200 OK\r\n"
+                    "Content-Type: text/html\r\n"
+                    "Content-Length: %ld\r\n"
+                    "Access-Control-Allow-Origin: *\r\n"
+                    "\r\n", dsize);
+                write(client->fd, header, header_len);
+                write(client->fd, html, dsize);
+                free(html);
+            } else {
+                send_not_found(client->fd);
+            }
+        }
         else if (strcmp(path, "/") == 0 || strcmp(path, "/index.html") == 0) {
             char* html = "<html><body><h1>Fano Garden C Server</h1><p>Running on port 8080</p></body></html>";
             send_response(client->fd, "200 OK", "text/html", html, strlen(html));

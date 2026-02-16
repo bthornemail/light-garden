@@ -1,0 +1,77 @@
+{"event":"demo_start","title":"Interplanetary Fano Communication","version":"1.0","timestamp":1739800000000}
+
+{"event":"scene","location":"Earth - Mojave Desert","time":"Day 1, 14:32 UTC","camera":"wide","duration":5}
+
+{"event":"system_intro","component":"Earth Station","description":"241-bit Garden Array","specs":{"poles":6,"bands":5,"leds":241,"power":"5kW solar"},"matrix":[0,0,0,0,0,0,0],"angle":0}
+
+{"event":"user_action","action":"select_document","source":"Wikipedia","title":"Fano plane","id":"390404","timestamp":1739800001000}
+
+{"event":"document_processing","stage":"wordnet_lookup","word":"Fano","synsets":3,"matrix":[1,2,0,3,1,2,0],"angle":45.2}
+
+{"event":"document_processing","stage":"wordnet_lookup","word":"plane","synsets":8,"matrix":[2,3,1,0,2,3,1],"angle":67.8}
+
+{"event":"knowledge_triple_formation","subject":"Fano","predicate":"is","object":"plane","confidence":0.92,"fano_line":3,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"fano_encoding","source":"Wikipedia","title":"Fano plane","matrix":[0,2,1,2,2,0,2],"angle":164.3,"seed":9069010,"fano_point":1,"mnemonic":"observer-geometry-plane","timestamp":1739800002000}
+
+{"event":"visualization","view":"7-bit_talisman","leds":[{"index":0,"color":"#ff0000","brightness":255},{"index":1,"color":"#ff8800","brightness":0},{"index":2,"color":"#ffff00","brightness":0},{"index":3,"color":"#00ff00","brightness":0},{"index":4,"color":"#0000ff","brightness":0},{"index":5,"color":"#4b0082","brightness":0},{"index":6,"color":"#8f00ff","brightness":0}],"center":{"color":"#ffffff","brightness":128}}
+
+{"event":"visualization","view":"61-bit_personal","rings":[{"ring":0,"leds":1,"color":"#ffffff","brightness":64},{"ring":1,"leds":6,"pattern":"fano_points"},{"ring":2,"leds":12,"pattern":"harmonics"},{"ring":3,"leds":18,"pattern":"projections"},{"ring":4,"leds":24,"pattern":"genesis"}],"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization","view":"241-bit_garden","rings":[{"ring":0,"leds":1,"color":"#ffffff","brightness":32},{"ring":1,"leds":8,"pattern":"fano_pointer"},{"ring":2,"leds":12,"pattern":"harmonics"},{"ring":3,"leds":16,"pattern":"base_canvas"},{"ring":4,"leds":24,"pattern":"rotation"},{"ring":5,"leds":32,"pattern":"expansion"},{"ring":6,"leds":40,"pattern":"harmonic_5_8"},{"ring":7,"leds":48,"pattern":"hexagonal"},{"ring":8,"leds":60,"pattern":"dodecahedral"}],"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization","view":"16x16_window","grid":[[0,2,1,2,2,0,2,0,2,1,2,2,0,2,0,2],[2,1,2,2,0,2,0,2,1,2,2,0,2,0,2,1],[1,2,2,0,2,0,2,1,2,2,0,2,0,2,1,2],[2,2,0,2,0,2,1,2,2,0,2,0,2,1,2,2],[2,0,2,0,2,1,2,2,0,2,0,2,1,2,2,0],[0,2,0,2,1,2,2,0,2,0,2,1,2,2,0,2],[2,0,2,1,2,2,0,2,0,2,1,2,2,0,2,0],[0,2,1,2,2,0,2,0,2,1,2,2,0,2,0,2]],"seed":9069010}
+
+{"event":"transmission_start","protocol":"laser","wavelength":"532nm","power":"100W","data_rate":"100Gbps","destination":"Mars","distance":"225M km","timestamp":1739800003000}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":1,"matrix":[0,2,1,2,2,0,2],"angle":164.3,"delay_ms":1300}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":2,"matrix":[2,0,2,1,2,2,0],"angle":215.7,"delay_ms":2600}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":3,"matrix":[0,2,0,2,1,2,2],"angle":267.1,"delay_ms":3900}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":4,"matrix":[2,0,2,0,2,1,2],"angle":318.5,"delay_ms":5200}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":5,"matrix":[2,2,0,2,0,2,1],"angle":9.9,"delay_ms":6500}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":6,"matrix":[1,2,2,0,2,0,2],"angle":61.3,"delay_ms":7800}
+
+{"event":"satellite_relay","node":"Earth Orbit - L1","position":"Lagrange Point 1","formation":"fano_constellation","satellites":7,"active_sat":7,"matrix":[2,1,2,2,0,2,0],"angle":112.7,"delay_ms":9100}
+
+{"event":"transit","medium":"interplanetary space","distance":"225,000,000 km","speed":"light","duration":"12.5 minutes","status":"in_transit","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"time_lapse","duration":"12.5 minutes","compressed":"3 seconds","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":1,"matrix":[0,2,1,2,2,0,2],"angle":164.3,"delay_ms":100}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":2,"matrix":[2,0,2,1,2,2,0],"angle":215.7,"delay_ms":200}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":3,"matrix":[0,2,0,2,1,2,2],"angle":267.1,"delay_ms":300}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":4,"matrix":[2,0,2,0,2,1,2],"angle":318.5,"delay_ms":400}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":5,"matrix":[2,2,0,2,0,2,1],"angle":9.9,"delay_ms":500}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":6,"matrix":[1,2,2,0,2,0,2],"angle":61.3,"delay_ms":600}
+
+{"event":"satellite_relay","node":"Mars Orbit - Phobos","position":"Phobos station","formation":"fano_constellation","satellites":7,"active_sat":7,"matrix":[2,1,2,2,0,2,0],"angle":112.7,"delay_ms":700}
+
+{"event":"reception","location":"Mars - Olympus Mons","station":"Mars Base Alpha","system":"61-bit Personal Dome","timestamp":1739800015000}
+
+{"event":"document_decoding","stage":"matrix_reception","matrix":[0,2,1,2,2,0,2],"angle":164.3,"seed":9069010,"timestamp":1739800015100}
+
+{"event":"document_decoding","stage":"seed_to_mnemonic","seed":9069010,"mnemonic":"observer-geometry-plane","words":3,"timestamp":1739800015200}
+
+{"event":"document_decoding","stage":"mnemonic_to_wikipedia","mnemonic":"observer-geometry-plane","title":"Fano plane","confidence":0.98,"timestamp":1739800015300}
+
+{"event":"document_rendering","stage":"7-bit_talisman","leds":[{"index":0,"color":"#ff0000","brightness":255}],"timestamp":1739800015400}
+
+{"event":"document_rendering","stage":"61-bit_personal","rings":"full_pattern","matrix":[0,2,1,2,2,0,2],"timestamp":1739800015500}
+
+{"event":"document_rendering","stage":"241-bit_garden","rings":"full_sphere","matrix":[0,2,1,2,2,0,2],"timestamp":1739800015600}
+
+{"event":"document_rendering","stage":"16x16_window","grid":"matrix_visualization","seed":9069010,"timestamp":1739800015700}
+
+{"event":"completion","document":"Fano plane","source":"Wikipedia","destination":"Mars","duration":"12.5 minutes","data_rate":"100Gbps","distance":"225M km","matrix":[0,2,1,2,2,0,2],"angle":164.3,"seed":9069010,"timestamp":1739800015800}
+
+{"event":"demo_end","message":"Interplanetary communication successful","credits":"Fano Garden Open Source Project","repository":"github.com/fano-garden/interplanetary","license":"MIT","timestamp":1739800016000}

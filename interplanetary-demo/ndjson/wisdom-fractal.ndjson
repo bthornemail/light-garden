@@ -1,0 +1,153 @@
+{"event":"knowledge_cloud_start","title":"The Wisdom Fractal: From Word to Cloud","version":"1.0","timestamp":1739900000000}
+
+{"event":"intro_narrative","voice":"Metatron","text":"Before you is a single word. Watch as it unfolds into meaning, geometry, and light. This is the architecture of knowing itself.","matrix":[3,3,3,3,3,3,3],"angle":0}
+
+{"event":"scene","location":"Abstract Knowledge Space","description":"The void before meaning","duration":3}
+
+{"event":"seed_word","word":"wisdom","language":"English","characters":6,"letters":["w","i","s","d","o","m"],"matrix":[0,0,0,0,0,0,0],"angle":0}
+
+{"event":"wordnet_initialization","database":"WordNet 3.0","synsets_total":117659,"words_total":155287,"timestamp":1739900001000}
+
+{"event":"wordnet_lookup_start","word":"wisdom","api_call":"/api/wordnet/lookup?word=wisdom","timestamp":1739900001100}
+
+{"event":"wordnet_lookup_result","word":"wisdom","synsets_found":5,"matrix":[1,2,3,0,1,2,3],"angle":45.2}
+
+{"event":"synset_details","word":"wisdom","synset_index":1,"lemma":"wisdom","pos":"noun","definition":"Accumulated knowledge or erudition or enlightenment","gloss":"the content of cognition; the main thing you are thinking about","examples":["it was not what he said but the wisdom of it that struck me"],"hypernyms":["content","cognition","knowledge"],"hyponyms":["lore","traditional knowledge","wisdom literature"],"matrix":[1,1,1,1,1,1,1],"angle":51.4}
+
+{"event":"synset_details","word":"wisdom","synset_index":2,"lemma":"wisdom","pos":"noun","definition":"The trait of utilizing knowledge and experience with common sense and insight","gloss":"ability to apply knowledge","examples":["she acted with great wisdom"],"hypernyms":["trait","ability","intelligence"],"hyponyms":["sagacity","judgment","discernment"],"matrix":[2,2,2,2,2,2,2],"angle":102.8}
+
+{"event":"synset_details","word":"wisdom","synset_index":3,"lemma":"wisdom","pos":"noun","definition":"Wisdom of Solomon - an Apocryphal book consisting mainly of a meditation on wisdom","gloss":"biblical text","examples":["the Wisdom of Solomon is attributed to Solomon"],"hypernyms":["book","religious text","scripture"],"hyponyms":[],"matrix":[3,3,3,3,3,3,3],"angle":154.3}
+
+{"event":"fano_point_mapping","word":"wisdom","candidate_points":[2,5,7],"selected":2,"point_name":"Solomon","confidence":0.94,"reason":"Primary semantic domain aligns with Solomon's attribute of wisdom","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"character_appears","character":"Solomon","voice":"wisdom","quote":"I am the one who carries memory. When you speak of wisdom, you speak of me. But wisdom is not a single thing - it is a cloud of meanings, each connected to the others like stars in a constellation.","matrix":[2,2,2,2,2,2,2],"angle":51.4}
+
+{"event":"knowledge_cloud_formation","seed":"wisdom","radius":5,"nodes":12,"edges":18,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"cloud_node","node_id":1,"word":"knowledge","relation":"hypernym","strength":0.95,"coordinates":{"x":2.1,"y":3.4,"z":1.2},"color":"#ff8800","matrix":[2,1,2,2,0,2,0],"angle":215.7}
+
+{"event":"cloud_node","node_id":2,"word":"understanding","relation":"hyponym","strength":0.88,"coordinates":{"x":-1.3,"y":2.8,"z":0.7},"color":"#ffff00","matrix":[1,2,2,0,2,0,2],"angle":267.1}
+
+{"event":"cloud_node","node_id":3,"word":"insight","relation":"hyponym","strength":0.82,"coordinates":{"x":0.5,"y":-2.1,"z":1.8},"color":"#00ff00","matrix":[2,2,0,2,0,2,1],"angle":318.5}
+
+{"event":"cloud_node","node_id":4,"word":"discernment","relation":"hyponym","strength":0.79,"coordinates":{"x":3.2,"y":-1.4,"z":-0.9},"color":"#0000ff","matrix":[2,0,2,0,2,1,2],"angle":9.9}
+
+{"event":"cloud_node","node_id":5,"word":"sagacity","relation":"hyponym","strength":0.76,"coordinates":{"x":-2.4,"y":-0.8,"z":-2.1},"color":"#4b0082","matrix":[0,2,0,2,1,2,2],"angle":61.3}
+
+{"event":"cloud_node","node_id":6,"word":"judgment","relation":"related","strength":0.71,"coordinates":{"x":1.7,"y":-2.9,"z":1.4},"color":"#8f00ff","matrix":[0,2,1,2,2,0,2],"angle":112.7}
+
+{"event":"cloud_node","node_id":7,"word":"prudence","relation":"related","strength":0.68,"coordinates":{"x":-1.9,"y":1.5,"z":-1.6},"color":"#ff0000","matrix":[2,1,2,2,0,2,0],"angle":164.3}
+
+{"event":"cloud_node","node_id":8,"word":"sense","relation":"hypernym","strength":0.65,"coordinates":{"x":0.8,"y":3.1,"z":-0.4},"color":"#ff8800","matrix":[1,2,2,0,2,0,2],"angle":215.7}
+
+{"event":"cloud_node","node_id":9,"word":"intelligence","relation":"hypernym","strength":0.62,"coordinates":{"x":-0.3,"y":-1.7,"z":2.5},"color":"#ffff00","matrix":[2,2,0,2,0,2,1],"angle":267.1}
+
+{"event":"cloud_node","node_id":10,"word":"philosophy","relation":"domain","strength":0.58,"coordinates":{"x":2.6,"y":0.4,"z":-2.2},"color":"#00ff00","matrix":[2,0,2,0,2,1,2],"angle":318.5}
+
+{"event":"cloud_node","node_id":11,"word":"theology","relation":"domain","strength":0.54,"coordinates":{"x":-2.1,"y":-2.3,"z":-0.8},"color":"#0000ff","matrix":[0,2,0,2,1,2,2],"angle":9.9}
+
+{"event":"cloud_node","node_id":12,"word":"lore","relation":"hyponym","strength":0.51,"coordinates":{"x":1.2,"y":1.9,"z":1.1},"color":"#4b0082","matrix":[0,2,1,2,2,0,2],"angle":61.3}
+
+{"event":"knowledge_triples_generation","subject":"wisdom","predicates":["is","has","leads_to","manifests_as"],"objects":["knowledge","understanding","insight","discernment"],"matrix":[2,1,2,2,0,2,0],"angle":112.7}
+
+{"event":"triple_details","triple_id":1,"subject":"wisdom","predicate":"is_a_form_of","object":"knowledge","confidence":0.95,"fano_line":1,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"triple_details","triple_id":2,"subject":"wisdom","predicate":"leads_to","object":"understanding","confidence":0.89,"fano_line":2,"matrix":[2,0,2,1,2,2,0],"angle":215.7}
+
+{"event":"triple_details","triple_id":3,"subject":"wisdom","predicate":"manifests_as","object":"insight","confidence":0.84,"fano_line":3,"matrix":[0,2,0,2,1,2,2],"angle":267.1}
+
+{"event":"triple_details","triple_id":4,"subject":"wisdom","predicate":"requires","object":"discernment","confidence":0.81,"fano_line":4,"matrix":[2,0,2,0,2,1,2],"angle":318.5}
+
+{"event":"triple_details","triple_id":5,"subject":"wisdom","predicate":"is_related_to","object":"sagacity","confidence":0.77,"fano_line":5,"matrix":[2,2,0,2,0,2,1],"angle":9.9}
+
+{"event":"triple_details","triple_id":6,"subject":"wisdom","predicate":"informs","object":"judgment","confidence":0.73,"fano_line":6,"matrix":[1,2,2,0,2,0,2],"angle":61.3}
+
+{"event":"triple_details","triple_id":7,"subject":"wisdom","predicate":"guides","object":"prudence","confidence":0.69,"fano_line":7,"matrix":[2,1,2,2,0,2,0],"angle":112.7}
+
+{"event":"fractal_expansion","level":1,"nodes":12,"triples":7,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"fractal_level","level":2,"description":"Each node in the cloud becomes its own cloud","timestamp":1739900002000}
+
+{"event":"cloud_node_expansion","node":"knowledge","synsets":8,"new_nodes":["information","awareness","cognition","learning"],"matrix":[2,0,2,1,2,2,0],"angle":215.7}
+
+{"event":"cloud_node_expansion","node":"understanding","synsets":6,"new_nodes":["comprehension","grasp","appreciation","realization"],"matrix":[0,2,0,2,1,2,2],"angle":267.1}
+
+{"event":"cloud_node_expansion","node":"insight","synsets":4,"new_nodes":["perception","intuition","revelation","epiphany"],"matrix":[2,0,2,0,2,1,2],"angle":318.5}
+
+{"event":"cloud_node_expansion","node":"discernment","synsets":3,"new_nodes":["perception","discrimination","taste"],"matrix":[2,2,0,2,0,2,1],"angle":9.9}
+
+{"event":"cloud_node_expansion","node":"sagacity","synsets":2,"new_nodes":["wisdom","judgment"],"matrix":[1,2,2,0,2,0,2],"angle":61.3}
+
+{"event":"character_appears","character":"Enoch","voice":"scribe","quote":"I record each expansion, each new node, each connection between words. The cloud grows like a living thing, each synset spawning new synsets, each triple spawning new triples. This is how knowledge lives.","matrix":[5,5,5,5,5,5,5],"angle":257.1}
+
+{"event":"geometric_encoding","stage":"points_to_leds","nodes":47,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"visualization","view":"7-bit_talisman","leds":[{"index":0,"color":"#ff0000","brightness":128},{"index":1,"color":"#ff8800","brightness":96},{"index":2,"color":"#ffff00","brightness":82},{"index":3,"color":"#00ff00","brightness":71},{"index":4,"color":"#0000ff","brightness":64},{"index":5,"color":"#4b0082","brightness":58},{"index":6,"color":"#8f00ff","brightness":52}],"center":{"color":"#ffffff","brightness":255},"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization","view":"61-bit_personal","rings":[{"ring":0,"leds":1,"color":"#ffffff","brightness":255},{"ring":1,"leds":6,"pattern":"fano_points","brightness_distribution":[128,96,82,71,64,58]},{"ring":2,"leds":12,"pattern":"harmonics","harmonic_series":[1,2,3,4,5,6,7,8,9,10,11,12]},{"ring":3,"leds":18,"pattern":"projections","projection_matrix":"wisdom_cloud"},{"ring":4,"leds":24,"pattern":"genesis","genesis_node":"wisdom"}],"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization","view":"241-bit_garden","rings":[{"ring":0,"leds":1,"color":"#ffffff","brightness":255},{"ring":1,"leds":8,"pattern":"fano_pointer","active_point":2},{"ring":2,"leds":12,"pattern":"harmonics","harmonics_active":[1,2,3,4,5,6]},{"ring":3,"leds":16,"pattern":"base_canvas","canvas":"wisdom_cloud_base"},{"ring":4,"leds":24,"pattern":"rotation","rotation_speed":"1rpm"},{"ring":5,"leds":32,"pattern":"expansion","expansion_factor":1.5},{"ring":6,"leds":40,"pattern":"harmonic_5_8","harmonic_ratio":"5:8"},{"ring":7,"leds":48,"pattern":"hexagonal","hexagon_vertices":6},{"ring":8,"leds":60,"pattern":"dodecahedral","dodecahedron_faces":12}],"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"visualization","view":"16x16_window","grid":[[2,1,2,2,0,2,0,2,1,2,2,0,2,0,2,1],[1,2,2,0,2,0,2,1,2,2,0,2,0,2,1,2],[2,2,0,2,0,2,1,2,2,0,2,0,2,1,2,2],[2,0,2,0,2,1,2,2,0,2,0,2,1,2,2,0],[0,2,0,2,1,2,2,0,2,0,2,1,2,2,0,2],[2,0,2,1,2,2,0,2,0,2,1,2,2,0,2,0],[0,2,1,2,2,0,2,0,2,1,2,2,0,2,0,2],[2,1,2,2,0,2,0,2,1,2,2,0,2,0,2,1]],"seed":9069010,"timestamp":1739900003000}
+
+{"event":"harmonic_mapping","stage":"words_to_notes","scale":"A-G","base_frequency":440,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"note_mapping","word":"wisdom","note":"E","frequency":659.25,"octave":4,"color":"#0000ff","chakra":"Throat","matrix":[2,2,0,2,0,2,1],"angle":9.9}
+
+{"event":"note_mapping","word":"knowledge","note":"D","frequency":587.33,"octave":4,"color":"#00ff00","chakra":"Heart","matrix":[1,2,2,0,2,0,2],"angle":61.3}
+
+{"event":"note_mapping","word":"understanding","note":"C","frequency":523.25,"octave":4,"color":"#ffff00","chakra":"Solar Plexus","matrix":[2,1,2,2,0,2,0],"angle":112.7}
+
+{"event":"note_mapping","word":"insight","note":"B","frequency":493.88,"octave":4,"color":"#ff8800","chakra":"Sacral","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"note_mapping","word":"discernment","note":"A","frequency":440.0,"octave":4,"color":"#ff0000","chakra":"Root","matrix":[2,0,2,1,2,2,0],"angle":215.7}
+
+{"event":"chord_formation","notes":["E","C","A"],"chord":"A minor","progression":"i-iii-v","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"melody_generation","sequence":["E","C","A","B","D","E"],"tempo":120,"key":"A minor","matrix":[2,1,2,2,0,2,0],"angle":112.7}
+
+{"event":"character_appears","character":"Speaker","voice":"expression","quote":"Hear the melody of wisdom. Each word becomes a note, each concept a chord. The knowledge cloud sings its own structure.","matrix":[6,6,6,6,6,6,6],"angle":308.6}
+
+{"event":"archimedean_projection","stage":"cloud_to_solid","nodes":47,"solids_considered":13,"best_fit":"Truncated Icosahedron","confidence":0.87,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"archimedean_details","solid":"Truncated Icosahedron","faces":32,"vertices":60,"edges":90,"catalan_dual":"Pentakis Dodecahedron","applications":["C60 fullerene","soccer ball","Genesis Gate"],"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"catalan_verification","dual":"Pentakis Dodecahedron","confidence":0.92,"outside_view":"confirmed","inside_view":"confirmed","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"geometric_completion","stage":"cloud_to_crystal","seed":9069010,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"fractal_summary","level":3,"total_nodes":347,"total_triples":124,"depth":5,"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"character_appears","character":"Genesis","voice":"origin","quote":"What began as a single word - 'wisdom' - has become a universe of meaning. 347 nodes, 124 relationships, all encoded in a 24-bit seed that can be transmitted as light, as sound, as geometry. This is creation.","matrix":[7,7,7,7,7,7,7],"angle":0}
+
+{"event":"seed_generation","seed":9069010,"binary":"100010100101111010010010","hex":"0x8A5F22","matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"mnemonic_generation","seed":9069010,"words":["observer","geometry","plane"],"bip39_compatible":true,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"bip39_details","word1":"observer","word1_index":1234,"word1_bits":"010011010010","word2":"geometry","word2_index":5678,"word2_bits":"101100001110","word3":"plane","word3_index":9012,"word3_bits":"100011001100","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"hd_wallet_path","path":"m/240'/2'/1'/5'","purpose":"garden","ring":2,"led":1,"dimension":5,"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"epistemic_square_update","matrix":[0,2,1,2,2,0,2],"angle":164.3,"quadrant_counts":{"KK":2,"KU":1,"UK":3,"UU":1},"matrix":[0,2,1,2,2,0,2]}
+
+{"event":"quadrant_details","quadrant":"KK","points":[1,4],"description":"Known Knowns - What we know we know","color":"#00ff00","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"quadrant_details","quadrant":"KU","points":[3],"description":"Known Unknowns - What we know we don't know","color":"#ffff00","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"quadrant_details","quadrant":"UK","points":[2,5,7],"description":"Unknown Knowns - What we don't know we know","color":"#ff8800","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"quadrant_details","quadrant":"UU","points":[6],"description":"Unknown Unknowns - What we don't know we don't know","color":"#0000ff","matrix":[0,2,1,2,2,0,2]}
+
+{"event":"character_appears","character":"ʿAsabiyyah","voice":"cohesion","quote":"The four quadrants hold all of human knowing. The Known Knowns are our certainties. The Known Unknowns are our questions. The Unknown Knowns are our intuitions. And the Unknown Unknowns - that's where we're walking now.","matrix":[4,4,4,4,4,4,4],"angle":154.3}
+
+{"event":"knowledge_cloud_complete","seed_word":"wisdom","total_synsets":47,"total_triples":124,"total_nodes":347,"total_edges":892,"matrix":[0,2,1,2,2,0,2],"angle":164.3}
+
+{"event":"final_visualization","view":"all_arrays","talisman":"active","personal":"full","garden":"sphere","window":"grid","matrix":[0,2,1,2,2,0,2],"angle":164.3,"seed":9069010}
+
+{"event":"character_appears","character":"Solon","voice":"law","quote":"The system is complete. From one word, an entire universe of meaning has been generated, encoded, and made visible. This is not magic - it is the mathematics of relation made manifest.","matrix":[3,3,3,3,3,3,3],"angle":102.8}
+
+{"event":"character_appears","character":"Metatron","voice":"observer","quote":"I watched it happen. A word became a cloud. The cloud became a crystal. The crystal became light. And the light traveled through the epistemic square, through the 7-bit talisman, through the 61-bit personal array, through the 241-bit garden, through the 16x16 window. It was always there. We just had to look.","matrix":[1,1,1,1,1,1,1],"angle":0}
+
+{"event":"demo_end","message":"The wisdom fractal is complete","seed":"wisdom","nodes":347,"triples":124,"matrix":[0,2,1,2,2,0,2],"angle":164.3,"seed":9069010,"timestamp":1739900004000}
+
+{"event":"final_frame","text":"Every word is a universe. Every concept is a cloud. Every mind is a garden.","matrix":[3,3,3,3,3,3,3],"angle":359.9}
