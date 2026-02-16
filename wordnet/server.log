@@ -1,0 +1,10 @@
+WordNet API server running on port 4096
+Endpoints:
+  GET  /api/wordnet/lookup/:word
+  GET  /api/wordnet/hypernyms/:word
+  GET  /api/wordnet/similarity/:word1/:word2
+  GET  /api/wordnet/fano/:word
+  POST /api/wordnet/mnemonic
+GET /api/wikipedia/Fano_plane
+(node:300070) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)

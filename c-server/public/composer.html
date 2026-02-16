@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fano Garden - 3D Scene Composer</title>
+    <link rel="stylesheet" href="composer.css">
+</head>
+<body>
+    <div class="composer-container">
+        <header>
+            <h1>FANO GARDEN SCENE COMPOSER</h1>
+            <p class="subtitle">Arrange narrative assets from the canon</p>
+        </header>
+        
+        <div class="composer-main">
+            <div class="panel asset-panel">
+                <h2>Narrative Assets</h2>
+                <div class="asset-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="People">People</button>
+                    <button class="filter-btn" data-filter="Places">Places</button>
+                    <button class="filter-btn" data-filter="Things">Things</button>
+                </div>
+                <div class="asset-grid" id="asset-grid"></div>
+            </div>
+            
+            <div class="panel canvas-panel">
+                <div class="canvas-toolbar">
+                    <div class="tool-group">
+                        <button id="btn-translate" class="tool-btn active">Move</button>
+                        <button id="btn-rotate" class="tool-btn">Rotate</button>
+                        <button id="btn-scale" class="tool-btn">Scale</button>
+                    </div>
+                    <div class="tool-group">
+                        <button id="btn-save" class="tool-btn">Save</button>
+                        <button id="btn-load" class="tool-btn">Load</button>
+                        <button id="btn-clear" class="tool-btn">Clear</button>
+                    </div>
+                    <div class="scene-info">
+                        <span id="scene-name">Untitled Scene</span>
+                        <span id="asset-count">0 assets</span>
+                    </div>
+                </div>
+                <div id="canvas-container"></div>
+                <div class="canvas-status">
+                    <span id="selected-info">No asset selected</span>
+                </div>
+            </div>
+            
+            <div class="panel properties-panel">
+                <h2>Properties</h2>
+                <div id="property-panel" class="property-panel">
+                    <p class="hint">Select an asset to edit</p>
+                </div>
+                
+                <h2>Article Scenes</h2>
+                <div class="article-scenes">
+                    <button class="article-btn" data-article="I">Article I - The Gate</button>
+                    <button class="article-btn" data-article="II">Article II - The Beast</button>
+                    <button class="article-btn" data-article="III">Article III - The Mark</button>
+                    <button class="article-btn" data-article="IV">Article IV - Reconciliation</button>
+                    <button class="article-btn" data-article="V">Article V - The Voice</button>
+                    <button class="article-btn" data-article="VI">Article VI - The Breath</button>
+                    <button class="article-btn" data-article="VII">Article VII - Babel</button>
+                    <button class="article-btn" data-article="VIII">Article VIII - The Watcher</button>
+                </div>
+                
+                <h2>Saved Scenes</h2>
+                <div id="scene-list" class="scene-list"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="composer.js"></script>
+</body>
+</html>

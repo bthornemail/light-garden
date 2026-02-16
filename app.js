@@ -211,8 +211,56 @@ const app = (() => {
     
     startSyncMonitor();
     
+    connectToFanoServer();
+    
     if (typeof VIEWPORTS !== 'undefined') {
       VIEWPORTS.init();
+    }
+  }
+  
+  let fanoSocket = null;
+  
+  function connectToFanoServer() {
+    try {
+      fanoSocket = new WebSocket('ws://localhost:8081', 'fano-protocol');
+      
+      fanoSocket.onopen = () => {
+        addLog('Connected to Fano C Server', 'system');
+        fanoSocket.send('subscribe');
+      };
+      
+      fanoSocket.onmessage = (e) => {
+        try {
+          const data = JSON.parse(e.data);
+          
+          if (data.type === 'canon' || data.type === 'matrix') {
+            if (epistemicSquare && data.matrix) {
+              epistemicSquare.setMatrix(data.matrix);
+              epistemicSquare.setAngle(data.angle);
+            }
+            
+            const statusEl = document.getElementById('canon-status');
+            if (statusEl) statusEl.textContent = `Chunk ${data.chunk || 0}`;
+          }
+          else if (data.type === 'status') {
+            const statusEl = document.getElementById('canon-status');
+            if (statusEl) statusEl.textContent = data.playing ? 'Playing' : 'Ready';
+          }
+        } catch (err) {
+          console.error('WS parse error:', err);
+        }
+      };
+      
+      fanoSocket.onclose = () => {
+        addLog('Disconnected from Fano C Server', 'system');
+        setTimeout(connectToFanoServer, 5000);
+      };
+      
+      fanoSocket.onerror = (err) => {
+        console.error('WebSocket error:', err);
+      };
+    } catch (err) {
+      console.error('Failed to connect to Fano server:', err);
     }
   }
   

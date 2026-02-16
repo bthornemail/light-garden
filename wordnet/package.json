@@ -1,0 +1,17 @@
+{
+  "name": "wordnet",
+  "version": "1.0.0",
+  "description": "This is the README file for WordNet 3.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

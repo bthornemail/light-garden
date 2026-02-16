@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fano Garden Node</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0f;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #0f0;
+            letter-spacing: 4px;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+        .matrix {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+        .cell {
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: #1a1a2e;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .cell::after {
+            content: attr(data-q);
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: #666;
+        }
+        .cell.q0 { background: #ff0000; box-shadow: 0 0 15px #ff0000; }
+        .cell.q1 { background: #00ff00; box-shadow: 0 0 15px #00ff00; }
+        .cell.q2 { background: #0088ff; box-shadow: 0 0 15px #0088ff; }
+        .cell.q3 { background: #8800ff; box-shadow: 0 0 15px #8800ff; }
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat {
+            background: #111;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #222;
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .stat-value {
+            font-size: 1.2rem;
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+        }
+        .point-name {
+            font-size: 0.8rem;
+            color: #0a0;
+            margin-top: 5px;
+        }
+        .angle-indicator {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #222;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto 30px;
+        }
+        .angle-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 2px;
+            background: #0f0;
+            transform-origin: left center;
+            transition: transform 0.3s ease;
+        }
+        .angle-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8rem;
+        }
+        .seed {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            border: 1px solid #003300;
+        }
+        .seed-value {
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .status.connected { background: #002200; color: #0f0; }
+        .status.disconnected { background: #220000; color: #f00; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .pulse { animation: pulse 2s infinite; }
+    </style>
+</head>
+<body>
+    <h1>FANO GARDEN NODE</h1>
+    
+    <div class="container">
+        <div class="matrix" id="matrix">
+            <div class="cell" data-q="0"></div>
+            <div class="cell" data-q="1"></div>
+            <div class="cell" data-q="2"></div>
+            <div class="cell" data-q="3"></div>
+            <div class="cell" data-q="4"></div>
+            <div class="cell" data-q="5"></div>
+            <div class="cell" data-q="6"></div>
+        </div>
+        
+        <div class="angle-indicator" id="angleIndicator">
+            <div class="angle-value" id="angleText">0°</div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-label">FANO POINT</div>
+                <div class="stat-value" id="point">1</div>
+                <div class="point-name" id="pointName">Metatron</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">NODE ID</div>
+                <div class="stat-value" id="nodeId">1</div>
+                <div class="point-name" id="nodeStatus">Active</div>
+            </div>
+        </div>
+        
+        <div class="seed">
+            <div class="stat-label">24-BIT SEED</div>
+            <div class="seed-value" id="seed">0000000</div>
+        </div>
+        
+        <div class="status disconnected" id="status">
+            Connecting...
+        </div>
+    </div>
+
+    <script>
+        const FANO_NAMES = [
+            'Metatron', 'Solomon', 'Solon', 'Asabiyyah',
+            'Enoch', 'Speaker', 'Genesis', 'Observer'
+        ];
+        
+        const QUADRANTS = ['KK', 'KU', 'UK', 'UU'];
+        
+        let ws = null;
+        let currentState = {
+            matrix: [0, 0, 0, 0, 0, 0, 0],
+            angle: 0,
+            seed: 0,
+            fano_point: 1
+        };
+        
+        function connect() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const host = window.location.host || 'localhost:8081';
+            
+            ws = new WebSocket(`${protocol}//${host}`);
+            
+            ws.onopen = () => {
+                document.getElementById('status').textContent = '● Connected';
+                document.getElementById('status').className = 'status connected pulse';
+            };
+            
+            ws.onclose = () => {
+                document.getElementById('status').textContent = '○ Disconnected';
+                document.getElementById('status').className = 'status disconnected';
+                setTimeout(connect, 3000);
+            };
+            
+            ws.onmessage = (e) => {
+                try {
+                    const data = JSON.parse(e.data);
+                    if (data.type === 'fano_state' || data.type === 'cylinder_state') {
+                        updateState(data);
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+        }
+        
+        function updateState(data) {
+            if (data.matrix) currentState.matrix = data.matrix;
+            if (data.angle !== undefined) currentState.angle = data.angle;
+            if (data.seed !== undefined) currentState.seed = data.seed;
+            if (data.fanoPoint) currentState.fano_point = data.fanoPoint;
+            
+            render();
+        }
+        
+        function render() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach((cell, i) => {
+                const q = currentState.matrix[i] || 0;
+                cell.className = `cell q${q}`;
+                cell.setAttribute('data-q', QUADRANTS[q]);
+            });
+            
+            const angle = currentState.angle || 0;
+            const indicator = document.getElementById('angleIndicator');
+            indicator.style.setProperty('--angle', `${angle}deg`);
+            indicator.style.background = `conic-gradient(from ${angle}deg, #0f0 0deg, #0a0 1deg, #000 360deg)`;
+            document.getElementById('angleText').textContent = `${Math.round(angle)}°`;
+            
+            document.getElementById('point').textContent = currentState.fano_point;
+            document.getElementById('pointName').textContent = FANO_NAMES[currentState.fano_point - 1] || '?';
+            document.getElementById('seed').textContent = currentState.seed.toString(16).padStart(7, '0').toUpperCase();
+        }
+        
+        connect();
+        
+        setInterval(() => {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                const mockState = {
+                    matrix: Array.from({length: 7}, () => Math.floor(Math.random() * 4)),
+                    angle: Math.random() * 360,
+                    seed: Math.floor(Math.random() * 16777215),
+                    fanoPoint: Math.floor(Math.random() * 7) + 1
+                };
+                updateState(mockState);
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

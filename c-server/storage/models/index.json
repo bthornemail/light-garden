@@ -1,0 +1,45 @@
+{
+  "samples": [
+    {
+      "name": "Damaged Helmet",
+      "path": "/models/DamagedHelmet.glb",
+      "tags": ["test", "material", "PBR"],
+      "archimedean": "Icosahedron",
+      "fanoLine": 3,
+      "description": "The classic glTF test model with complex materials"
+    },
+    {
+      "name": "Boom Box",
+      "path": "/models/BoomBox.glb",
+      "tags": ["test", "complex", "audio"],
+      "archimedean": "Cuboctahedron",
+      "fanoLine": 5,
+      "description": "Detailed boombox with multiple materials"
+    },
+    {
+      "name": "Sponza",
+      "path": "/models/Sponza.glb",
+      "tags": ["scene", "architectural", "large"],
+      "archimedean": "Truncated Icosahedron",
+      "fanoLine": 7,
+      "description": "The famous Sponza atrium scene"
+    },
+    {
+      "name": "Flight Helmet",
+      "path": "/models/FlightHelmet.glb",
+      "tags": ["test", "detailed", "complex"],
+      "archimedean": "Dodecahedron",
+      "fanoLine": 2,
+      "description": "Detailed flight helmet with glass and materials"
+    },
+    {
+      "name": "Corset",
+      "path": "/models/Corset.glb",
+      "tags": ["cloth", "organic", "test"],
+      "archimedean": "Octahedron",
+      "fanoLine": 4,
+      "description": "Cloth simulation test model"
+    }
+  ],
+  "user": []
+}

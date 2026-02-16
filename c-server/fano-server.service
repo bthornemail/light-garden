@@ -1,0 +1,16 @@
+[Unit]
+Description=Fano Garden C Server
+After=network.target
+
+[Service]
+Type=simple
+User=fano
+Group=fano
+WorkingDirectory=/opt/fano-server
+ExecStart=/opt/fano-server/fano_server
+Restart=always
+RestartSec=10
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

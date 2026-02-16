@@ -1,0 +1,9 @@
+{
+    "id": "fano-garden",
+    "name": "Fano Garden",
+    "version": "1.0.0",
+    "description": "WordNet-powered Fano Garden with semantic theological workspace",
+    "author": "Fano Garden Team",
+    "isDesktopOnly": false,
+    "minAppVersion": "0.15.0"
+}

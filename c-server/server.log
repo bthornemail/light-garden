@@ -1,0 +1,14 @@
+[2026/02/15 22:02:12:4921] N: lws_create_context: LWS: 4.3.3-unknown, NET CLI SRV H1 H2 WS ConMon IPV6-on
+[2026/02/15 22:02:12:5066] N: __lws_lc_tag:  ++ [wsi|0|pipe] (1)
+[2026/02/15 22:02:12:5067] N: __lws_lc_tag:  ++ [vh|0|netlink] (1)
+[2026/02/15 22:02:12:5068] N: __lws_lc_tag:  ++ [vh|1|default||8081] (2)
+[2026/02/15 22:02:12:5068] E: [null wsi]: lws_socket_bind: ERROR on binding fd 6 to port 8081 (-1 98)
+[2026/02/15 22:02:12:5068] E: [vh|1|default||8081]: lws_create_vhost: init server failed
+[2026/02/15 22:02:12:5068] N: __lws_lc_untag:  -- [vh|1|default||8081] (1) 75μs
+[2026/02/15 22:02:12:5068] E: lws_create_context: Failed to create default vhost
+[2026/02/15 22:02:12:5087] N: __lws_lc_untag:  -- [wsi|0|pipe] (0) 2.109ms
+[2026/02/15 22:02:12:5106] N: __lws_lc_untag:  -- [vh|0|netlink] (0) 3.892ms
+Failed to create WebSocket context
+Failed to create server socket
+Loaded 15 canon chunks from ../canon-manifest.ndjson
+WebSocket server initialized on port 8081
