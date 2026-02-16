@@ -1,0 +1,5 @@
+{
+  "simulated": true,
+  "nodes": 0,
+  "note": "Hardware state collection is simulated in host audit mode."
+}

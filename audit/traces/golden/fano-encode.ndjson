@@ -1,0 +1,4 @@
+{"test":"fano-encode","node":"fano-core","action":"matrix_from_seed","seed":9069010,"expected_matrix":[0,2,1,2,2,0,2],"timestamp":1771230091744}
+{"test":"fano-mnemonic","node":"fano-core","action":"seed_to_mnemonic","seed":9069010,"expected":"observer-geometry-plane","timestamp":1771230092744}
+{"test":"fano-angle","node":"fano-core","action":"angle_to_seed","angle":164.3,"matrix":[0,2,1,2,2,0,2],"expected_seed":9069010,"timestamp":1771230093744}
+{"test":"fano-rotation","node":"fano-core","action":"rotate_matrix","matrix":[0,2,1,2,2,0,2],"rotation":51.4,"expected":[2,0,2,1,2,2,0],"timestamp":1771230094744}

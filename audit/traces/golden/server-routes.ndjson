@@ -1,0 +1,4 @@
+{"test":"server-http","node":"c-server","port":8080,"route":"/","expected_status":200,"expected_content":"text/html","timestamp":1771230095744}
+{"test":"server-websocket","node":"c-server","port":8081,"action":"connect","expected_protocol":"ws","timestamp":1771230096744}
+{"test":"server-api","node":"wordnet-service","port":4096,"route":"/api/wordnet/lookup?word=wisdom","expected_status":200,"timestamp":1771230097744}
+{"test":"server-static","node":"c-server","route":"/firmware.html","expected_file":"public/fano-minimal.html","timestamp":1771230098744}

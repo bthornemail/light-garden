@@ -1,0 +1,4 @@
+{"test":"server-path-traversal","node":"c-server","route":"/../../etc/passwd","expected_status":403,"timestamp":1771230095800}
+{"test":"server-large-payload","node":"wordnet-service","route":"/api/wordnet/lookup","payload_size_mb":100,"expected_status":413,"timestamp":1771230096800}
+{"test":"server-rate-limit","node":"c-server","route":"/","requests_per_second":1000,"expected_limit":100,"timestamp":1771230097800}
+{"test":"server-websocket-flood","node":"c-server","port":8081,"messages_per_second":10000,"expected_disconnect":true,"timestamp":1771230098800}

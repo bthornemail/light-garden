@@ -1,0 +1,4 @@
+{"test":"wordnet-nonexistent","node":"wordnet-service","action":"lookup","word":"xyzabc123","expected_error":"NOT_FOUND","timestamp":1771230087800}
+{"test":"wordnet-malformed","node":"wordnet-service","action":"lookup","word":"","expected_error":"INVALID_INPUT","timestamp":1771230088800}
+{"test":"wordnet-injection","node":"wordnet-service","action":"lookup","word":"'; DROP TABLE synsets; --","expected_error":"SAFE","timestamp":1771230089800,"note":"Must be sanitized; never executed."}
+{"test":"wordnet-timeout","node":"wordnet-service","action":"lookup","word":"wisdom","delay_ms":5000,"expected_timeout":true,"timestamp":1771230090800}

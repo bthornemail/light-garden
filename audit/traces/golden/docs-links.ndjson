@@ -1,0 +1,4 @@
+{"test":"docs-files","node":"documentation","action":"count_md","expected":24,"timestamp":1771230103744}
+{"test":"docs-links","node":"documentation","action":"validate_links","expected_valid":true,"timestamp":1771230104744}
+{"test":"docs-glossary","node":"documentation","action":"verify_terms","expected_terms":["Fano","WordNet","NDJSON","ESP32"],"timestamp":1771230105744}
+{"test":"docs-examples","node":"documentation","action":"validate_code_blocks","expected_executable":true,"timestamp":1771230106744}

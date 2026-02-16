@@ -1,0 +1,141 @@
+{
+  "timestamp": 1771230088647,
+  "version": "1.0.0",
+  "summary": {
+    "total": 40,
+    "passed": 32,
+    "failed": 8,
+    "warnings": 0
+  },
+  "coverage": {
+    "node_coverage": "100.0%",
+    "golden_tests": 20,
+    "negative_tests": 20,
+    "edge_cases": 20,
+    "api_coverage": "N/A (dynamic; depends on running services)"
+  },
+  "node_results": {
+    "wordnet-service": {
+      "golden": {
+        "passed": 1,
+        "failed": 3,
+        "total": 4
+      },
+      "negative": {
+        "passed": 3,
+        "failed": 1,
+        "total": 4
+      }
+    },
+    "fano-core": {
+      "golden": {
+        "passed": 4,
+        "failed": 0,
+        "total": 4
+      },
+      "negative": {
+        "passed": 4,
+        "failed": 0,
+        "total": 4
+      }
+    },
+    "c-server": {
+      "golden": {
+        "passed": 3,
+        "failed": 1,
+        "total": 4
+      },
+      "negative": {
+        "passed": 2,
+        "failed": 2,
+        "total": 4
+      }
+    },
+    "firmware": {
+      "golden": {
+        "passed": 4,
+        "failed": 0,
+        "total": 4
+      },
+      "negative": {
+        "passed": 3,
+        "failed": 1,
+        "total": 4
+      }
+    },
+    "documentation": {
+      "golden": {
+        "passed": 4,
+        "failed": 0,
+        "total": 4
+      },
+      "negative": {
+        "passed": 4,
+        "failed": 0,
+        "total": 4
+      }
+    }
+  },
+  "failures": [
+    {
+      "node": "wordnet-service",
+      "test": "wordnet-lookup",
+      "error": "status=404",
+      "severity": "medium"
+    },
+    {
+      "node": "wordnet-service",
+      "test": "wordnet-hypernyms",
+      "error": "status=404",
+      "severity": "medium"
+    },
+    {
+      "node": "wordnet-service",
+      "test": "wordnet-similarity",
+      "error": "status=404",
+      "severity": "medium"
+    },
+    {
+      "node": "c-server",
+      "test": "server-api",
+      "error": "status=404",
+      "severity": "medium"
+    },
+    {
+      "node": "wordnet-service",
+      "test": "wordnet-injection",
+      "error": "status=404",
+      "severity": "medium"
+    },
+    {
+      "node": "c-server",
+      "test": "server-path-traversal",
+      "error": "status=404",
+      "severity": "medium"
+    },
+    {
+      "node": "c-server",
+      "test": "server-large-payload",
+      "error": "status=404",
+      "severity": "medium"
+    },
+    {
+      "node": "firmware",
+      "test": "firmware-sensor-fail",
+      "error": "firmware checks simulated",
+      "severity": "medium"
+    }
+  ],
+  "metrics": {
+    "avg_response_time_ms": 4,
+    "p95_response_time_ms": 0,
+    "error_rate": "20.0%",
+    "availability": "N/A",
+    "test_duration_seconds": 0.17
+  },
+  "recommendations": [
+    "Harden C server input/path handling and add attack-path regression tests.",
+    "Add stricter input validation and predictable error codes for WordNet endpoints.",
+    "Run hardware-in-loop validation for firmware traces (host mode is simulated)."
+  ]
+}

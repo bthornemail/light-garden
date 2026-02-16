@@ -1,0 +1,7 @@
+{
+  "node_coverage": "100.0%",
+  "golden_tests": 20,
+  "negative_tests": 20,
+  "edge_cases": 20,
+  "api_coverage": "N/A (dynamic; depends on running services)"
+}

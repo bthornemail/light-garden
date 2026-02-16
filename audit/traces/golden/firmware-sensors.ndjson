@@ -1,0 +1,4 @@
+{"test":"firmware-probe","node":"esp32","action":"read_analog","pin":0,"expected_range":[0,4095],"timestamp":1771230099744}
+{"test":"firmware-fano","node":"esp32","action":"sensors_to_fano","analog":[1024,2048,3072,4095],"expected_matrix":[1,2,3,0,1,2,3],"timestamp":1771230100744}
+{"test":"firmware-lora","node":"esp32","action":"send_packet","packet_size":24,"expected_delivery":true,"timestamp":1771230101744}
+{"test":"firmware-led","node":"esp32","action":"set_led","index":2,"color":"#ff8800","brightness":128,"expected_current":"12mA","timestamp":1771230102744}

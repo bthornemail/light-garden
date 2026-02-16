@@ -1,0 +1,4 @@
+{"test":"docs-missing-file","node":"documentation","action":"check_file","path":"docs/nonexistent.md","expected_exists":false,"timestamp":1771230103800}
+{"test":"docs-broken-link","node":"documentation","action":"check_links","url":"https://nonexistent.example.com","expected_broken":true,"timestamp":1771230104800}
+{"test":"docs-orphaned-page","node":"documentation","action":"check_navigation","page":"docs/old-page.md","expected_in_nav":false,"timestamp":1771230105800}
+{"test":"docs-spelling","node":"documentation","action":"spell_check","expected_errors":0,"timestamp":1771230106800}

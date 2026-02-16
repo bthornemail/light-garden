@@ -1,0 +1,8 @@
+{
+  "cases": [
+    "empty word",
+    "invalid matrix",
+    "oversized payload",
+    "bad path"
+  ]
+}

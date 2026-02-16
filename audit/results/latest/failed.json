@@ -1,0 +1,77 @@
+{
+  "count": 8,
+  "tests": [
+    {
+      "test": "wordnet-lookup",
+      "passed": false,
+      "detail": "status=404",
+      "duration_ms": 24,
+      "node": "wordnet-service",
+      "suite": "golden",
+      "trace": "traces/golden/wordnet-lookup.ndjson"
+    },
+    {
+      "test": "wordnet-hypernyms",
+      "passed": false,
+      "detail": "status=404",
+      "duration_ms": 13,
+      "node": "wordnet-service",
+      "suite": "golden",
+      "trace": "traces/golden/wordnet-lookup.ndjson"
+    },
+    {
+      "test": "wordnet-similarity",
+      "passed": false,
+      "detail": "status=404",
+      "duration_ms": 1,
+      "node": "wordnet-service",
+      "suite": "golden",
+      "trace": "traces/golden/wordnet-lookup.ndjson"
+    },
+    {
+      "test": "server-api",
+      "passed": false,
+      "detail": "status=404",
+      "duration_ms": 2,
+      "node": "c-server",
+      "suite": "golden",
+      "trace": "traces/golden/server-routes.ndjson"
+    },
+    {
+      "test": "wordnet-injection",
+      "passed": false,
+      "detail": "status=404",
+      "duration_ms": 25,
+      "node": "wordnet-service",
+      "suite": "negative",
+      "trace": "traces/negative/wordnet-errors.ndjson"
+    },
+    {
+      "test": "server-path-traversal",
+      "passed": false,
+      "detail": "status=404",
+      "duration_ms": 22,
+      "node": "c-server",
+      "suite": "negative",
+      "trace": "traces/negative/server-attacks.ndjson"
+    },
+    {
+      "test": "server-large-payload",
+      "passed": false,
+      "detail": "status=404",
+      "duration_ms": 3,
+      "node": "c-server",
+      "suite": "negative",
+      "trace": "traces/negative/server-attacks.ndjson"
+    },
+    {
+      "test": "firmware-sensor-fail",
+      "passed": false,
+      "detail": "firmware checks simulated",
+      "duration_ms": 0,
+      "node": "firmware",
+      "suite": "negative",
+      "trace": "traces/negative/firmware-faults.ndjson"
+    }
+  ]
+}

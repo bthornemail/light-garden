@@ -1,0 +1,14 @@
+{
+  "name": "light-garden-audit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NDJSON-based audit and introspection framework for Light Garden",
+  "type": "commonjs",
+  "scripts": {
+    "generate:golden": "node scripts/generate-golden.js",
+    "generate:negative": "node scripts/inject-negative.js",
+    "validate": "node scripts/run-audit.js",
+    "collect": "node scripts/collect-artifacts.js",
+    "validate:node": "node scripts/validate-node.js"
+  }
+}

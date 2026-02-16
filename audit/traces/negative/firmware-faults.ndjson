@@ -1,0 +1,4 @@
+{"test":"firmware-sensor-fail","node":"esp32","action":"read_analog","pin":99,"expected_error":"INVALID_PIN","timestamp":1771230099800}
+{"test":"firmware-power-loss","node":"esp32","action":"simulate_brownout","voltage":3,"expected_reset":true,"timestamp":1771230100800}
+{"test":"firmware-lora-collision","node":"esp32","action":"send_packet","concurrent_nodes":10,"expected_collision_rate":0.3,"timestamp":1771230101800}
+{"test":"firmware-memory-leak","node":"esp32","action":"loop_iterations","count":10000,"expected_heap_stable":true,"timestamp":1771230102800}

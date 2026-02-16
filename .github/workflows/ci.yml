@@ -1,0 +1,279 @@
+name: Light Garden CI
+
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-core:
+    name: Validate Core Engine
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required core files
+        run: |
+          set -euo pipefail
+          test -f app.js
+          test -f epistemic-square.js
+          test -f epistemic-codec.js
+          test -f fano-garden.svg
+          echo "Core files verified"
+
+      - name: Validate Fano constants in app.js
+        run: |
+          set -euo pipefail
+          grep -q "RATIOS" app.js
+          grep -q "NAMES" app.js
+          grep -q "LINES" app.js
+          echo "Fano constants verified"
+
+  build-c-server:
+    name: Build C Server
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y build-essential libwebsockets-dev
+
+      - name: Build server
+        run: |
+          set -euo pipefail
+          make -C c-server clean
+          make -C c-server
+          test -x c-server/fano_server
+          echo "C server build verified"
+
+      - name: Validate binary size
+        run: |
+          set -euo pipefail
+          size_bytes="$(stat -c%s c-server/fano_server)"
+          echo "fano_server size: ${size_bytes} bytes"
+          test "${size_bytes}" -lt 2000000
+
+      - name: Smoke test C server API
+        run: |
+          set -euo pipefail
+          cd c-server
+          ./fano_server > ../c-server-smoke.log 2>&1 &
+          server_pid="$!"
+          trap 'kill "${server_pid}" 2>/dev/null || true' EXIT
+
+          for _ in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8080/api/canon > /tmp/canon.json; then
+              break
+            fi
+            sleep 1
+          done
+
+          test -s /tmp/canon.json
+          python3 - <<'PY'
+          import json
+          with open('/tmp/canon.json', 'r', encoding='utf-8') as f:
+              data = json.load(f)
+          for key in ("chunks", "current", "playing", "speed"):
+              assert key in data, f"missing key: {key}"
+          assert isinstance(data["chunks"], int), "chunks should be int"
+          print("C server API smoke test passed")
+          PY
+
+  validate-wordnet:
+    name: Validate WordNet Integration
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check dictionary files and scale
+        run: |
+          set -euo pipefail
+          test -f wordnet/dict/index.noun
+          test -f wordnet/dict/index.verb
+          noun_count="$(wc -l < wordnet/dict/index.noun)"
+          verb_count="$(wc -l < wordnet/dict/index.verb)"
+          echo "Nouns: ${noun_count}"
+          echo "Verbs: ${verb_count}"
+          test "${noun_count}" -gt 100000
+          test "${verb_count}" -gt 10000
+
+      - name: Check Node service files
+        run: |
+          set -euo pipefail
+          test -f wordnet/package.json
+          node --check wordnet/wordnet-service.js
+          node --check wordnet/document-adapters.js
+          node --check wordnet/server.js
+          echo "WordNet service syntax verified"
+
+      - name: Smoke test WordNet API
+        run: |
+          set -euo pipefail
+          cd wordnet
+          node server.js > ../wordnet-smoke.log 2>&1 &
+          server_pid="$!"
+          trap 'kill "${server_pid}" 2>/dev/null || true' EXIT
+
+          for _ in $(seq 1 60); do
+            if curl -fsS "http://127.0.0.1:4096/api/wordnet/lookup?word=wisdom" > /tmp/wordnet.json; then
+              break
+            fi
+            sleep 1
+          done
+
+          test -s /tmp/wordnet.json
+          python3 - <<'PY'
+          import json
+          with open('/tmp/wordnet.json', 'r', encoding='utf-8') as f:
+              data = json.load(f)
+          assert isinstance(data, list), "lookup response should be a list"
+          assert len(data) > 0, "lookup response is empty"
+          first = data[0]
+          for key in ("lemma", "pos", "synsetOffset", "def"):
+              assert key in first, f"missing key: {key}"
+          print("WordNet API smoke test passed")
+          PY
+
+  validate-firmware:
+    name: Validate Firmware
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check firmware assets
+        run: |
+          set -euo pipefail
+          test -f firmware/lib/minimal_probe.h
+          test -f firmware/esp32/lora_node/lora_node.ino
+          test -f firmware/web/fano-minimal.html
+
+      - name: Check minimal probe symbols
+        run: |
+          set -euo pipefail
+          grep -q "fano_from_sensors" firmware/lib/minimal_probe.h
+          grep -q "fano_to_packet" firmware/lib/minimal_probe.h
+          grep -q "fano_point_name" firmware/lib/minimal_probe.h
+          echo "Firmware symbols verified"
+
+  validate-demos:
+    name: Validate Demo NDJSON
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install jq
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Check demo files and counts
+        run: |
+          set -euo pipefail
+          test -f interplanetary-demo/ndjson/interplanetary-demo.ndjson
+          test -f interplanetary-demo/ndjson/interplanetary-demo-full.ndjson
+          test -f interplanetary-demo/ndjson/wisdom-fractal.ndjson
+          wc -l interplanetary-demo/ndjson/*.ndjson
+
+      - name: Validate NDJSON parsing
+        run: |
+          set -euo pipefail
+          for f in interplanetary-demo/ndjson/*.ndjson; do
+            echo "Checking ${f}"
+            jq -c . "${f}" > /dev/null
+          done
+          echo "NDJSON parsing verified"
+
+  validate-documentation:
+    name: Validate Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check docs structure and section counts
+        run: |
+          set -euo pipefail
+          test -f docs/index.md
+          test -f docs/glossary.md
+          test -f docs/quick-start.md
+          test -f docs/search.md
+          protocol_count="$(ls -1 docs/protocol/*.md | wc -l)"
+          guides_count="$(ls -1 docs/guides/*.md | wc -l)"
+          philosophy_count="$(ls -1 docs/philosophy/*.md | wc -l)"
+          demos_count="$(ls -1 docs/demos/*.md | wc -l)"
+          echo "Protocol docs: ${protocol_count}"
+          echo "Guides docs: ${guides_count}"
+          echo "Philosophy docs: ${philosophy_count}"
+          echo "Demo docs: ${demos_count}"
+          test "${protocol_count}" -eq 6
+          test "${guides_count}" -eq 6
+          test "${philosophy_count}" -eq 5
+          test "${demos_count}" -eq 3
+
+  validate-rendered-assets:
+    name: Validate Rendered Assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check rendered media and optional frames
+        run: |
+          set -euo pipefail
+          test -f interplanetary-demo/render/wisdom-fractal.mp4
+          test -f interplanetary-demo/render/wisdom-fractal.gif
+          mp4_size="$(stat -c%s interplanetary-demo/render/wisdom-fractal.mp4)"
+          gif_size="$(stat -c%s interplanetary-demo/render/wisdom-fractal.gif)"
+          frame_count="$(find interplanetary-demo/render/frames -maxdepth 1 -type f -name '*.png' 2>/dev/null | wc -l)"
+          echo "MP4 bytes: ${mp4_size}"
+          echo "GIF bytes: ${gif_size}"
+          echo "Frame count: ${frame_count}"
+          test "${mp4_size}" -gt 100000
+          test "${gif_size}" -gt 100000
+
+  release-package:
+    name: Build Release Package
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    needs:
+      - validate-core
+      - build-c-server
+      - validate-wordnet
+      - validate-firmware
+      - validate-demos
+      - validate-documentation
+      - validate-rendered-assets
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble release bundle
+        run: |
+          set -euo pipefail
+          out_dir="release/light-garden-${GITHUB_REF_NAME}"
+          mkdir -p "${out_dir}"
+          cp -r app.js epistemic-*.js fano-*.svg index.html style.css network.js "${out_dir}/"
+          cp -r c-server/public "${out_dir}/c-server/"
+          cp -r firmware/lib "${out_dir}/firmware/"
+          cp -r wordnet/dict "${out_dir}/wordnet/"
+          cp -r interplanetary-demo/ndjson "${out_dir}/demos/"
+          cp -r docs "${out_dir}/"
+          tar -czf "release/light-garden-${GITHUB_REF_NAME}.tar.gz" -C release "light-garden-${GITHUB_REF_NAME}"
+          (cd release && zip -r "light-garden-${GITHUB_REF_NAME}.zip" "light-garden-${GITHUB_REF_NAME}")
+
+      - name: Upload package artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: light-garden-${{ github.ref_name }}-packages
+          path: |
+            release/light-garden-${{ github.ref_name }}.tar.gz
+            release/light-garden-${{ github.ref_name }}.zip

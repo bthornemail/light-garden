@@ -1,0 +1,4 @@
+{"test":"wordnet-lookup","node":"wordnet-service","action":"lookup","word":"wisdom","expected_synsets":5,"timestamp":1771230087744}
+{"test":"wordnet-synset","node":"wordnet-service","action":"get_synset","offset":1234567,"expected_words":["wisdom","sapience"],"timestamp":1771230088744}
+{"test":"wordnet-hypernyms","node":"wordnet-service","action":"hypernyms","word":"wisdom","expected":["content","cognition","knowledge"],"timestamp":1771230089744}
+{"test":"wordnet-similarity","node":"wordnet-service","action":"similarity","word1":"wisdom","word2":"knowledge","expected_range":[0.7,0.9],"timestamp":1771230090744}

@@ -1,0 +1,31 @@
+title: Light Garden
+description: A geometric language for meaning, light, and federated consciousness
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-readme-index
+readme_index:
+  enabled: true
+  remove_originals: true
+
+# Custom variables
+project_version: 1.0.0
+github_url: https://github.com/bthornemail/light-garden
+discord_url: https://discord.gg/lightgarden
+twitter_url: https://twitter.com/lightgarden
+
+# Navigation
+nav:
+  - title: Home
+    url: /
+  - title: Philosophy
+    url: /philosophy/
+  - title: Protocol
+    url: /protocol/
+  - title: Guides
+    url: /guides/
+  - title: Demos
+    url: /demos/
+  - title: Glossary
+    url: /glossary/

@@ -1,0 +1,293 @@
+{
+  "count": 32,
+  "tests": [
+    {
+      "test": "wordnet-synset",
+      "passed": true,
+      "detail": "no-op",
+      "duration_ms": 0,
+      "node": "wordnet-service",
+      "suite": "golden",
+      "trace": "traces/golden/wordnet-lookup.ndjson"
+    },
+    {
+      "test": "fano-encode",
+      "passed": true,
+      "detail": "local deterministic validator",
+      "duration_ms": 0,
+      "node": "fano-core",
+      "suite": "golden",
+      "trace": "traces/golden/fano-encode.ndjson"
+    },
+    {
+      "test": "fano-mnemonic",
+      "passed": true,
+      "detail": "local deterministic validator",
+      "duration_ms": 0,
+      "node": "fano-core",
+      "suite": "golden",
+      "trace": "traces/golden/fano-encode.ndjson"
+    },
+    {
+      "test": "fano-angle",
+      "passed": true,
+      "detail": "local deterministic validator",
+      "duration_ms": 0,
+      "node": "fano-core",
+      "suite": "golden",
+      "trace": "traces/golden/fano-encode.ndjson"
+    },
+    {
+      "test": "fano-rotation",
+      "passed": true,
+      "detail": "local deterministic validator",
+      "duration_ms": 0,
+      "node": "fano-core",
+      "suite": "golden",
+      "trace": "traces/golden/fano-encode.ndjson"
+    },
+    {
+      "test": "server-http",
+      "passed": true,
+      "detail": "status=200",
+      "duration_ms": 26,
+      "node": "c-server",
+      "suite": "golden",
+      "trace": "traces/golden/server-routes.ndjson"
+    },
+    {
+      "test": "server-websocket",
+      "passed": true,
+      "detail": "websocket connectivity check is deferred to integration tests",
+      "duration_ms": 4,
+      "node": "c-server",
+      "suite": "golden",
+      "trace": "traces/golden/server-routes.ndjson"
+    },
+    {
+      "test": "server-static",
+      "passed": true,
+      "detail": "status=200",
+      "duration_ms": 6,
+      "node": "c-server",
+      "suite": "golden",
+      "trace": "traces/golden/server-routes.ndjson"
+    },
+    {
+      "test": "firmware-probe",
+      "passed": true,
+      "detail": "firmware checks simulated",
+      "duration_ms": 0,
+      "node": "firmware",
+      "suite": "golden",
+      "trace": "traces/golden/firmware-sensors.ndjson"
+    },
+    {
+      "test": "firmware-fano",
+      "passed": true,
+      "detail": "firmware checks simulated",
+      "duration_ms": 0,
+      "node": "firmware",
+      "suite": "golden",
+      "trace": "traces/golden/firmware-sensors.ndjson"
+    },
+    {
+      "test": "firmware-lora",
+      "passed": true,
+      "detail": "firmware checks simulated",
+      "duration_ms": 0,
+      "node": "firmware",
+      "suite": "golden",
+      "trace": "traces/golden/firmware-sensors.ndjson"
+    },
+    {
+      "test": "firmware-led",
+      "passed": true,
+      "detail": "firmware checks simulated",
+      "duration_ms": 0,
+      "node": "firmware",
+      "suite": "golden",
+      "trace": "traces/golden/firmware-sensors.ndjson"
+    },
+    {
+      "test": "docs-files",
+      "passed": true,
+      "detail": "count=24",
+      "duration_ms": 1,
+      "node": "documentation",
+      "suite": "golden",
+      "trace": "traces/golden/docs-links.ndjson"
+    },
+    {
+      "test": "docs-links",
+      "passed": true,
+      "detail": "links=30, broken=0",
+      "duration_ms": 9,
+      "node": "documentation",
+      "suite": "golden",
+      "trace": "traces/golden/docs-links.ndjson"
+    },
+    {
+      "test": "docs-glossary",
+      "passed": true,
+      "detail": "glossary term presence check",
+      "duration_ms": 0,
+      "node": "documentation",
+      "suite": "golden",
+      "trace": "traces/golden/docs-links.ndjson"
+    },
+    {
+      "test": "docs-examples",
+      "passed": true,
+      "detail": "no-op",
+      "duration_ms": 0,
+      "node": "documentation",
+      "suite": "golden",
+      "trace": "traces/golden/docs-links.ndjson"
+    },
+    {
+      "test": "wordnet-nonexistent",
+      "passed": true,
+      "detail": "status=404",
+      "duration_ms": 30,
+      "node": "wordnet-service",
+      "suite": "negative",
+      "trace": "traces/negative/wordnet-errors.ndjson"
+    },
+    {
+      "test": "wordnet-malformed",
+      "passed": true,
+      "detail": "status=404",
+      "duration_ms": 2,
+      "node": "wordnet-service",
+      "suite": "negative",
+      "trace": "traces/negative/wordnet-errors.ndjson"
+    },
+    {
+      "test": "wordnet-timeout",
+      "passed": true,
+      "detail": "status=404",
+      "duration_ms": 1,
+      "node": "wordnet-service",
+      "suite": "negative",
+      "trace": "traces/negative/wordnet-errors.ndjson"
+    },
+    {
+      "test": "fano-invalid-matrix",
+      "passed": true,
+      "detail": "local deterministic validator",
+      "duration_ms": 0,
+      "node": "fano-core",
+      "suite": "negative",
+      "trace": "traces/negative/fano-boundaries.ndjson"
+    },
+    {
+      "test": "fano-angle-outside",
+      "passed": true,
+      "detail": "local deterministic validator",
+      "duration_ms": 0,
+      "node": "fano-core",
+      "suite": "negative",
+      "trace": "traces/negative/fano-boundaries.ndjson"
+    },
+    {
+      "test": "fano-seed-overflow",
+      "passed": true,
+      "detail": "local deterministic validator",
+      "duration_ms": 0,
+      "node": "fano-core",
+      "suite": "negative",
+      "trace": "traces/negative/fano-boundaries.ndjson"
+    },
+    {
+      "test": "fano-point-outside",
+      "passed": true,
+      "detail": "local deterministic validator",
+      "duration_ms": 0,
+      "node": "fano-core",
+      "suite": "negative",
+      "trace": "traces/negative/fano-boundaries.ndjson"
+    },
+    {
+      "test": "server-rate-limit",
+      "passed": true,
+      "detail": "status=200",
+      "duration_ms": 2,
+      "node": "c-server",
+      "suite": "negative",
+      "trace": "traces/negative/server-attacks.ndjson"
+    },
+    {
+      "test": "server-websocket-flood",
+      "passed": true,
+      "detail": "no-op",
+      "duration_ms": 0,
+      "node": "c-server",
+      "suite": "negative",
+      "trace": "traces/negative/server-attacks.ndjson"
+    },
+    {
+      "test": "firmware-power-loss",
+      "passed": true,
+      "detail": "firmware checks simulated",
+      "duration_ms": 0,
+      "node": "firmware",
+      "suite": "negative",
+      "trace": "traces/negative/firmware-faults.ndjson"
+    },
+    {
+      "test": "firmware-lora-collision",
+      "passed": true,
+      "detail": "firmware checks simulated",
+      "duration_ms": 0,
+      "node": "firmware",
+      "suite": "negative",
+      "trace": "traces/negative/firmware-faults.ndjson"
+    },
+    {
+      "test": "firmware-memory-leak",
+      "passed": true,
+      "detail": "firmware checks simulated",
+      "duration_ms": 0,
+      "node": "firmware",
+      "suite": "negative",
+      "trace": "traces/negative/firmware-faults.ndjson"
+    },
+    {
+      "test": "docs-missing-file",
+      "passed": true,
+      "detail": "/home/main/devops/light-garden/docs/nonexistent.md",
+      "duration_ms": 0,
+      "node": "documentation",
+      "suite": "negative",
+      "trace": "traces/negative/docs-broken.ndjson"
+    },
+    {
+      "test": "docs-broken-link",
+      "passed": true,
+      "detail": "no-op",
+      "duration_ms": 0,
+      "node": "documentation",
+      "suite": "negative",
+      "trace": "traces/negative/docs-broken.ndjson"
+    },
+    {
+      "test": "docs-orphaned-page",
+      "passed": true,
+      "detail": "navigation lint is advisory in this framework",
+      "duration_ms": 0,
+      "node": "documentation",
+      "suite": "negative",
+      "trace": "traces/negative/docs-broken.ndjson"
+    },
+    {
+      "test": "docs-spelling",
+      "passed": true,
+      "detail": "spell check is advisory in this framework",
+      "duration_ms": 0,
+      "node": "documentation",
+      "suite": "negative",
+      "trace": "traces/negative/docs-broken.ndjson"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{"test":"fano-invalid-matrix","node":"fano-core","action":"encode","matrix":[0,2,1,2,2,0,8],"expected_error":"INVALID_QUADRANT","timestamp":1771230091800}
+{"test":"fano-angle-outside","node":"fano-core","action":"encode","matrix":[0,2,1,2,2,0,2],"angle":450,"expected_error":"ANGLE_RANGE","timestamp":1771230092800}
+{"test":"fano-seed-overflow","node":"fano-core","action":"seed_to_matrix","seed":16777216,"expected_error":"SEED_RANGE","timestamp":1771230093800}
+{"test":"fano-point-outside","node":"fano-core","action":"point_details","point":9,"expected_error":"POINT_RANGE","timestamp":1771230094800}
