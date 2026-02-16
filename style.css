@@ -404,6 +404,45 @@ button:active {
   text-align: center;
 }
 
+.view-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.view-tab {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #666;
+  padding: 10px 20px;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.75rem;
+  transition: all 0.2s;
+}
+
+.view-tab:hover {
+  color: #aaa;
+}
+
+.view-tab.active {
+  background: #8f00ff;
+  border-color: #8f00ff;
+  color: #fff;
+}
+
+.svg-container.hidden {
+  display: none;
+}
+
+#dome-3d-viewer {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }

@@ -14,8 +14,22 @@
     </header>
     
     <main>
-      <div class="svg-container">
+      <div class="view-tabs">
+        <button class="view-tab active" data-view="2d">2D View</button>
+        <button class="view-tab" data-view="dome">Dome</button>
+        <button class="view-tab" data-view="3d">3D Canvas</button>
+      </div>
+      
+      <div class="svg-container" id="svg-container-2d">
         <object id="fano-svg" type="image/svg+xml" data="fano-garden.svg" width="800" height="800"></object>
+      </div>
+      
+      <div class="svg-container hidden" id="svg-container-dome">
+        <object id="dome-svg" type="image/svg+xml" data="dome-svg.svg" width="600" height="700"></object>
+      </div>
+      
+      <div class="svg-container hidden" id="svg-container-3d">
+        <div id="dome-3d-viewer"></div>
       </div>
       
       <aside class="control-panel">
@@ -103,7 +117,7 @@
           </div>
         </section>
         
-        <section class="panel-section federation-panel">
+        <section class="panel-section">
           <h2>Federation</h2>
           <div class="viewports">
             <div class="viewport-container">
@@ -134,6 +148,21 @@
             <button id="sync-btn">Request Sync</button>
           </div>
           <p class="hint">Arrow keys move 8×8 focus. Click 4×4 for controls.</p>
+        </section>
+        
+        <section class="panel-section">
+          <h2>Dome 3D Controls</h2>
+          <div class="pattern-buttons">
+            <button id="dome-pole1">Pole 1</button>
+            <button id="dome-pole2">Pole 2</button>
+            <button id="dome-pole3">Pole 3</button>
+            <button id="dome-pole4">Pole 4</button>
+            <button id="dome-pole5">Pole 5</button>
+            <button id="dome-pole6">Pole 6</button>
+            <button id="dome-band1">Band 1 (Base)</button>
+            <button id="dome-band2">Band 2</button>
+            <button id="dome-rotate-toggle">Toggle Rotation</button>
+          </div>
         </section>
         
         <section class="panel-section">

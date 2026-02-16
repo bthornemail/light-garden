@@ -106,6 +106,8 @@ function rgbToHsv(r, g, b) {
 
 const app = (() => {
   let svgDoc = null;
+  let domeSvgDoc = null;
+  let dome3DViewer = null;
   let selectedPath = null;
   let selectedLed = null;
   let lightState = {};
@@ -161,6 +163,18 @@ const app = (() => {
     document.getElementById('connect-btn').addEventListener('click', connectNetwork);
     document.getElementById('sync-btn').addEventListener('click', requestSync);
     
+    document.getElementById('dome-pole1')?.addEventListener('click', () => highlightDomePole(1));
+    document.getElementById('dome-pole2')?.addEventListener('click', () => highlightDomePole(2));
+    document.getElementById('dome-pole3')?.addEventListener('click', () => highlightDomePole(3));
+    document.getElementById('dome-pole4')?.addEventListener('click', () => highlightDomePole(4));
+    document.getElementById('dome-pole5')?.addEventListener('click', () => highlightDomePole(5));
+    document.getElementById('dome-pole6')?.addEventListener('click', () => highlightDomePole(6));
+    document.getElementById('dome-band1')?.addEventListener('click', () => highlightDomeBand(1));
+    document.getElementById('dome-band2')?.addEventListener('click', () => highlightDomeBand(2));
+    document.getElementById('dome-rotate-toggle')?.addEventListener('click', toggleDomeRotation);
+    
+    setupViewTabs();
+    
     startSyncMonitor();
     
     if (typeof VIEWPORTS !== 'undefined') {
@@ -174,6 +188,99 @@ const app = (() => {
       elements.mqttStatus.textContent = 'Connecting...';
       elements.mqttStatus.className = 'value connecting';
       addLog('Connecting to network...', 'network');
+    }
+  }
+  
+  function setupViewTabs() {
+    const tabs = document.querySelectorAll('.view-tab');
+    const containers = {
+      '2d': document.getElementById('svg-container-2d'),
+      'dome': document.getElementById('svg-container-dome'),
+      '3d': document.getElementById('svg-container-3d')
+    };
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const view = tab.dataset.view;
+        
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        Object.entries(containers).forEach(([key, el]) => {
+          if (key === view) {
+            el.classList.remove('hidden');
+          } else {
+            el.classList.add('hidden');
+          }
+        });
+        
+        if (view === '3d' && !dome3DViewer) {
+          init3DViewer();
+        }
+        
+        addLog(`Switched to ${view} view`, 'system');
+      });
+    });
+    
+    document.getElementById('dome-svg').addEventListener('load', () => {
+      domeSvgDoc = document.getElementById('dome-svg').contentDocument;
+    });
+  }
+  
+  function init3DViewer() {
+    if (dome3DViewer) return;
+    
+    const script = document.createElement('script');
+    script.src = 'dome-viewer.js';
+    script.onload = () => {
+      dome3DViewer = new Dome3DViewer('dome-3d-viewer', {
+        width: 450,
+        height: 450,
+        autoRotate: true,
+        rotationSpeed: 0.003
+      });
+      
+      window.addEventListener('dome3DClick', (e) => {
+        const { led, path } = e.detail;
+        addLog(`3D: ${path} (${led.color})`, 'click');
+        
+        elements.ledInfo.innerHTML = `
+          <div class="path">${path}</div>
+          <div class="detail">
+            <span class="fano-name">${led.fano_name || 'Unknown'}</span> | ${led.color}
+          </div>
+          <div class="detail">
+            Pole: ${led.pole || '—'} | Band: ${led.band || '—'}
+          </div>
+          <div class="detail ratio">
+            3D: (${led.x}, ${led.y}, ${led.z})
+          </div>
+        `;
+      });
+      
+      addLog('3D viewer initialized', 'system');
+    };
+    document.head.appendChild(script);
+  }
+  
+  function highlightDomePole(poleNum) {
+    if (dome3DViewer) {
+      dome3DViewer.highlightPole(poleNum);
+      addLog(`Highlighting pole ${poleNum}`, 'pattern');
+    }
+  }
+  
+  function highlightDomeBand(bandNum) {
+    if (dome3DViewer) {
+      dome3DViewer.highlightBand(bandNum);
+      addLog(`Highlighting band ${bandNum}`, 'pattern');
+    }
+  }
+  
+  function toggleDomeRotation() {
+    if (dome3DViewer) {
+      dome3DViewer.autoRotate = !dome3DViewer.autoRotate;
+      addLog(`Auto-rotate: ${dome3DViewer.autoRotate ? 'ON' : 'OFF'}`, 'pattern');
     }
   }
   
