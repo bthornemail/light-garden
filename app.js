@@ -184,6 +184,15 @@ const app = (() => {
     document.getElementById('auth-refresh').addEventListener('click', authRefreshPeers);
     document.getElementById('admin-change-role').addEventListener('click', adminChangeRole);
     
+    document.getElementById('canon-load')?.addEventListener('click', initAndLoadCanon);
+    document.getElementById('canon-play')?.addEventListener('click', playCanon);
+    document.getElementById('canon-pause')?.addEventListener('click', pauseCanon);
+    document.getElementById('canon-stop')?.addEventListener('click', stopCanon);
+    document.getElementById('canon-record')?.addEventListener('click', toggleRecording);
+    document.getElementById('canon-scrubber')?.addEventListener('input', scrubCanon);
+    document.getElementById('canon-speed')?.addEventListener('input', speedCanon);
+    document.getElementById('canon-series-select')?.addEventListener('change', selectCanonSeries);
+    
     document.getElementById('dome-pole1')?.addEventListener('click', () => highlightDomePole(1));
     document.getElementById('dome-pole2')?.addEventListener('click', () => highlightDomePole(2));
     document.getElementById('dome-pole3')?.addEventListener('click', () => highlightDomePole(3));
@@ -1018,6 +1027,287 @@ const app = (() => {
       authRefreshPeers();
     } else {
       addLog(`Failed: ${result.error}`, 'error');
+    }
+  }
+  
+  let canonManifest = null;
+  let canonChunks = [];
+  let canonPlaying = false;
+  let canonTimeout = null;
+  let currentCanonIndex = 0;
+  
+  async function loadCanonManifest() {
+    addLog('Loading canon manifest...', 'canon');
+    try {
+      const response = await fetch('canon-manifest.ndjson');
+      const text = await response.text();
+      const lines = text.split('\n').filter(l => l.trim());
+      canonManifest = lines.map(l => JSON.parse(l));
+      
+      const series = canonManifest.filter(e => e.event === 'series');
+      addLog(`Loaded ${series.length} series`, 'canon');
+      
+      if (elements.mediaStatus) {
+        elements.mediaStatus.textContent = `${series.length} series ready`;
+      }
+    } catch (err) {
+      addLog(`Failed to load manifest: ${err.message}`, 'error');
+    }
+  }
+  
+  async function playCanon(seriesName = null) {
+    if (!canonManifest) {
+      await loadCanonManifest();
+    }
+    
+    if (canonPlaying) {
+      stopCanon();
+      return;
+    }
+    
+    canonPlaying = true;
+    currentCanonIndex = 0;
+    addLog('Playing canon...', 'canon');
+    
+    const seriesList = canonManifest.filter(e => e.event === 'series');
+    const targetSeries = seriesName || seriesList[0]?.name;
+    
+    if (!targetSeries) {
+      addLog('No series found', 'error');
+      return;
+    }
+    
+    const seriesInfo = seriesList.find(s => s.name === targetSeries);
+    if (!seriesInfo) {
+      addLog(`Series "${targetSeries}" not found`, 'error');
+      return;
+    }
+    
+    addLog(`Loading series: ${targetSeries}`, 'canon');
+    
+    try {
+      const response = await fetch(seriesInfo.path);
+      const text = await response.text();
+      canonChunks = text.split('\n').filter(l => l.trim()).map(l => JSON.parse(l));
+      
+      addLog(`Loaded ${canonChunks.length} chunks`, 'canon');
+      playNextCanonChunk();
+    } catch (err) {
+      addLog(`Failed to load series: ${err.message}`, 'error');
+      canonPlaying = false;
+    }
+  }
+  
+  function playNextCanonChunk() {
+    if (!canonPlaying || currentCanonIndex >= canonChunks.length) {
+      canonPlaying = false;
+      addLog('Canon playback complete', 'canon');
+      return;
+    }
+    
+    const chunk = canonChunks[currentCanonIndex];
+    
+    if (chunk.matrix && epistemicSquare) {
+      epistemicSquare.setMatrix(chunk.matrix);
+    }
+    if (chunk.angle && epistemicSquare) {
+      epistemicSquare.setAngle(chunk.angle);
+    }
+    
+    let displayText = '';
+    if (chunk.text) displayText = chunk.text.slice(0, 80);
+    else if (chunk.quote) displayText = `"${chunk.quote.slice(0, 60)}..."`;
+    else if (chunk.verse) displayText = `${chunk.verse}.${chunk.chapter}:${chunk.verse}`;
+    else if (chunk.event === 'series_start') displayText = `[${chunk.title}]`;
+    else if (chunk.event === 'series_end') displayText = `[END ${chunk.series}]`;
+    else if (chunk.event === 'covenant') displayText = `${chunk.id}: ${chunk.title}`;
+    else if (chunk.event === 'character') displayText = `${chunk.name}: ${chunk.quote?.slice(0, 40)}`;
+    
+    if (displayText) {
+      addLog(displayText, 'canon');
+    }
+    
+    currentCanonIndex++;
+    
+    const delay = chunk.event === 'series_start' || chunk.event === 'series_end' ? 1500 : 200;
+    canonTimeout = setTimeout(playNextCanonChunk, delay);
+  }
+  
+  function stopCanon() {
+    canonPlaying = false;
+    if (canonTimeout) {
+      clearTimeout(canonTimeout);
+      canonTimeout = null;
+    }
+    addLog('Canon stopped', 'canon');
+  }
+  
+  async function searchCanon(term) {
+    if (!canonManifest) await loadCanonManifest();
+    
+    const seriesList = canonManifest.filter(e => e.event === 'series');
+    const results = [];
+    
+    for (const series of seriesList) {
+      try {
+        const response = await fetch(series.path);
+        const text = await response.text();
+        const chunks = text.split('\n').filter(l => l.trim()).map(l => JSON.parse(l));
+        
+        chunks.forEach((chunk, idx) => {
+          const searchStr = JSON.stringify(chunk).toLowerCase();
+          if (searchStr.includes(term.toLowerCase())) {
+            results.push({ series: series.name, index: idx, chunk });
+          }
+        });
+      } catch (e) {
+        console.error(`Error searching ${series.name}:`, e);
+      }
+    }
+    
+    addLog(`Found ${results.length} matches for "${term}"`, 'canon');
+    return results;
+  }
+  
+  let canonPlayer = null;
+  let canonRecorder = null;
+  
+  async function initAndLoadCanon() {
+    if (!canonPlayer && epistemicSquare) {
+      canonPlayer = new CanonPlayer(epistemicSquare);
+      
+      canonPlayer.onProgress = (progress, chunk, index, total) => {
+        const scrubber = document.getElementById('canon-scrubber');
+        if (scrubber) scrubber.value = progress;
+        
+        const position = document.getElementById('canon-position');
+        if (position) position.textContent = `${index}/${total}`;
+        
+        const title = document.getElementById('canon-current-title');
+        const textEl = document.getElementById('canon-current-text');
+        if (title) title.textContent = chunk?.title || chunk?.event || chunk?.series || '';
+        if (textEl) textEl.textContent = chunk?.text || chunk?.verse || chunk?.quote || '';
+      };
+      
+      canonPlayer.onComplete = () => {
+        addLog('Canon playback complete', 'canon');
+        const playBtn = document.getElementById('canon-play');
+        if (playBtn) playBtn.textContent = '▶ Play';
+      };
+    }
+    
+    if (canonPlayer) {
+      await canonPlayer.loadCanon();
+      addLog(`Canon loaded: ${canonPlayer.chunks.length} chunks`, 'canon');
+      
+      const position = document.getElementById('canon-position');
+      if (position) position.textContent = `0/${canonPlayer.chunks.length}`;
+    }
+  }
+  
+  function playCanon() {
+    if (!canonPlayer) {
+      initAndLoadCanon().then(() => {
+        if (canonPlayer) {
+          canonPlayer.play();
+          addLog('Playing canon...', 'canon');
+        }
+      });
+      return;
+    }
+    
+    if (canonPlayer.isPlaying) {
+      canonPlayer.pause();
+      addLog('Canon paused', 'canon');
+    } else {
+      canonPlayer.play();
+      addLog('Playing canon...', 'canon');
+    }
+  }
+  
+  function pauseCanon() {
+    if (canonPlayer) {
+      canonPlayer.pause();
+      addLog('Canon paused', 'canon');
+    }
+  }
+  
+  function stopCanon() {
+    if (canonPlayer) {
+      canonPlayer.stop();
+      addLog('Canon stopped', 'canon');
+    }
+    
+    if (canonRecorder && canonRecorder.isActive()) {
+      canonRecorder.stopRecording();
+    }
+  }
+  
+  function scrubCanon(e) {
+    if (canonPlayer) {
+      const pos = parseFloat(e.target.value) / 100;
+      canonPlayer.seek(pos);
+    }
+  }
+  
+  function speedCanon(e) {
+    if (canonPlayer) {
+      const speed = parseFloat(e.target.value);
+      canonPlayer.setSpeed(speed);
+      const speedVal = document.getElementById('canon-speed-val');
+      if (speedVal) speedVal.textContent = `${speed.toFixed(1)}x`;
+      addLog(`Playback speed: ${speed.toFixed(1)}x`, 'canon');
+    }
+  }
+
+  async function selectCanonSeries(e) {
+    const seriesName = e.target.value;
+    const statusEl = document.getElementById('canon-status');
+    if (statusEl) statusEl.textContent = `Loading ${seriesName}...`;
+    
+    if (canonPlayer) {
+      await canonPlayer.loadCanon(`canon-${seriesName}.ndjson`);
+      addLog(`Loaded ${seriesName}: ${canonPlayer.chunks.length} chunks`, 'canon');
+      const position = document.getElementById('canon-position');
+      if (position) position.textContent = `0/${canonPlayer.chunks.length}`;
+      const scrubber = document.getElementById('canon-scrubber');
+      if (scrubber) scrubber.value = 0;
+      if (statusEl) statusEl.textContent = 'Ready';
+    }
+  }
+  
+  function toggleRecording() {
+    const btn = document.getElementById('canon-record');
+    const recStatus = document.getElementById('canon-recording');
+    
+    if (!canonRecorder) {
+      const canvas = document.querySelector('#epistemic-canvas canvas') || 
+                    document.querySelector('canvas');
+      if (canvas) {
+        canonRecorder = new CanonRecorder(canvas);
+      }
+    }
+    
+    if (canonRecorder) {
+      if (canonRecorder.isActive()) {
+        canonRecorder.stopRecording();
+        if (btn) {
+          btn.textContent = '⏺ Record';
+          btn.classList.remove('recording');
+        }
+        if (recStatus) recStatus.textContent = 'Inactive';
+        if (recStatus) recStatus.style.color = '#666';
+      } else {
+        canonRecorder.startRecording();
+        if (btn) {
+          btn.textContent = '⏹ Stop';
+          btn.classList.add('recording');
+        }
+        if (recStatus) {
+          recStatus.textContent = 'Recording...';
+          recStatus.style.color = '#ff0000';
+        }
+      }
     }
   }
   

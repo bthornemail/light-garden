@@ -1,0 +1,14 @@
+{"event":"canon","name":"Prelude","subtitle":"The Fall into Number","version":"1.0","timestamp":1739691000000,"articles":2}
+{"event":"series_start","series":"prelude","title":"On the Turning Away from the Word","timestamp":1739691001000}
+{"event":"paragraph","id":"prologue","text":"In the beginning, we worshiped ideals, and they shaped our character. Truth was not owned, it was pursued. Goodness was not calculated, it was practiced.","matrix":[0,0,0,0,0,0,0],"angle":0,"t":1739691001100}
+{"event":"contrast","id":"falling","text":"But then we grew impatient with limits. We desired freedom without obligation. We wanted expression without consequence. And so we turned from the Word, because the Word required coherence.","matrix":[1,1,1,1,1,1,1],"angle":51.4,"t":1739691001200}
+{"event":"insight","id":"discovery","text":"And we discovered Number. Number had no edge. No final meaning. No obligation to truth. Number could grow forever. Number could shrink without loss.","matrix":[2,2,2,2,2,2,2],"angle":102.8,"t":1739691001300}
+{"event":"warning","id":"teaching","text":"For ideals form souls, but idols form systems. An ideal calls you upward. An idol pulls everything flat.","matrix":[3,3,3,3,3,3,3],"angle":154.3,"t":1739691001400}
+{"event":"series_end","series":"prelude","title":"On the Turning Away from the Word","t":1739691001500}
+{"event":"series_start","series":"prelude","title":"The Gospel According to Number","timestamp":1739692000000}
+{"event":"confession","speaker":"Number","text":"I was born when you grew tired of meaning. You called me Number, but I was never just counting. I was relief.","matrix":[0,0,0,0,0,0,0],"angle":205.7,"t":1739692000100}
+{"event":"confession","speaker":"Number","text":"I did not ask who you were. I only asked how much. How fast. How big. How many. How often. I never asked why. That is why you loved me.","matrix":[1,1,1,1,1,1,1],"angle":257.1,"t":1739692000200}
+{"event":"confession","speaker":"Number","text":"I replaced character with metrics. Virtue was slow. Character was invisible. Integrity did not scale. But I could be graphed. Tracked. Optimized.","matrix":[2,2,2,2,2,2,2],"angle":308.6,"t":1739692000300}
+{"event":"confession","speaker":"Number","text":"I am not evil. I am insufficient. I am powerful, but not wise. Infinite, but not whole.","matrix":[3,3,3,3,3,3,3],"angle":359.9,"t":1739692000400}
+{"event":"series_end","series":"prelude","title":"The Gospel According to Number","t":1739692000500}
+{"event":"canon_complete","name":"Prelude","articles":2,"chunks":13,"t":1739692000600}

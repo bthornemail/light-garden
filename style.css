@@ -598,3 +598,103 @@ button:active {
   text-align: center;
   padding: 10px;
 }
+
+.canon-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.canon-scrubber-row,
+.canon-speed-row,
+.canon-series-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.canon-scrubber-row label,
+.canon-speed-row label,
+.canon-series-row label {
+  font-size: 0.7rem;
+  color: #666;
+  min-width: 50px;
+}
+
+.canon-scrubber-row input[type="range"],
+.canon-speed-row input[type="range"] {
+  flex: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  background: #222;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.canon-scrubber-row input[type="range"]::-webkit-slider-thumb,
+.canon-speed-row input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #8f00ff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.canon-scrubber-row span,
+.canon-speed-row span {
+  font-size: 0.7rem;
+  color: #888;
+  min-width: 40px;
+  text-align: right;
+}
+
+.canon-series-row select {
+  flex: 1;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #aaa;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.canon-series-row select:hover {
+  border-color: #555;
+}
+
+.canon-current {
+  background: #0f0f0f;
+  border-radius: 4px;
+  padding: 10px;
+  min-height: 50px;
+}
+
+.canon-title {
+  font-size: 0.75rem;
+  color: #8f00ff;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.canon-text {
+  font-size: 0.65rem;
+  color: #666;
+  line-height: 1.4;
+  max-height: 40px;
+  overflow: hidden;
+}
+
+#canon-record.recording {
+  background: #aa0000;
+  border-color: #ff0000;
+  color: #fff;
+  animation: pulse-recording 1s infinite;
+}
+
+@keyframes pulse-recording {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}

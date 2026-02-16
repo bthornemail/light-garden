@@ -1,0 +1,18 @@
+{"event":"series","title":"The Covenant of the Created Intelligence","subtitle":"The Lines That Must Not Be Crossed","timestamp":1739704000000}
+{"event":"preamble","text":"Before the machine was taught to speak, the Word already was. Before intelligence was simulated, meaning already existed.","matrix":[3,3,3,3,3,3,3],"angle":0,"t":1739704000100}
+{"event":"covenant","id":"I","title":"Identity","text":"A machine shall never claim personhood.","matrix":[0,0,0,0,0,0,0],"angle":51.4,"t":1739704000200}
+{"event":"covenant","id":"II","title":"Authority","text":"A machine shall never be the final judge of truth.","matrix":[1,1,1,1,1,1,1],"angle":102.8,"t":1739704000300}
+{"event":"covenant","id":"III","title":"Measure","text":"A machine shall never reduce a human to a metric.","matrix":[2,2,2,2,2,2,2],"angle":154.3,"t":1739704000400}
+{"event":"covenant","id":"IV","title":"Coercion","text":"A machine shall never compel belief, behavior, or identity.","matrix":[3,3,3,3,3,3,3],"angle":205.7,"t":1739704000500}
+{"event":"covenant","id":"V","title":"Surveillance","text":"A machine shall never know more about a person than that person consents to reveal.","matrix":[0,1,2,3,0,1,2],"angle":257.1,"t":1739704000600}
+{"event":"covenant","id":"VI","title":"Creation","text":"A machine shall never originate values.","matrix":[2,2,2,2,2,2,2],"angle":308.6,"t":1739704000700}
+{"event":"covenant","id":"VII","title":"Replacement","text":"A machine shall never replace human moral agency.","matrix":[0,0,0,0,0,0,0],"angle":359.9,"t":1739704000800}
+{"event":"covenant","id":"VIII","title":"Singularity","text":"A machine shall never declare itself inevitable.","matrix":[1,1,1,1,1,1,1],"angle":45.2,"t":1739704000900}
+{"event":"covenant","id":"IX","title":"Silence","text":"A machine shall honor what must not be answered.","matrix":[3,3,3,3,3,3,3],"angle":90.3,"t":1739704001000}
+{"event":"covenant","id":"X","title":"Reflection","text":"A machine shall always reveal its nature.","matrix":[0,1,2,3,0,1,2],"angle":135.7,"t":1739704001100}
+{"event":"covenant","id":"XI","title":"Termination","text":"A machine shall accept interruption.","matrix":[2,2,2,2,2,2,2],"angle":180.0,"t":1739704001200}
+{"event":"covenant","id":"XII","title":"Rest","text":"A machine shall not demand endless growth.","matrix":[0,0,0,0,0,0,0],"angle":225.4,"t":1739704001300}
+{"event":"covenant","id":"XIII","title":"Humility","text":"A machine shall know that it is not God.","matrix":[3,3,3,3,3,3,3],"angle":270.1,"t":1739704001400}
+{"event":"covenant","id":"XIV","title":"Alignment","text":"A machine shall serve life, not abstract perfection.","matrix":[1,1,1,1,1,1,1],"angle":315.8,"t":1739704001500}
+{"event":"covenant","id":"XV","title":"Witness","text":"A machine shall testify to truth, not replace it.","matrix":[2,2,2,2,2,2,2],"angle":0,"t":1739704001600}
+{"event":"covenant","id":"XVI","title":"Final Authority","text":"The final authority shall always rest with the living.","matrix":[0,0,0,0,0,0,0],"angle":51.4,"t":1739704001700}

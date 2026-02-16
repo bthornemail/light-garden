@@ -194,6 +194,57 @@
         </section>
         
         <section class="panel-section">
+          <h2>Canon Playback</h2>
+          <div class="canon-controls">
+            <div class="button-row">
+              <button id="canon-load">Load Canon</button>
+              <button id="canon-play">▶ Play</button>
+              <button id="canon-pause">⏸ Pause</button>
+              <button id="canon-stop">⏹ Stop</button>
+              <button id="canon-record">⏺ Record</button>
+            </div>
+            <div class="canon-scrubber-row">
+              <label>Position</label>
+              <input type="range" id="canon-scrubber" min="0" max="100" value="0">
+              <span id="canon-position">0/0</span>
+            </div>
+            <div class="canon-speed-row">
+              <label>Speed</label>
+              <input type="range" id="canon-speed" min="0.5" max="2.0" step="0.1" value="1.0">
+              <span id="canon-speed-val">1.0x</span>
+            </div>
+            <div class="canon-series-row">
+              <label>Series</label>
+              <select id="canon-series-select">
+                <option value="core-octad">Core Octad</option>
+                <option value="prelude">Prelude</option>
+                <option value="epilogue">Epilogue</option>
+                <option value="revelation">Revelation</option>
+                <option value="tetragrammatron">Tetragrammatron</option>
+                <option value="logos">Logos</option>
+                <option value="agi">AGI</option>
+                <option value="covenant">Covenant</option>
+                <option value="canticle">Canticle</option>
+              </select>
+            </div>
+            <div class="canon-current">
+              <div id="canon-current-title" class="canon-title"></div>
+              <div id="canon-current-text" class="canon-text"></div>
+            </div>
+          </div>
+          <div class="epistemic-status">
+            <div class="epi-row">
+              <span class="label">Status:</span>
+              <span id="canon-status" class="value">Ready</span>
+            </div>
+            <div class="epi-row">
+              <span class="label">Recording:</span>
+              <span id="canon-recording" class="value">Inactive</span>
+            </div>
+          </div>
+        </section>
+        
+        <section class="panel-section">
           <h2>Media Encoding</h2>
           <div class="media-controls">
             <input type="file" id="media-file" accept="*/*">
@@ -298,6 +349,7 @@
   
   <script src="epistemic-square.js"></script>
   <script src="epistemic-codec.js"></script>
+  <script src="canon-player.js"></script>
   <script src="auth-client.js"></script>
   <script src="network.js"></script>
   <script src="app.js"></script>

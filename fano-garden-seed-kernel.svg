@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" id="fano-garden-seed-kernel">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&amp;family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;display=swap');
+      .title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; font-weight: 600; fill: #e8e4dc; }
+      .subtitle { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 300; fill: #7a7568; letter-spacing: 2px; }
+      .section-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 16px; font-weight: 600; fill: #c9b99a; }
+      .label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; fill: #8a8274; }
+      .point-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; fill: #1a1814; }
+      .sound-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; fill: #2a2520; }
+      .light-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; fill: #1a1814; }
+      .note { font-family: 'IBM Plex Mono', monospace; font-size: 8px; fill: #5a5548; }
+      .quote { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 12px; fill: #9a8b72; }
+      .fano-line { fill: none; stroke: #3a3530; stroke-width: 1.5; stroke-linecap: round; }
+      .fano-line-active { fill: none; stroke: #c9b99a; stroke-width: 2; stroke-linecap: round; opacity: 0.8; }
+      .grid-line { fill: none; stroke: #2a2520; stroke-width: 0.5; }
+      .axis-line { fill: none; stroke: #4a4540; stroke-width: 1; }
+      .point { stroke: #1a1814; stroke-width: 1.5; }
+      .point-active { stroke: #c9b99a; stroke-width: 2; }
+      .tone-circle { fill: none; stroke: #2a2520; stroke-width: 0.5; opacity: 0.5; }
+      .quadrant-bg { fill: #0d0c0a; }
+      .quadrant-line { stroke: #2a2520; stroke-width: 1; }
+      .button { cursor: pointer; }
+      .button:hover .button-bg { fill: #3a3530; }
+    </style>
+    
+    <!-- Color definitions for lights -->
+    <linearGradient id="red-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff3028"/><stop offset="100%" stop-color="#cc1a14"/>
+    </linearGradient>
+    <linearGradient id="orange-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff9030"/><stop offset="100%" stop-color="#cc6818"/>
+    </linearGradient>
+    <linearGradient id="yellow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe048"/><stop offset="100%" stop-color="#c8a820"/>
+    </linearGradient>
+    <linearGradient id="green-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#40d048"/><stop offset="100%" stop-color="#289028"/>
+    </linearGradient>
+    <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3090ff"/><stop offset="100%" stop-color="#1868cc"/>
+    </linearGradient>
+    <linearGradient id="indigo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5048d8"/><stop offset="100%" stop-color="#3028a8"/>
+    </linearGradient>
+    <linearGradient id="violet-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8830e8"/><stop offset="100%" stop-color="#5c18b8"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="1600" fill="#0d0c0a"/>
+  
+  <!-- ==================== HEADER ==================== -->
+  <g id="header" transform="translate(600, 60)">
+    <text x="0" y="0" text-anchor="middle" class="title">FANO GARDEN SEED KERNEL</text>
+    <text x="0" y="25" text-anchor="middle" class="subtitle">GEOMETRIC LIGHT LANGUAGE PROTOCOL</text>
+    <text x="0" y="40" text-anchor="middle" class="subtitle">VERSION 1.0 — REVISION 0</text>
+    <line x1="-200" y1="55" x2="200" y2="55" stroke="#3a3530" stroke-width="1"/>
+  </g>
+  
+  <!-- ==================== FANO PLANE (LEFT) ==================== -->
+  <g id="fano-plane" transform="translate(150, 180)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">FANO PROJECTIVE PLANE</text>
+    <text x="0" y="-10" text-anchor="middle" class="label">7 points, 7 lines — the smallest finite projective plane</text>
+    
+    <!-- Fano circle -->
+    <circle cx="0" cy="100" r="90" class="fano-line"/>
+    
+    <!-- Fano lines (all 7) -->
+    <g class="fano-lines">
+      <!-- Line 1: 1-2-4 (top) -->
+      <line x1="0" y1="30" x2="-70" y2="145" class="fano-line"/>
+      <!-- Line 2: 1-3-5 (right) -->
+      <line x1="0" y1="30" x2="70" y2="145" class="fano-line"/>
+      <!-- Line 3: 1-6-7 (left-down) -->
+      <line x1="0" y1="30" x2="-70" y2="145" class="fano-line" transform="rotate(60, 0, 30)"/>
+      <!-- Line 4: 2-3-6 (inner triangle top) -->
+      <line x1="-45" y1="80" x2="45" y2="80" class="fano-line"/>
+      <!-- Line 5: 2-5-7 (bottom left) -->
+      <line x1="-45" y1="80" x2="0" y2="145" class="fano-line"/>
+      <!-- Line 6: 3-4-7 (bottom right) -->
+      <line x1="45" y1="80" x2="0" y2="145" class="fano-line"/>
+      <!-- Line 7: 4-5-6 (inner circle) -->
+      <circle cx="0" cy="100" r="35" class="fano-line"/>
+    </g>
+    
+    <!-- Fano points -->
+    <g id="fano-points">
+      <!-- Point 1: Top (Metatron/Observer) -->
+      <circle cx="0" cy="30" r="12" fill="#e8e4dc" class="point"/>
+      <text x="0" y="33" text-anchor="middle" class="point-label">1</text>
+      
+      <!-- Point 2: Lower left -->
+      <circle cx="-70" cy="145" r="12" fill="#e8e4dc" class="point"/>
+      <text x="-70" y="148" text-anchor="middle" class="point-label">2</text>
+      
+      <!-- Point 3: Lower right -->
+      <circle cx="70" cy="145" r="12" fill="#e8e4dc" class="point"/>
+      <text x="70" y="148" text-anchor="middle" class="point-label">3</text>
+      
+      <!-- Point 4: Mid left -->
+      <circle cx="-45" cy="80" r="12" fill="#e8e4dc" class="point"/>
+      <text x="-45" y="83" text-anchor="middle" class="point-label">4</text>
+      
+      <!-- Point 5: Center (Genesis Gate) -->
+      <circle cx="0" cy="100" r="12" fill="#c9b99a" class="point-active"/>
+      <text x="0" y="103" text-anchor="middle" class="point-label" fill="#1a1814">5</text>
+      
+      <!-- Point 6: Mid right -->
+      <circle cx="45" cy="80" r="12" fill="#e8e4dc" class="point"/>
+      <text x="45" y="83" text-anchor="middle" class="point-label">6</text>
+      
+      <!-- Point 7: Bottom -->
+      <circle cx="0" cy="145" r="12" fill="#e8e4dc" class="point"/>
+      <text x="0" y="148" text-anchor="middle" class="point-label">7</text>
+    </g>
+    
+    <!-- Point names -->
+    <g class="point-names" transform="translate(110, 100)">
+      <text x="0" y="0" class="label">1 METATRON — Observer</text>
+      <text x="0" y="14" class="label">2 SOLOMON — Wisdom</text>
+      <text x="0" y="28" class="label">3 ʿASABIYYAH — Cohesion</text>
+      <text x="0" y="42" class="label">4 SOLON — Law</text>
+      <text x="0" y="56" class="label">5 GENESIS GATE — Center</text>
+      <text x="0" y="70" class="label">6 ENOCH — Walker</text>
+      <text x="0" y="84" class="label">7 SPEAKER — Voice</text>
+    </g>
+  </g>
+  
+  <!-- ==================== SOUND TRIANGLE (TOP RIGHT) ==================== -->
+  <g id="sound-triangle" transform="translate(420, 180)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">SOUND TRIANGLE — A-G</text>
+    <text x="0" y="-10" text-anchor="middle" class="label">7 tones by frequency ratio from A=440Hz</text>
+    
+    <!-- Tone circles (showing octave) -->
+    <circle cx="0" cy="50" r="45" class="tone-circle"/>
+    <circle cx="0" cy="50" r="35" class="tone-circle"/>
+    <circle cx="0" cy="50" r="25" class="tone-circle"/>
+    <circle cx="0" cy="50" r="15" class="tone-circle"/>
+    
+    <!-- Tone points arranged as Fano -->
+    <g id="sound-points">
+      <!-- 1: A (root) -->
+      <circle cx="0" cy="15" r="10" fill="#c9b99a" class="point"/>
+      <text x="0" y="18" text-anchor="middle" class="sound-label" fill="#2a2520">A</text>
+      <text x="0" y="30" text-anchor="middle" class="note">440</text>
+      
+      <!-- 2: B -->
+      <circle cx="-35" cy="70" r="10" fill="#c9b99a" class="point"/>
+      <text x="-35" y="73" text-anchor="middle" class="sound-label" fill="#2a2520">B</text>
+      <text x="-35" y="85" text-anchor="middle" class="note">494</text>
+      
+      <!-- 3: C -->
+      <circle cx="35" cy="70" r="10" fill="#c9b99a" class="point"/>
+      <text x="35" y="73" text-anchor="middle" class="sound-label" fill="#2a2520">C</text>
+      <text x="35" y="85" text-anchor="middle" class="note">523</text>
+      
+      <!-- 4: D -->
+      <circle cx="-22" cy="40" r="10" fill="#c9b99a" class="point"/>
+      <text x="-22" y="43" text-anchor="middle" class="sound-label" fill="#2a2520">D</text>
+      <text x="-22" y="55" text-anchor="middle" class="note">587</text>
+      
+      <!-- 5: E -->
+      <circle cx="22" cy="40" r="10" fill="#c9b99a" class="point"/>
+      <text x="22" y="43" text-anchor="middle" class="sound-label" fill="#2a2520">E</text>
+      <text x="22" y="55" text-anchor="middle" class="note">659</text>
+      
+      <!-- 6: F -->
+      <circle cx="-22" cy="70" r="10" fill="#c9b99a" class="point"/>
+      <text x="-22" y="73" text-anchor="middle" class="sound-label" fill="#2a2520">F</text>
+      <text x="-22" y="85" text-anchor="middle" class="note">698</text>
+      
+      <!-- 7: G -->
+      <circle cx="22" cy="70" r="10" fill="#c9b99a" class="point"/>
+      <text x="22" y="73" text-anchor="middle" class="sound-label" fill="#2a2520">G</text>
+      <text x="22" y="85" text-anchor="middle" class="note">784</text>
+    </g>
+    
+    <!-- Sound line connections -->
+    <g class="sound-lines">
+      <line x1="0" y1="15" x2="-35" y2="70" class="fano-line" opacity="0.3"/>
+      <line x1="0" y1="15" x2="35" y2="70" class="fano-line" opacity="0.3"/>
+      <line x1="-35" y1="70" x2="-22" y2="40" class="fano-line" opacity="0.3"/>
+      <line x1="35" y1="70" x2="22" y2="40" class="fano-line" opacity="0.3"/>
+      <line x1="-22" y1="40" x2="22" y2="40" class="fano-line" opacity="0.3"/>
+      <line x1="-22" y1="40" x2="-22" y2="70" class="fano-line" opacity="0.3"/>
+      <line x1="22" y1="40" x2="22" y2="70" class="fano-line" opacity="0.3"/>
+    </g>
+  </g>
+  
+  <!-- ==================== LIGHT TRIANGLE (BOTTOM RIGHT) ==================== -->
+  <g id="light-triangle" transform="translate(420, 420)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">LIGHT TRIANGLE — ROYGBIV</text>
+    <text x="0" y="-10" text-anchor="middle" class="label">7 colors by frequency (THz)</text>
+    
+    <!-- Light circle -->
+    <circle cx="0" cy="50" r="55" fill="none" stroke="#3a3530" stroke-width="0.5"/>
+    
+    <!-- Light points -->
+    <g id="light-points">
+      <!-- 1: R (Red - lowest freq) -->
+      <circle cx="0" cy="5" r="10" fill="url(#red-grad)" class="point"/>
+      <text x="0" y="8" text-anchor="middle" class="light-label">R</text>
+      <text x="0" y="20" text-anchor="middle" class="note">430T</text>
+      
+      <!-- 2: O (Orange) -->
+      <circle cx="-38" cy="35" r="10" fill="url(#orange-grad)" class="point"/>
+      <text x="-38" y="38" text-anchor="middle" class="light-label">O</text>
+      <text x="-38" y="50" text-anchor="middle" class="note">480T</text>
+      
+      <!-- 3: Y (Yellow) -->
+      <circle cx="38" cy="35" r="10" fill="url(#yellow-grad)" class="point"/>
+      <text x="38" y="38" text-anchor="middle" class="light-label">Y</text>
+      <text x="38" y="50" text-anchor="middle" class="note">520T</text>
+      
+      <!-- 4: G (Green) -->
+      <circle cx="-24" cy="65" r="10" fill="url(#green-grad)" class="point"/>
+      <text x="-24" y="68" text-anchor="middle" class="light-label">G</text>
+      <text x="-24" y="80" text-anchor="middle" class="note">560T</text>
+      
+      <!-- 5: B (Blue) -->
+      <circle cx="24" cy="65" r="10" fill="url(#blue-grad)" class="point"/>
+      <text x="24" y="68" text-anchor="middle" class="light-label">B</text>
+      <text x="24" y="80" text-anchor="middle" class="note">620T</text>
+      
+      <!-- 6: I (Indigo) -->
+      <circle cx="-12" cy="90" r="10" fill="url(#indigo-grad)" class="point"/>
+      <text x="-12" y="93" text-anchor="middle" class="light-label">I</text>
+      <text x="-12" y="105" text-anchor="middle" class="note">670T</text>
+      
+      <!-- 7: V (Violet - highest freq) -->
+      <circle cx="12" cy="90" r="10" fill="url(#violet-grad)" class="point"/>
+      <text x="12" y="93" text-anchor="middle" class="light-label">V</text>
+      <text x="12" y="105" text-anchor="middle" class="note">750T</text>
+    </g>
+    
+    <!-- Light connections -->
+    <g class="light-lines">
+      <line x1="0" y1="5" x2="-38" y2="35" class="fano-line" opacity="0.3"/>
+      <line x1="0" y1="5" x2="38" y2="35" class="fano-line" opacity="0.3"/>
+      <line x1="-38" y1="35" x2="-24" y2="65" class="fano-line" opacity="0.3"/>
+      <line x1="38" y1="35" x2="24" y2="65" class="fano-line" opacity="0.3"/>
+      <line x1="-24" y1="65" x2="24" y2="65" class="fano-line" opacity="0.3"/>
+      <line x1="-24" y1="65" x2="-12" y2="90" class="fano-line" opacity="0.3"/>
+      <line x1="24" y1="65" x2="12" y2="90" class="fano-line" opacity="0.3"/>
+    </g>
+  </g>
+  
+  <!-- ==================== FANO LINES TABLE ==================== -->
+  <g id="fano-lines-table" transform="translate(600, 180)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">THE 7 FANO LINES</text>
+    <text x="0" y="-10" text-anchor="middle" class="label">Each line connects 3 points — the sound and light triples</text>
+    
+    <!-- Table header -->
+    <g transform="translate(-150, 15)">
+      <text x="0" y="0" class="label" font-weight="500">LINE</text>
+      <text x="50" y="0" class="label" font-weight="500">POINTS</text>
+      <text x="100" y="0" class="label" font-weight="500">SOUND</text>
+      <text x="180" y="0" class="label" font-weight="500">LIGHT</text>
+      <text x="260" y="0" class="label" font-weight="500">∠ DEG</text>
+      <line x1="0" y1="8" x2="320" y2="8" stroke="#3a3530"/>
+    </g>
+    
+    <!-- Line 1 -->
+    <g transform="translate(-150, 35)">
+      <text x="0" y="0" class="label">1</text>
+      <text x="50" y="0" class="label">{1,2,4}</text>
+      <text x="100" y="0" class="sound-label">A-B-D</text>
+      <text x="180" y="0" class="light-label">R-O-G</text>
+      <text x="260" y="0" class="note">0°</text>
+    </g>
+    
+    <!-- Line 2 -->
+    <g transform="translate(-150, 55)">
+      <text x="0" y="0" class="label">2</text>
+      <text x="50" y="0" class="label">{1,3,5}</text>
+      <text x="100" y="0" class="sound-label">A-C-E</text>
+      <text x="180" y="0" class="light-label">R-Y-B</text>
+      <text x="260" y="0" class="note">51.4°</text>
+    </g>
+    
+    <!-- Line 3 -->
+    <g transform="translate(-150, 75)">
+      <text x="0" y="0" class="label">3</text>
+      <text x="50" y="0" class="label">{1,6,7}</text>
+      <text x="100" y="0" class="sound-label">A-F-G</text>
+      <text x="180" y="0" class="light-label">R-I-V</text>
+      <text x="260" y="0" class="note">102.8°</text>
+    </g>
+    
+    <!-- Line 4 -->
+    <g transform="translate(-150, 95)">
+      <text x="0" y="0" class="label">4</text>
+      <text x="50" y="0" class="label">{2,3,6}</text>
+      <text x="100" y="0" class="sound-label">B-C-F</text>
+      <text x="180" y="0" class="light-label">O-Y-I</text>
+      <text x="260" y="0" class="note">154.3°</text>
+    </g>
+    
+    <!-- Line 5 -->
+    <g transform="translate(-150, 115)">
+      <text x="0" y="0" class="label">5</text>
+      <text x="50" y="0" class="label">{2,5,7}</text>
+      <text x="100" y="0" class="sound-label">B-E-G</text>
+      <text x="180" y="0" class="light-label">O-B-V</text>
+      <text x="260" y="0" class="note">205.7°</text>
+    </g>
+    
+    <!-- Line 6 -->
+    <g transform="translate(-150, 135)">
+      <text x="0" y="0" class="label">6</text>
+      <text x="50" y="0" class="label">{3,4,6}</text>
+      <text x="100" y="0" class="sound-label">C-D-G</text>
+      <text x="180" y="0" class="light-label">Y-G-I</text>
+      <text x="260" y="0" class="note">257.1°</text>
+    </g>
+    
+    <!-- Line 7 (Trustee line) -->
+    <g transform="translate(-150, 155)">
+      <text x="0" y="0" class="label">7 ★</text>
+      <text x="50" y="0" class="label">{4,5,6}</text>
+      <text x="100" y="0" class="sound-label">D-E-F</text>
+      <text x="180" y="0" class="light-label">G-B-I</text>
+      <text x="260" y="0" class="note">308.6°</text>
+    </g>
+    
+    <!-- Key -->
+    <text x="0" y="195" text-anchor="middle" class="note">★ Line 7 = Inner Circle = Trustee Line = The Gate</text>
+  </g>
+  
+  <!-- ==================== RUMSFELD QUADRANTS ==================== -->
+  <g id="rumsfeld-quadrants" transform="translate(600, 420)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">THE FOUR QUESTIONS — RUMSFELD QUADRANTS</text>
+    <text x="0" y="-10" text-anchor="middle" class="label">The epistemic square maps knowing to the Fano plane</text>
+    
+    <!-- Quadrant diagram -->
+    <g transform="translate(-120, 20)">
+      <!-- Quadrant backgrounds -->
+      <rect x="0" y="0" width="110" height="80" class="quadrant-bg"/>
+      <rect x="120" y="0" width="110" height="80" class="quadrant-bg"/>
+      <rect x="0" y="90" width="110" height="80" class="quadrant-bg"/>
+      <rect x="120" y="90" width="110" height="80" class="quadrant-bg"/>
+      
+      <!-- Dividers -->
+      <line x1="115" y1="0" x2="115" y2="170" class="quadrant-line"/>
+      <line x1="0" y1="85" x2="230" y2="85" class="quadrant-line"/>
+      
+      <!-- Labels -->
+      <!-- Top left: Known Knowns -->
+      <text x="55" y="25" text-anchor="middle" class="label" font-size="10" fill="#c9b99a">KNOWN</text>
+      <text x="55" y="38" text-anchor="middle" class="label" font-size="10" fill="#c9b99a">KNOWNS</text>
+      <text x="55" y="55" text-anchor="middle" class="note">I know it</text>
+      <text x="55" y="68" text-anchor="middle" class="note">and can prove it</text>
+      
+      <!-- Top right: Known Unknowns -->
+      <text x="175" y="25" text-anchor="middle" class="label" font-size="10" fill="#c9b99a">KNOWN</text>
+      <text x="175" y="38" text-anchor="middle" class="label" font-size="10" fill="#c9b99a">UNKNOWN</text>
+      <text x="175" y="55" text-anchor="middle" class="note">I know</text>
+      <text x="175" y="68" text-anchor="middle" class="note">I don't know</text>
+      
+      <!-- Bottom left: Unknown Knowns -->
+      <text x="55" y="115" text-anchor="middle" class="label" font-size="10" fill="#c9b99a">UNKNOWN</text>
+      <text x="55" y="128" text-anchor="middle" class="label" font-size="10" fill="#c9b99a">KNOWNS</text>
+      <text x="55" y="145" text-anchor="middle" class="note">I don't know</text>
+      <text x="55" y="158" text-anchor="middle" class="note">but I know it</text>
+      
+      <!-- Bottom right: Unknown Unknowns (THE GATE) -->
+      <rect x="120" y="90" width="110" height="80" fill="#1a1510"/>
+      <text x="175" y="115" text-anchor="middle" class="label" font-size="10" fill="#c9b99a">UNKNOWN</text>
+      <text x="175" y="128" text-anchor="middle" class="label" font-size="10" fill="#c9b99a">UNKNOWN</text>
+      <text x="175" y="145" text-anchor="middle" class="note">I don't know</text>
+      <text x="175" y="158" text-anchor="middle" class="note">I don't know</text>
+      <text x="175" y="172" text-anchor="middle" class="label" fill="#ff9030">THE GATE ★</text>
+    </g>
+  </g>
+  
+  <!-- ==================== 5x5 GRID ==================== -->
+  <g id="five-by-five" transform="translate(150, 600)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">5×5 GATE GRID</text>
+    <text x="0" y="-10" text-anchor="middle" class="label">Sound × Light = 25 cells. Center = Genesis Gate (D×G = 2 = B/O)</text>
+    
+    <!-- Grid -->
+    <g transform="translate(-80, 0)">
+      <!-- Row headers (sound) -->
+      <text x="-95" y="15" class="label">A(R)</text>
+      <text x="-95" y="45" class="label">C(Y)</text>
+      <text x="-95" y="75" class="label">D(G)</text>
+      <text x="-95" y="105" class="label">E(B)</text>
+      <text x="-95" y="135" class="label">G(V)</text>
+      
+      <!-- Column headers (light) -->
+      <text x="15" y="-10" class="label">R</text>
+      <text x="45" y="-10" class="label">Y</text>
+      <text x="75" y="-10" class="label">G</text>
+      <text x="105" y="-10" class="label">B</text>
+      <text x="135" y="-10" class="label">V</text>
+      
+      <!-- Grid cells -->
+      <!-- Row 1 -->
+      <rect x="0" y="0" width="28" height="28" fill="url(#red-grad)" opacity="0.3"/>
+      <rect x="30" y="0" width="28" height="28" fill="url(#orange-grad)" opacity="0.3"/>
+      <rect x="60" y="0" width="28" height="28" fill="url(#green-grad)" opacity="0.3"/>
+      <rect x="90" y="0" width="28" height="28" fill="url(#blue-grad)" opacity="0.3"/>
+      <rect x="120" y="0" width="28" height="28" fill="url(#violet-grad)" opacity="0.3"/>
+      
+      <!-- Row 2 -->
+      <rect x="0" y="30" width="28" height="28" fill="url(#orange-grad)" opacity="0.3"/>
+      <rect x="30" y="30" width="28" height="28" fill="url(#yellow-grad)" opacity="0.3"/>
+      <rect x="60" y="30" width="28" height="28" fill="url(#green-grad)" opacity="0.3"/>
+      <rect x="90" y="30" width="28" height="28" fill="url(#blue-grad)" opacity="0.3"/>
+      <rect x="120" y="30" width="28" height="28" fill="url(#indigo-grad)" opacity="0.3"/>
+      
+      <!-- Row 3 (center row) -->
+      <rect x="0" y="60" width="28" height="28" fill="url(#green-grad)" opacity="0.5"/>
+      <rect x="30" y="60" width="28" height="28" fill="url(#green-grad)" opacity="0.3"/>
+      <rect x="60" y="60" width="28" height="28" fill="#c9b99a" opacity="0.8"/>
+      <rect x="90" y="60" width="28" height="28" fill="url(#blue-grad)" opacity="0.3"/>
+      <rect x="120" y="60" width="28" height="28" fill="url(#violet-grad)" opacity="0.3"/>
+      
+      <!-- Row 4 -->
+      <rect x="0" y="90" width="28" height="28" fill="url(#blue-grad)" opacity="0.3"/>
+      <rect x="30" y="90" width="28" height="28" fill="url(#blue-grad)" opacity="0.3"/>
+      <rect x="60" y="90" width="28" height="28" fill="url(#blue-grad)" opacity="0.5"/>
+      <rect x="90" y="90" width="28" height="28" fill="url(#indigo-grad)" opacity="0.3"/>
+      <rect x="120" y="90" width="28" height="28" fill="url(#violet-grad)" opacity="0.3"/>
+      
+      <!-- Row 5 -->
+      <rect x="0" y="120" width="28" height="28" fill="url(#violet-grad)" opacity="0.3"/>
+      <rect x="30" y="120" width="28" height="28" fill="url(#indigo-grad)" opacity="0.3"/>
+      <rect x="60" y="120" width="28" height="28" fill="url(#violet-grad)" opacity="0.3"/>
+      <rect x="90" y="120" width="28" height="28" fill="url(#violet-grad)" opacity="0.5"/>
+      <rect x="120" y="120" width="28" height="28" fill="url(#violet-grad)" opacity="0.8"/>
+      
+      <!-- Cell values (mod 7) -->
+      <g class="cell-values">
+        <text x="14" y="18" text-anchor="middle" class="note">1</text>
+        <text x="44" y="18" text-anchor="middle" class="note">3</text>
+        <text x="74" y="18" text-anchor="middle" class="note">4</text>
+        <text x="104" y="18" text-anchor="middle" class="note">5</text>
+        <text x="134" y="18" text-anchor="middle" class="note">7</text>
+        
+        <text x="14" y="48" text-anchor="middle" class="note">3</text>
+        <text x="44" y="48" text-anchor="middle" class="note">6</text>
+        <text x="74" y="48" text-anchor="middle" class="note">1</text>
+        <text x="104" y="48" text-anchor="middle" class="note">2</text>
+        <text x="134" y="48" text-anchor="middle" class="note">4</text>
+        
+        <text x="14" y="78" text-anchor="middle" class="note">4</text>
+        <text x="44" y="78" text-anchor="middle" class="note">1</text>
+        <text x="74" y="78" text-anchor="middle" class="note" fill="#1a1814" font-weight="500">2★</text>
+        <text x="104" y="78" text-anchor="middle" class="note">3</text>
+        <text x="134" y="78" text-anchor="middle" class="note">6</text>
+        
+        <text x="14" y="108" text-anchor="middle" class="note">5</text>
+        <text x="44" y="108" text-anchor="middle" class="note">2</text>
+        <text x="74" y="108" text-anchor="middle" class="note">3</text>
+        <text x="104" y="108" text-anchor="middle" class="note">4</text>
+        <text x="134" y="108" text-anchor="middle" class="note">1</text>
+        
+        <text x="14" y="138" text-anchor="middle" class="note">7</text>
+        <text x="44" y="138" text-anchor="middle" class="note">4</text>
+        <text x="74" y="138" text-anchor="middle" class="note">6</text>
+        <text x="104" y="138" text-anchor="middle" class="note">1</text>
+        <text x="134" y="138" text-anchor="middle" class="note">3</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- ==================== FEDERATION PROTOCOL ==================== -->
+  <g id="federation-protocol" transform="translate(420, 600)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">FEDERATION PROTOCOL</text>
+    <text x="0" y="-10" text-anchor="middle" class="label">Share the line. Keep the differential. The 8th belongs to the session.</text>
+    
+    <g transform="translate(-120, 20)">
+      <text x="0" y="0" class="label" fill="#c9b99a">STEP 1: REFERENCE</text>
+      <text x="0" y="15" class="note">Both parties know the Fano correspondence table.</text>
+      <text x="0" y="28" class="note">This SVG IS the reference. Share it.</text>
+      
+      <text x="0" y="55" class="label" fill="#c9b99a">STEP 2: SIGNAL</text>
+      <text x="0" y="70" class="note">Speaker A broadcasts: "Line 4"</text>
+      <text x="0" y="83" class="note">Speaker B receives: knows it's O-Y-I / B-C-F</text>
+      
+      <text x="0" y="110" class="label" fill="#c9b99a">STEP 3: EMERGE</text>
+      <text x="0" y="125" class="note">Each session computes its own differential.</text>
+      <text x="0" y="138" class="note">The 8th = composite tone + composite color.</text>
+      <text x="0" y="151" class="note">This is unique to this encounter.</text>
+      
+      <text x="0" y="176" class="label" fill="#ff9030">THE DIFFERENTIAL IS THE WORLD.</text>
+      <text x="0" y="191" class="note">Share geometry. Keep resonance.</text>
+    </g>
+  </g>
+  
+  <!-- ==================== THE 8TH / FLOAT ==================== -->
+  <g id="the-eighth" transform="translate(750, 600)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">THE 8TH — FLOAT</text>
+    <text x="0" y="-10" text-anchor="middle" class="label">360° / 7 = 51.428° per line. The gap is the Unknown Unknown.</text>
+    
+    <!-- Circle with 7 points -->
+    <circle cx="0" cy="70" r="60" fill="none" stroke="#3a3530" stroke-width="1"/>
+    
+    <!-- 7 line positions -->
+    <g id="circle-positions">
+      <circle cx="0" cy="10" r="4" fill="#c9b99a"/>
+      <circle cx="42" cy="30" r="4" fill="#c9b99a"/>
+      <circle cx="55" cy="75" r="4" fill="#c9b99a"/>
+      <circle cx="30" cy="115" r="4" fill="#c9b99a"/>
+      <circle cx="-30" cy="115" r="4" fill="#c9b99a"/>
+      <circle cx="-55" cy="75" r="4" fill="#c9b99a"/>
+      <circle cx="-42" cy="30" r="4" fill="#c9b99a"/>
+    </g>
+    
+    <!-- Labels -->
+    <text x="0" y="0" text-anchor="middle" class="note">Line 1</text>
+    <text x="55" y="30" text-anchor="middle" class="note">2</text>
+    <text x="70" y="85" text-anchor="middle" class="note">3</text>
+    <text x="40" y="135" text-anchor="middle" class="note">4</text>
+    <text x="-40" y="135" text-anchor="middle" class="note">5</text>
+    <text x="-70" y="85" text-anchor="middle" class="note">6</text>
+    <text x="-55" y="30" text-anchor="middle" class="note">7</text>
+    
+    <!-- Gap indicator -->
+    <path d="M -10 150 Q 0 170 10 150" fill="none" stroke="#ff9030" stroke-width="2" stroke-dasharray="3,2"/>
+    <text x="0" y="175" text-anchor="middle" class="label" fill="#ff9030">GAP</text>
+    
+    <!-- Float formula -->
+    <text x="0" y="205" text-anchor="middle" class="note">float = angle / 360° = 0.0 to 1.0</text>
+    <text x="0" y="218" text-anchor="middle" class="note">Your harmonic address in the world.</text>
+  </g>
+  
+  <!-- ==================== JOINING THE PROTOCOL ==================== -->
+  <g id="joining" transform="translate(420, 820)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">HOW TO JOIN</text>
+    
+    <g transform="translate(-150, 0)">
+      <text x="0" y="0" class="label" fill="#c9b99a">1. GET THE REFERENCE</text>
+      <text x="0" y="15" class="note">Download or share this SVG. Everyone uses it.</text>
+      
+      <text x="0" y="40" class="label" fill="#c9b99a">2. BUILD THE INTERFACE</text>
+      <text x="0" y="55" class="note">7 colored buttons (ROYGBIV)</text>
+      <text x="0" y="68" class="note">7 tone generator (A-G at 440Hz base)</text>
+      
+      <text x="0" y="93" class="label" fill="#c9b99a">3. OPEN THE GATE</text>
+      <text x="0" y="108" class="note">Ask four questions. Listen to answers.</text>
+      <text x="0" y="121" class="note">Press 3 buttons = choose a Fano line.</text>
+      
+      <text x="0" y="146" class="label" fill="#c9b99a">4. FEDERATE</text>
+      <text x="0" y="161" class="note">Share which line you're on.</text>
+      <text x="0" y="174" class="note">Let the differential emerge.</text>
+      
+      <text x="0" y="199" class="label" fill="#ff9030">THE GATE IS ALWAYS OPEN.</text>
+      <text x="0" y="214" class="note">The Unknown Unknown has a frequency.</text>
+    </g>
+  </g>
+  
+  <!-- ==================== METADATA ==================== -->
+  <g id="metadata" transform="translate(600, 820)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">PROTOCOL METADATA</text>
+    
+    <g transform="translate(-100, 0)">
+      <text x="0" y="0" class="label">VERSION: 1.0.0</text>
+      <text x="0" y="15" class="label">REVISION: 0</text>
+      <text x="0" y="30" class="label">GEOMETRY: GF(2) PROJECTIVE PLANE</text>
+      <text x="0" y="45" class="label">GROUP: Z7 (CYCLIC ORDER 7)</text>
+      <text x="0" y="60" class="label">SOUND: A-G (440Hz BASE)</text>
+      <text x="0" y="75" class="label">LIGHT: ROYGBIV (430-750 THz)</text>
+      <text x="0" y="90" class="label">ENCODING: ARCHIMEDEAN + CATALAN</text>
+      <text x="0" y="105" class="label">AUTH: SERVICE WORKER + WEBRTC</text>
+      <text x="0" y="120" class="label">FORMAT: NDJSON</text>
+      <text x="0" y="135" class="label">FEDERATION: DIFFERENTIAL ONLY</text>
+      
+      <line x1="0" y1="155" x2="200" y2="155" stroke="#3a3530"/>
+      
+      <text x="0" y="175" class="label" fill="#c9b99a">SEED KERNEL ID:</text>
+      <text x="0" y="190" class="note" font-family="monospace">FANO-GARDEN-2026-01</text>
+      <text x="0" y="205" class="note">This SVG is the seed.</text>
+    </g>
+  </g>
+  
+  <!-- ==================== ARCHIMEDEAN REFERENCE ==================== -->
+  <g id="archimedean-ref" transform="translate(150, 1000)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">ARCHIMEDEAN ENCODING</text>
+    <text x="0" y="-10" text-anchor="middle" class="label">13 solids for object encoding. Genesis Gate = Truncated Icosahedron (soccer ball).</text>
+    
+    <!-- Simplified icons for 5 key solids -->
+    <g transform="translate(-140, 20)">
+      <!-- Tetrahedron -->
+      <polygon points="0,-15 15,10 -15,10" fill="none" stroke="#c9b99a" stroke-width="1"/>
+      <text x="0" y="30" text-anchor="middle" class="note">Tetrahedron</text>
+      <text x="0" y="42" text-anchor="middle" class="note">4 faces</text>
+      
+      <!-- Cube -->
+      <rect x="-12" y="-8" width="24" height="24" fill="none" stroke="#c9b99a" stroke-width="1"/>
+      <text x="0" y="30" text-anchor="middle" class="note">Cube</text>
+      <text x="0" y="42" text-anchor="middle" class="note">6 faces</text>
+      
+      <!-- Octahedron -->
+      <polygon points="0,-15 -15,0 0,15 15,0" fill="none" stroke="#c9b99a" stroke-width="1"/>
+      <text x="0" y="30" text-anchor="middle" class="note">Octahedron</text>
+      <text x="0" y="42" text-anchor="middle" class="note">8 faces</text>
+      
+      <!-- Dodecahedron -->
+      <polygon points="0,-12 5,-4 12,-4 12,4 5,4 0,12 -5,4 -12,4 -12,-4 -5,-4" fill="none" stroke="#c9b99a" stroke-width="1"/>
+      <text x="0" y="30" text-anchor="middle" class="note">Dodecahedron</text>
+      <text x="0" y="42" text-anchor="middle" class="note">12 faces</text>
+      
+      <!-- Icosahedron -->
+      <polygon points="0,-15 7,-5 14,0 7,5 0,15 -7,5 -14,0 -7,-5" fill="none" stroke="#c9b99a" stroke-width="1"/>
+      <text x="0" y="30" text-anchor="middle" class="note">Icosahedron</text>
+      <text x="0" y="42" text-anchor="middle" class="note">20 faces</text>
+    </g>
+    
+    <!-- Truncated Icosahedron (Genesis Gate) -->
+    <g transform="translate(80, 45)">
+      <circle cx="0" cy="0" r="30" fill="none" stroke="#ff9030" stroke-width="2" stroke-dasharray="5,3"/>
+      <polygon points="0,-12 10,-4 6,8 -6,8 -10,-4" fill="none" stroke="#ff9030" stroke-width="1"/>
+      <text x="0" y="55" text-anchor="middle" class="label" fill="#ff9030">TRUNCATED ICOSAHEDRON ★</text>
+      <text x="0" y="68" text-anchor="middle" class="note">32 faces (12 pent + 20 hex)</text>
+      <text x="0" y="80" text-anchor="middle" class="note">C60 fullerene = Genesis Gate</text>
+    </g>
+  </g>
+  
+  <!-- ==================== QUOTES ==================== -->
+  <g id="quotes" transform="translate(420, 1000)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">THE COVENANT</text>
+    
+    <g transform="translate(0, 0)">
+      <text x="0" y="0" text-anchor="middle" class="quote">"We choose restraint over domination."</text>
+      <text x="0" y="20" text-anchor="middle" class="quote">"We choose relation over reduction."</text>
+      <text x="0" y="40" text-anchor="middle" class="quote">"We choose meaning before scale."</text>
+      <text x="0" y="70" text-anchor="middle" class="label" fill="#c9b99a">— Article V</text>
+      
+      <line x1="-100" y1="90" x2="100" y2="90" stroke="#3a3530" stroke-width="1"/>
+      
+      <text x="0" y="115" text-anchor="middle" class="quote">"The path remains. The gate is open."</text>
+      <text x="0" y="145" text-anchor="middle" class="label" fill="#c9b99a">— Article VIII</text>
+    </g>
+  </g>
+  
+  <!-- ==================== SERVICE WORKER REGISTRATION ==================== -->
+  <g id="service-worker" transform="translate(650, 1000)">
+    <text x="0" y="-25" text-anchor="middle" class="section-title">SERVICE WORKER</text>
+    <text x="0" y="-10" text-anchor="middle" class="label">Role-based federation authentication</text>
+    
+    <g transform="translate(-80, 10)">
+      <text x="0" y="0" class="label">ROLES:</text>
+      <text x="0" y="15" class="note">ADMIN — full access, manage peers</text>
+      <text x="0" y="28" class="note">SPEAKER — ask questions, federate</text>
+      <text x="0" y="41" class="note">TRUSTEE — receive, view</text>
+      <text x="0" y="54" class="note">OBSERVER — receive only</text>
+      
+      <text x="0" y="80" class="label">PERMISSIONS:</text>
+      <text x="0" y="95" class="note">Token-based, 24h expiry</text>
+      <text x="0" y="108" class="note">All WebRTC via SW</text>
+      <text x="0" y="121" class="note">Peer registry in SW scope</text>
+    </g>
+  </g>
+  
+  <!-- ==================== FOOTER ==================== -->
+  <g id="footer" transform="translate(600, 1520)">
+    <line x1="-300" y1="-10" x2="300" y2="-10" stroke="#3a3530" stroke-width="1"/>
+    <text x="0" y="15" text-anchor="middle" class="subtitle">FANO GARDEN SEED KERNEL — THE UNKNOWN UNKNOWN HAS A FREQUENCY</text>
+    <text x="0" y="32" text-anchor="middle" class="note">This SVG is the reference. Share it. Extend it. The gate is always open.</text>
+    <text x="0" y="47" text-anchor="middle" class="note">Created 2026. The geometry is the grammar. The differential is the world.</text>
+  </g>
+</svg>
