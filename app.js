@@ -108,6 +108,7 @@ const app = (() => {
   let svgDoc = null;
   let domeSvgDoc = null;
   let dome3DViewer = null;
+  let epistemicSquare = null;
   let selectedPath = null;
   let selectedLed = null;
   let lightState = {};
@@ -172,6 +173,8 @@ const app = (() => {
     document.getElementById('dome-band1')?.addEventListener('click', () => highlightDomeBand(1));
     document.getElementById('dome-band2')?.addEventListener('click', () => highlightDomeBand(2));
     document.getElementById('dome-rotate-toggle')?.addEventListener('click', toggleDomeRotation);
+    
+    initEpistemicSquare();
     
     setupViewTabs();
     
@@ -282,6 +285,88 @@ const app = (() => {
       dome3DViewer.autoRotate = !dome3DViewer.autoRotate;
       addLog(`Auto-rotate: ${dome3DViewer.autoRotate ? 'ON' : 'OFF'}`, 'pattern');
     }
+  }
+  
+  function initEpistemicSquare() {
+    epistemicSquare = new EpistemicSquare({
+      spinSpeed: 0.3,
+      autoRotate: true
+    });
+    
+    document.getElementById('epi-q1')?.addEventListener('click', () => askEpistemicQuestion(1));
+    document.getElementById('epi-q2')?.addEventListener('click', () => askEpistemicQuestion(2));
+    document.getElementById('epi-q3')?.addEventListener('click', () => askEpistemicQuestion(3));
+    document.getElementById('epi-q4')?.addEventListener('click', () => askEpistemicQuestion(4));
+    document.getElementById('epi-toggle')?.addEventListener('click', toggleEpistemicRotation);
+    document.getElementById('epi-speed-up')?.addEventListener('click', () => adjustEpistemicSpeed(1.5));
+    document.getElementById('epi-slow-down')?.addEventListener('click', () => adjustEpistemicSpeed(0.67));
+    
+    window.addEventListener('epistemicPointClick', handleEpistemicPointClick);
+    
+    updateEpistemicDisplay();
+  }
+  
+  function askEpistemicQuestion(qNum) {
+    if (!epistemicSquare) return;
+    
+    const q = epistemicSquare.askQuestion(qNum);
+    if (!q) return;
+    
+    addLog(`Q${qNum}: ${q.question}`, 'epistemic');
+    addLog(`Points in ${q.name}: ${q.points.join(', ')}`, 'epistemic');
+    
+    elements.ledInfo.innerHTML = `
+      <div class="path">Q${qNum}: ${q.name}</div>
+      <div class="detail">${q.question}</div>
+      <div class="detail">${q.description}</div>
+      <div class="detail ratio">Points: ${q.points.join(', ') || 'none'}</div>
+    `;
+  }
+  
+  function handleEpistemicPointClick(e) {
+    const { id, name, hue, quadrant, angle } = e.detail;
+    addLog(`Point ${id} (${name}) in ${quadrant}`, 'epistemic');
+    
+    elements.ledInfo.innerHTML = `
+      <div class="path">Point ${id}: ${name}</div>
+      <div class="detail">Hue: ${hue}°</div>
+      <div class="detail ratio">Quadrant: ${quadrant}</div>
+      <div class="detail">Angle: ${angle.toFixed(1)}°</div>
+    `;
+  }
+  
+  function toggleEpistemicRotation() {
+    if (epistemicSquare) {
+      epistemicSquare.setAutoRotate(!epistemicSquare.autoRotate);
+      addLog(`Epistemic rotation: ${epistemicSquare.autoRotate ? 'ON' : 'OFF'}`, 'epistemic');
+      
+      const btn = document.getElementById('epi-toggle');
+      if (btn) btn.textContent = epistemicSquare.autoRotate ? 'Pause' : 'Resume';
+    }
+  }
+  
+  function adjustEpistemicSpeed(multiplier) {
+    if (epistemicSquare) {
+      epistemicSquare.setSpeed(epistemicSquare.spinSpeed * multiplier);
+      addLog(`Epistemic speed: ${epistemicSquare.spinSpeed.toFixed(2)}`, 'epistemic');
+    }
+  }
+  
+  function updateEpistemicDisplay() {
+    if (!epistemicSquare) {
+      requestAnimationFrame(updateEpistemicDisplay);
+      return;
+    }
+    
+    const state = epistemicSquare.getMnemonic();
+    
+    const seedEl = document.getElementById('epi-seed');
+    const angleEl = document.getElementById('epi-angle');
+    
+    if (seedEl) seedEl.textContent = state.hex;
+    if (angleEl) angleEl.textContent = `${state.angle.toFixed(1)}°`;
+    
+    requestAnimationFrame(updateEpistemicDisplay);
   }
   
   function requestSync() {

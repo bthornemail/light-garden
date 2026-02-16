@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" id="epistemic-svg">
+  <defs>
+    <style>
+      .quadrant-label { font-family: monospace; font-size: 14px; font-weight: bold; }
+      .quadrant-bg { opacity: 0.1; }
+      .fano-point { cursor: pointer; transition: all 0.3s; }
+      .fano-point:hover { filter: brightness(1.5); }
+      .fano-line { stroke: #444; stroke-width: 1; opacity: 0.5; }
+      .spin-container { transform-origin: 250px 250px; }
+      .observer { stroke: #fff; stroke-width: 2; }
+    </style>
+  </defs>
+  
+  <rect width="500" height="500" fill="#0a0a0a"/>
+  
+  <!-- Quadrant backgrounds -->
+  <!-- KNOWN KNOWNS (top-right, x>0, y>0) -->
+  <rect x="250" y="250" width="250" height="250" fill="#00ff00" class="quadrant-bg" id="bg-kk"/>
+  <text x="375" y="280" text-anchor="middle" fill="#00ff00" class="quadrant-label" opacity="0.5">KNOWN KNOWNS</text>
+  
+  <!-- KNOWN UNKNOWNS (top-left, x<0, y>0) -->
+  <rect x="0" y="250" width="250" height="250" fill="#ffff00" class="quadrant-bg" id="bg-ku"/>
+  <text x="125" y="280" text-anchor="middle" fill="#ffff00" class="quadrant-label" opacity="0.5">KNOWN UNKNOWNS</text>
+  
+  <!-- UNKNOWN KNOWNS (bottom-right, x>0, y<0) -->
+  <rect x="250" y="0" width="250" height="250" fill="#ff8800" class="quadrant-bg" id="bg-uk"/>
+  <text x="375" y="230" text-anchor="middle" fill="#ff8800" class="quadrant-label" opacity="0.5">UNKNOWN KNOWNS</text>
+  
+  <!-- UNKNOWN UNKNOWNS (bottom-left, x<0, y<0) -->
+  <rect x="0" y="0" width="250" height="250" fill="#0000ff" class="quadrant-bg" id="bg-uu"/>
+  <text x="125" y="230" text-anchor="middle" fill="#0000ff" class="quadrant-label" opacity="0.5">UNKNOWN UNKNOWNS</text>
+  
+  <!-- Quadrant dividers -->
+  <line x1="250" y1="0" x2="250" y2="500" stroke="#666" stroke-width="2"/>
+  <line x1="0" y1="250" x2="500" y2="250" stroke="#666" stroke-width="2"/>
+  
+  <!-- Center point (origin) -->
+  <circle cx="250" cy="250" r="3" fill="#fff" opacity="0.5"/>
+  
+  <!-- Rotating Fano plane container -->
+  <g id="fano-plane-container" class="spin-container">
+    
+    <!-- Fano lines (connections between points) -->
+    <g id="fano-lines">
+      <!-- Line 1: 1-2-4 -->
+      <line x1="280" y1="280" x2="320" y2="220" class="fano-line" data-line="1"/>
+      <line x1="320" y1="220" x2="250" y2="200" class="fano-line" data-line="1"/>
+      <line x1="250" y1="200" x2="280" y2="280" class="fano-line" data-line="1"/>
+      
+      <!-- Line 2: 1-3-7 -->
+      <line x1="280" y1="280" x2="220" y2="220" class="fano-line" data-line="2"/>
+      <line x1="220" y1="220" x2="250" y2="320" class="fano-line" data-line="2"/>
+      <line x1="250" y1="320" x2="280" y2="280" class="fano-line" data-line="2"/>
+      
+      <!-- Line 3: 1-5-6 -->
+      <line x1="280" y1="280" x2="180" y2="220" class="fano-line" data-line="3"/>
+      <line x1="180" y1="220" x2="320" y2="280" class="fano-line" data-line="3"/>
+      <line x1="320" y1="280" x2="280" y2="280" class="fano-line" data-line="3"/>
+      
+      <!-- Line 4: 2-3-5 -->
+      <line x1="320" y1="220" x2="220" y2="220" class="fano-line" data-line="4"/>
+      <line x1="220" y1="220" x2="180" y2="220" class="fano-line" data-line="4"/>
+      <line x1="180" y1="220" x2="320" y2="220" class="fano-line" data-line="4"/>
+      
+      <!-- Line 5: 2-6-7 -->
+      <line x1="320" y1="220" x2="320" y2="280" class="fano-line" data-line="5"/>
+      <line x1="320" y1="280" x2="250" y2="320" class="fano-line" data-line="5"/>
+      <line x1="250" y1="320" x2="320" y2="220" class="fano-line" data-line="5"/>
+      
+      <!-- Line 6: 3-4-6 -->
+      <line x1="220" y1="220" x2="250" y2="200" class="fano-line" data-line="6"/>
+      <line x1="250" y1="200" x2="320" y2="280" class="fano-line" data-line="6"/>
+      <line x1="320" y1="280" x2="220" y2="220" class="fano-line" data-line="6"/>
+      
+      <!-- Line 7: 4-5-7 -->
+      <line x1="250" y1="200" x2="180" y2="220" class="fano-line" data-line="7"/>
+      <line x1="180" y1="220" x2="250" y2="320" class="fano-line" data-line="7"/>
+      <line x1="250" y1="320" x2="250" y2="200" class="fano-line" data-line="7"/>
+    </g>
+    
+    <!-- Fano Points (7 points) -->
+    <g id="fano-points">
+      <!-- Point 1: Metatron (Red) -->
+      <circle cx="280" cy="280" r="12" fill="#ff0000" class="fano-point" 
+              data-id="1" data-name="Metatron" data-color="red" data-hue="0"/>
+      
+      <!-- Point 2: Solomon (Orange) -->
+      <circle cx="320" cy="220" r="12" fill="#ff8800" class="fano-point"
+              data-id="2" data-name="Solomon" data-color="orange" data-hue="30"/>
+      
+      <!-- Point 3: Solon (Yellow) -->
+      <circle cx="220" cy="220" r="12" fill="#ffff00" class="fano-point"
+              data-id="3" data-name="Solon" data-color="yellow" data-hue="60"/>
+      
+      <!-- Point 4: Asabiyyah (Green) -->
+      <circle cx="250" cy="200" r="12" fill="#00ff00" class="fano-point"
+              data-id="4" data-name="Asabiyyah" data-color="green" data-hue="120"/>
+      
+      <!-- Point 5: Enoch (Blue) -->
+      <circle cx="180" cy="220" r="12" fill="#0000ff" class="fano-point"
+              data-id="5" data-name="Enoch" data-color="blue" data-hue="240"/>
+      
+      <!-- Point 6: Speaker (Indigo) -->
+      <circle cx="320" cy="280" r="12" fill="#4b0082" class="fano-point"
+              data-id="6" data-name="Speaker" data-color="indigo" data-hue="270"/>
+      
+      <!-- Point 7: Genesis (Violet) -->
+      <circle cx="250" cy="320" r="12" fill="#8f00ff" class="fano-point"
+              data-id="7" data-name="Genesis" data-color="violet" data-hue="300"/>
+    </g>
+    
+    <!-- Observer (center point 8) -->
+    <circle cx="250" cy="250" r="15" fill="#ffffff" stroke="#fff" stroke-width="2" 
+            class="fano-point observer" data-id="8" data-name="Observer" data-color="white" data-hue="0"/>
+    
+  </g>
+  
+  <!-- Spin angle display -->
+  <text x="20" y="480" fill="#666" font-family="monospace" font-size="12">
+    Angle: <tspan id="angle-display">0</tspan>°
+  </text>
+  
+  <!-- Mnemonic seed display -->
+  <text x="480" y="480" text-anchor="end" fill="#8f00ff" font-family="monospace" font-size="12">
+    Seed: <tspan id="seed-display">000-000-000</tspan>
+  </text>
+  
+  <!-- Question buttons -->
+  <g transform="translate(20, 40)">
+    <rect x="0" y="0" width="120" height="30" fill="#1a1a1a" rx="4"/>
+    <text x="60" y="20" text-anchor="middle" fill="#00ff00" font-size="10" font-family="monospace">Q1: KK</text>
+    
+    <rect x="130" y="0" width="120" height="30" fill="#1a1a1a" rx="4"/>
+    <text x="190" y="20" text-anchor="middle" fill="#ffff00" font-size="10" font-family="monospace">Q2: KU</text>
+    
+    <rect x="260" y="0" width="120" height="30" fill="#1a1a1a" rx="4"/>
+    <text x="320" y="20" text-anchor="middle" fill="#ff8800" font-size="10" font-family="monospace">Q3: UK</text>
+    
+    <rect x="390" y="0" width="120" height="30" fill="#1a1a1a" rx="4"/>
+    <text x="450" y="20" text-anchor="middle" fill="#0000ff" font-size="10" font-family="monospace">Q4: UU</text>
+  </g>
+  
+  <!-- Interactive script -->
+  <script type="text/javascript">
+    <![CDATA[
+      let currentAngle = 0;
+      let autoRotate = true;
+      let rotationSpeed = 0.5;
+      
+      function rotateFanoPlane() {
+        if (!autoRotate) return;
+        
+        currentAngle += rotationSpeed;
+        if (currentAngle >= 360) currentAngle -= 360;
+        
+        const container = document.getElementById('fano-plane-container');
+        if (container) {
+          container.setAttribute('transform', `rotate(${currentAngle}, 250, 250)`);
+        }
+        
+        const angleDisplay = document.getElementById('angle-display');
+        if (angleDisplay) {
+          angleDisplay.textContent = currentAngle.toFixed(1);
+        }
+        
+        updateQuadrants();
+        updateSeed();
+        
+        requestAnimationFrame(rotateFanoPlane);
+      }
+      
+      function updateQuadrants() {
+        const points = document.querySelectorAll('#fano-points .fano-point');
+        const quadrantColors = {
+          'KK': '#00ff00',
+          'KU': '#ffff00',
+          'UK': '#ff8800',
+          'UU': '#0000ff'
+        };
+        
+        points.forEach(point => {
+          const cx = parseFloat(point.getAttribute('cx'));
+          const cy = parseFloat(point.getAttribute('cy'));
+          
+          const relX = (cx - 250) / 100;
+          const relY = (250 - cy) / 100;
+          
+          const cosA = Math.cos(-currentAngle * Math.PI / 180);
+          const sinA = Math.sin(-currentAngle * Math.PI / 180);
+          const rotX = relX * cosA - relY * sinA;
+          const rotY = relX * sinA + relY * cosA;
+          
+          let quadrant;
+          if (rotX >= 0 && rotY >= 0) quadrant = 'KK';
+          else if (rotX < 0 && rotY >= 0) quadrant = 'KU';
+          else if (rotX >= 0 && rotY < 0) quadrant = 'UK';
+          else quadrant = 'UU';
+          
+          point.setAttribute('data-quadrant', quadrant);
+        });
+      }
+      
+      function updateSeed() {
+        const points = document.querySelectorAll('#fano-points .fano-point');
+        let bits = 0;
+        
+        points.forEach((point, i) => {
+          const quad = point.getAttribute('data-quadrant') || 'KK';
+          const code = { 'KK': 0, 'KU': 1, 'UK': 2, 'UU': 3 }[quad];
+          bits |= (code << (i * 2));
+        });
+        
+        const angleBits = Math.floor(currentAngle * (1024 / 360)) & 0x3FF;
+        const seed = (bits << 10) | angleBits;
+        
+        const word1 = (seed & 0x3FF).toString(16).padStart(3, '0');
+        const word2 = ((seed >> 10) & 0x3FF).toString(16).padStart(3, '0');
+        const word3 = ((seed >> 20) & 0xFFF).toString(16).padStart(3, '0');
+        
+        const seedDisplay = document.getElementById('seed-display');
+        if (seedDisplay) {
+          seedDisplay.textContent = `${word1}-${word2}-${word3}`;
+        }
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(rotateFanoPlane, 100);
+        
+        const points = document.querySelectorAll('.fano-point');
+        points.forEach(point => {
+          point.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            const name = this.getAttribute('data-name');
+            const hue = this.getAttribute('data-hue');
+            const quadrant = this.getAttribute('data-quadrant') || 'KK';
+            
+            const event = new CustomEvent('epistemicPointClick', {
+              detail: {
+                id,
+                name,
+                hue,
+                quadrant,
+                angle: currentAngle
+              }
+            });
+            window.parent.dispatchEvent(event);
+            
+            const originalR = this.getAttribute('r');
+            this.setAttribute('r', parseFloat(originalR) * 1.5);
+            setTimeout(() => this.setAttribute('r', originalR), 200);
+          });
+        });
+      });
+    ]]>
+  </script>
+</svg>

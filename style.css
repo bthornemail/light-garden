@@ -433,6 +433,31 @@ button:active {
   color: #fff;
 }
 
+.epistemic-status {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  background: #0a0a0a;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.epi-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+.epi-row .label {
+  color: #666;
+}
+
+.epi-row .value {
+  color: #8f00ff;
+  font-family: monospace;
+}
+
 .svg-container.hidden {
   display: none;
 }
